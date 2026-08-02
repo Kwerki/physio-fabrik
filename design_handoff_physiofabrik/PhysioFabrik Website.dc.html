@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+body{margin:0;background:#e8e8e4;font-family:Archivo,Helvetica,sans-serif}
+a{color:inherit}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 Archivo,sans-serif;color:#1a1a1a}
+.dv-note{margin:0 0 22px;max-width:900px;font:400 12.5px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.55)}
+.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Archivo,sans-serif;color:rgba(0,0,0,.55)}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.12);box-shadow:0 2px 10px rgba(0,0,0,.07);overflow:hidden}
+.dv-opt:target .dv-oid{background:oklch(0.74 0.12 150);color:#0e0f0e}
+.dv-next{margin:24px 0 0;font:12px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.5)}
+.dv-pair{display:flex;gap:20px;align-items:flex-start}
+</style></helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">PhysioFabrik — 3 Richtungen für Startseite (Desktop 1440 + Phone 390)</span></div>
+<p class="dv-note">Annahmen: One-Pager, Deutsch (EN-Umschalter im Header), Ziel = Anruf/E-Mail/Formular. Schwarz-Weiß mit einem gedämpften Grün <b>oklch(0.74 0.12 150)</b> als einzigem Akzent. Typo: Archivo (Grotesk, technisch) + IBM Plex Mono für Labels/Zahlen — das ist der subtile „Fabrik“-Anteil: Raster, Linien, Nummerierung, keine Beton-Optik. Bilder sind Platzhalter. Wähle eine Richtung, dann baue ich die volle Seite (Leistungen, Team, Kontakt/Anfahrt, Impressum/Datenschutz) aus.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Klinisch Clean — weiß, viel Luft, dünnes Raster, Grün nur als Signal</div>
+<div class="dv-pair">
+<div class="dv-card" style="width:1440px">
+<div style="background:#FAFAF8;color:#0E0F0E">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:82px;border-bottom:1px solid rgba(0,0,0,.1)">
+<img src="assets/logo-schwarz.png" alt="PhysioFabrik" style="height:22px;width:auto;display:block">
+<div style="display:flex;align-items:center;gap:30px;font:500 13px/1 Archivo,sans-serif">
+<span>Leistungen</span><span>Team</span><span>Praxis</span><span>Kontakt</span>
+<span style="font:500 11px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45);border-left:1px solid rgba(0,0,0,.15);padding-left:22px">DE / <span style="color:rgba(0,0,0,.3)">EN</span></span>
+<a href="#1a" style="text-decoration:none;background:#0E0F0E;color:#FAFAF8;font:500 12.5px/1 Archivo,sans-serif;padding:11px 18px">Termin anfragen</a>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1.15fr .85fr;border-bottom:1px solid rgba(0,0,0,.1)">
+<div style="padding:96px 56px 80px;border-right:1px solid rgba(0,0,0,.1)">
+<div style="font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:oklch(0.55 0.11 150);margin-bottom:26px">PHYSIOTHERAPIE · MÜNSTER</div>
+<h1 style="margin:0 0 24px;font:600 62px/1.03 Archivo,sans-serif;letter-spacing:-.025em;text-wrap:balance">Bewegung ist<br>Handwerk.</h1>
+<p style="margin:0 0 36px;max-width:44ch;font:400 17px/1.65 Archivo,sans-serif;color:rgba(0,0,0,.62);text-wrap:pretty">Krankengymnastik, manuelle Therapie und Gerätetraining — mit klarer Befundung, messbaren Zielen und Zeit für den Patienten. Alle Kassen und Privat.</p>
+<div style="display:flex;gap:12px;margin-bottom:44px">
+<a href="tel:+49" style="text-decoration:none;background:#0E0F0E;color:#FAFAF8;font:500 14px/1 Archivo,sans-serif;padding:16px 24px">0251 · 12 34 56</a>
+<a href="#1a" style="text-decoration:none;border:1px solid rgba(0,0,0,.25);color:#0E0F0E;font:500 14px/1 Archivo,sans-serif;padding:16px 24px">E-Mail schreiben</a>
+</div>
+<div style="display:flex;gap:0;border-top:1px solid rgba(0,0,0,.1)">
+<div style="padding:18px 24px 0 0;border-right:1px solid rgba(0,0,0,.1);flex:1"><div style="font:600 26px/1 Archivo,sans-serif">14</div><div style="font:400 11.5px/1.4 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:6px">Jahre Praxis</div></div>
+<div style="padding:18px 24px;border-right:1px solid rgba(0,0,0,.1);flex:1"><div style="font:600 26px/1 Archivo,sans-serif">30 min</div><div style="font:400 11.5px/1.4 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:6px">pro Termin</div></div>
+<div style="padding:18px 0 0 24px;flex:1"><div style="font:600 26px/1 Archivo,sans-serif">alle</div><div style="font:400 11.5px/1.4 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:6px">Kassen &amp; Privat</div></div>
+</div>
+</div>
+<div style="position:relative;min-height:520px;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.05) 0 7px,transparent 7px 14px);display:flex;align-items:flex-end;padding:24px">
+<div style="font:400 11px/1.5 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45);background:#FAFAF8;padding:8px 10px;border:1px solid rgba(0,0,0,.12)">[ Foto: Therapeut bei manueller<br>Behandlung, hochformat ]</div>
+<div style="position:absolute;top:24px;right:24px;width:10px;height:10px;background:oklch(0.74 0.12 150)"></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr)">
+<div style="padding:34px 34px 38px;border-right:1px solid rgba(0,0,0,.1)"><div style="font:500 11px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.35);margin-bottom:14px">01</div><div style="font:600 19px/1.25 Archivo,sans-serif;margin-bottom:10px">Befund zuerst</div><p style="margin:0;font:400 14px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.6)">Jede Behandlung startet mit einer strukturierten Untersuchung.</p></div>
+<div style="padding:34px 34px 38px;border-right:1px solid rgba(0,0,0,.1)"><div style="font:500 11px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.35);margin-bottom:14px">02</div><div style="font:600 19px/1.25 Archivo,sans-serif;margin-bottom:10px">Ein Therapeut</div><p style="margin:0;font:400 14px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.6)">Kein Wechsel mitten in der Serie — durchgehend dieselbe Betreuung.</p></div>
+<div style="padding:34px 34px 38px"><div style="font:500 11px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.35);margin-bottom:14px">03</div><div style="font:600 19px/1.25 Archivo,sans-serif;margin-bottom:10px">Zertifiziert</div><p style="margin:0;font:400 14px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.6)">Manuelle Therapie, CMD, Gerätetraining — laufende Fortbildungen.</p></div>
+</div>
+<div style="display:grid;grid-template-columns:1.1fr .9fr;border-top:1px solid rgba(0,0,0,.1)">
+<div style="padding:44px 56px 50px;border-right:1px solid rgba(0,0,0,.1)">
+<div style="font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-bottom:8px">AUF REZEPT</div>
+<p style="margin:0 0 22px;font:400 13.5px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.55)">Gesetzlich und privat versichert — wir rechnen direkt mit Ihrer Kasse ab.</p>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.1)"><span style="font:500 16px/1.3 Archivo,sans-serif">Krankengymnastik</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KG</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.1)"><span style="font:500 16px/1.3 Archivo,sans-serif">Manuelle Therapie</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">MT</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.1)"><span style="font:500 16px/1.3 Archivo,sans-serif">KG am Gerät</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KGG</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.1)"><span style="font:500 16px/1.3 Archivo,sans-serif">Kiefergelenk</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">CMD</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.1)"><span style="font:500 16px/1.3 Archivo,sans-serif">Klassische Massage</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KMT</span></div>
+</div>
+</div>
+<div style="padding:44px 56px 50px;background:#F2F3EF">
+<div style="display:flex;align-items:center;gap:12px;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-bottom:8px"><span style="display:block;width:26px;height:3px;background:oklch(0.74 0.12 150)"></span>PRIVATLEISTUNGEN</div>
+<p style="margin:0 0 22px;font:400 13.5px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.55)">Ohne Verordnung buchbar.</p>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.12)"><span style="font:500 17px/1.3 Archivo,sans-serif">Personal Training</span><span style="font:500 14px/1 'IBM Plex Mono',monospace">100 € / Std.</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.12)"><span style="font:500 17px/1.3 Archivo,sans-serif">Massage</span><span style="font:500 14px/1 'IBM Plex Mono',monospace">26 €</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.12)"><span style="font:500 17px/1.3 Archivo,sans-serif">Wärmepackung</span><span style="font:500 14px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5)">auf Anfrage</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="dv-card" style="width:390px">
+<div style="background:#FAFAF8;color:#0E0F0E">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:60px;border-bottom:1px solid rgba(0,0,0,.1)">
+<img src="assets/logo-schwarz.png" alt="PhysioFabrik" style="height:17px;width:auto;display:block">
+<div style="display:flex;flex-direction:column;gap:5px;width:22px"><div style="height:1.5px;background:#0E0F0E"></div><div style="height:1.5px;background:#0E0F0E"></div></div>
+</div>
+<div style="padding:36px 20px 30px;border-bottom:1px solid rgba(0,0,0,.1)">
+<div style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:oklch(0.55 0.11 150);margin-bottom:18px">PHYSIOTHERAPIE · MÜNSTER</div>
+<h1 style="margin:0 0 16px;font:600 40px/1.04 Archivo,sans-serif;letter-spacing:-.025em">Bewegung ist Handwerk.</h1>
+<p style="margin:0 0 24px;font:400 15px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.62)">Krankengymnastik, manuelle Therapie und Gerätetraining — mit klarer Befundung und Zeit für den Patienten.</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<a href="tel:+49" style="text-decoration:none;background:#0E0F0E;color:#FAFAF8;font:500 15px/1 Archivo,sans-serif;padding:17px 20px;text-align:center">0251 · 12 34 56</a>
+<a href="#1a" style="text-decoration:none;border:1px solid rgba(0,0,0,.25);font:500 15px/1 Archivo,sans-serif;padding:16px 20px;text-align:center">E-Mail schreiben</a>
+</div>
+</div>
+<div style="height:230px;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.05) 0 7px,transparent 7px 14px);border-bottom:1px solid rgba(0,0,0,.1);display:flex;align-items:flex-end;padding:16px"><div style="font:400 10px/1.5 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45);background:#FAFAF8;padding:6px 8px;border:1px solid rgba(0,0,0,.12)">[ Foto: Behandlung ]</div></div>
+<div style="display:flex;border-bottom:1px solid rgba(0,0,0,.1)">
+<div style="flex:1;padding:18px 16px;border-right:1px solid rgba(0,0,0,.1)"><div style="font:600 20px/1 Archivo,sans-serif">14</div><div style="font:400 10.5px/1.3 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:5px">Jahre</div></div>
+<div style="flex:1;padding:18px 16px;border-right:1px solid rgba(0,0,0,.1)"><div style="font:600 20px/1 Archivo,sans-serif">30 min</div><div style="font:400 10.5px/1.3 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:5px">pro Termin</div></div>
+<div style="flex:1;padding:18px 16px"><div style="font:600 20px/1 Archivo,sans-serif">alle</div><div style="font:400 10.5px/1.3 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:5px">Kassen</div></div>
+</div>
+<div style="padding:26px 20px 30px"><div style="font:500 10px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.35);margin-bottom:12px">01</div><div style="font:600 18px/1.25 Archivo,sans-serif;margin-bottom:8px">Befund zuerst</div><p style="margin:0;font:400 14px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.6)">Jede Behandlung startet mit einer strukturierten Untersuchung.</p></div>
+<div style="padding:0 20px 30px">
+<div style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-bottom:12px">AUF REZEPT</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:26px">
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KG</span>
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KGG</span>
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">MT</span>
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">CMD</span>
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KMT</span>
+</div>
+<div style="display:flex;align-items:center;gap:10px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-bottom:12px"><span style="display:block;width:22px;height:3px;background:oklch(0.74 0.12 150)"></span>PRIVATLEISTUNGEN</div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:500 15px/1.3 Archivo,sans-serif">Personal Training</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace">100 € / Std.</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:500 15px/1.3 Archivo,sans-serif">Massage</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace">26 €</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12)"><span style="font:500 15px/1.3 Archivo,sans-serif">Wärmepackung</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5)">auf Anfrage</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Werkstatt — schwarzer Hero, weißes Logo groß, Grün als Linie und Marker</div>
+<div class="dv-pair">
+<div class="dv-card" style="width:1440px">
+<div style="background:#0E0F0E;color:#FAFAF8">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:82px;border-bottom:1px solid rgba(255,255,255,.14)">
+<img src="assets/logo-weiss.png" alt="PhysioFabrik" style="height:22px;width:auto;display:block">
+<div style="display:flex;align-items:center;gap:30px;font:500 13px/1 Archivo,sans-serif">
+<span>Leistungen</span><span>Team</span><span>Praxis</span><span>Kontakt</span>
+<span style="font:500 11px/1 'IBM Plex Mono',monospace;color:rgba(255,255,255,.5);border-left:1px solid rgba(255,255,255,.2);padding-left:22px">DE / <span style="color:rgba(255,255,255,.3)">EN</span></span>
+<a href="#1b" style="text-decoration:none;background:oklch(0.74 0.12 150);color:#0E0F0E;font:500 12.5px/1 Archivo,sans-serif;padding:11px 18px">Termin anfragen</a>
+</div>
+</div>
+<div style="position:relative;padding:112px 56px 0;overflow:hidden">
+<div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:56px 56px"></div>
+<div style="position:relative;display:flex;align-items:center;gap:14px;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:oklch(0.74 0.12 150);margin-bottom:30px"><span style="display:block;width:44px;height:1px;background:oklch(0.74 0.12 150)"></span>PRAXIS FÜR PHYSIOTHERAPIE</div>
+<h1 style="position:relative;margin:0 0 28px;font:700 92px/.96 Archivo,sans-serif;letter-spacing:-.035em;max-width:15ch">Wir bringen Körper zurück in Betrieb.</h1>
+<p style="position:relative;margin:0 0 40px;max-width:50ch;font:400 18px/1.65 Archivo,sans-serif;color:rgba(255,255,255,.68);text-wrap:pretty">Krankengymnastik, manuelle Therapie, Gerätetraining und CMD — strukturiert, nachvollziehbar, ohne Fließband. Alle Kassen und Privat.</p>
+<div style="position:relative;display:flex;gap:12px;padding-bottom:64px">
+<a href="tel:+49" style="text-decoration:none;background:#FAFAF8;color:#0E0F0E;font:500 14px/1 Archivo,sans-serif;padding:17px 26px">Anrufen · 0251 12 34 56</a>
+<a href="#1b" style="text-decoration:none;border:1px solid rgba(255,255,255,.3);color:#FAFAF8;font:500 14px/1 Archivo,sans-serif;padding:17px 26px">Termin per E-Mail</a>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.14);font:400 12px/1.5 'IBM Plex Mono',monospace;color:rgba(255,255,255,.6)">
+<div style="padding:20px 22px;border-right:1px solid rgba(255,255,255,.14)">MO–FR 07:30–19:00</div>
+<div style="padding:20px 22px;border-right:1px solid rgba(255,255,255,.14)">Hausbesuche möglich</div>
+<div style="padding:20px 22px;border-right:1px solid rgba(255,255,255,.14)">Parkplätze am Haus</div>
+<div style="padding:20px 22px">Barrierefrei</div>
+</div>
+</div>
+<div style="background:#FAFAF8;color:#0E0F0E;display:grid;grid-template-columns:.9fr 1.1fr">
+<div style="min-height:420px;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.05) 0 7px,transparent 7px 14px);border-right:1px solid rgba(0,0,0,.1);display:flex;align-items:flex-end;padding:22px"><div style="font:400 11px/1.5 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45);background:#FAFAF8;padding:8px 10px;border:1px solid rgba(0,0,0,.12)">[ Foto: Trainingsfläche /<br>Geräte, weit ]</div></div>
+<div style="padding:56px 44px">
+<div style="font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-bottom:26px">LEISTUNGEN</div>
+<div style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-bottom:18px">Auf Rezept — gesetzlich &amp; privat versichert</div>
+<div style="display:flex;flex-direction:column;margin-bottom:40px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:600 22px/1.2 Archivo,sans-serif">Krankengymnastik</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KG</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:600 22px/1.2 Archivo,sans-serif">Krankengymnastik am Gerät</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KGG</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:600 22px/1.2 Archivo,sans-serif">Manuelle Therapie</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">MT</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:600 22px/1.2 Archivo,sans-serif">Craniomandibuläre Dysfunktion</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">CMD</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12)"><span style="font:600 22px/1.2 Archivo,sans-serif">Klassische Massagetherapie</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KMT</span></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-bottom:18px"><span style="display:block;width:26px;height:3px;background:oklch(0.74 0.12 150)"></span>PRIVATLEISTUNGEN</div>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:500 17px/1.3 Archivo,sans-serif">Personal Training</span><span style="font:500 14px/1 'IBM Plex Mono',monospace">100 € / Std.</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:500 17px/1.3 Archivo,sans-serif">Massage</span><span style="font:500 14px/1 'IBM Plex Mono',monospace">26 €</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12)"><span style="font:500 17px/1.3 Archivo,sans-serif">Wärmepackung</span><span style="font:500 14px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5)">auf Anfrage</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="dv-card" style="width:390px">
+<div style="background:#0E0F0E;color:#FAFAF8">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:60px;border-bottom:1px solid rgba(255,255,255,.14)">
+<img src="assets/logo-weiss.png" alt="PhysioFabrik" style="height:17px;width:auto;display:block">
+<div style="display:flex;flex-direction:column;gap:5px;width:22px"><div style="height:1.5px;background:#FAFAF8"></div><div style="height:1.5px;background:#FAFAF8"></div></div>
+</div>
+<div style="position:relative;padding:40px 20px 32px;overflow:hidden">
+<div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:44px 44px"></div>
+<div style="position:relative;display:flex;align-items:center;gap:10px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:oklch(0.74 0.12 150);margin-bottom:20px"><span style="display:block;width:28px;height:1px;background:oklch(0.74 0.12 150)"></span>PRAXIS FÜR PHYSIOTHERAPIE</div>
+<h1 style="position:relative;margin:0 0 18px;font:700 46px/.98 Archivo,sans-serif;letter-spacing:-.03em">Wir bringen Körper zurück in Betrieb.</h1>
+<p style="position:relative;margin:0 0 26px;font:400 15px/1.6 Archivo,sans-serif;color:rgba(255,255,255,.68)">Krankengymnastik, manuelle Therapie, Gerätetraining und CMD — ohne Fließband.</p>
+<div style="position:relative;display:flex;flex-direction:column;gap:10px">
+<a href="tel:+49" style="text-decoration:none;background:oklch(0.74 0.12 150);color:#0E0F0E;font:500 15px/1 Archivo,sans-serif;padding:17px 20px;text-align:center">Anrufen · 0251 12 34 56</a>
+<a href="#1b" style="text-decoration:none;border:1px solid rgba(255,255,255,.3);color:#FAFAF8;font:500 15px/1 Archivo,sans-serif;padding:16px 20px;text-align:center">Termin per E-Mail</a>
+</div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.14);font:400 11.5px/1 'IBM Plex Mono',monospace;color:rgba(255,255,255,.6);display:flex"><div style="flex:1;padding:16px 20px;border-right:1px solid rgba(255,255,255,.14)">MO–FR 07:30–19:00</div><div style="flex:1;padding:16px 20px">Barrierefrei</div></div>
+</div>
+<div style="background:#FAFAF8;color:#0E0F0E">
+<div style="height:190px;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.05) 0 7px,transparent 7px 14px);display:flex;align-items:flex-end;padding:16px"><div style="font:400 10px/1.5 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45);background:#FAFAF8;padding:6px 8px;border:1px solid rgba(0,0,0,.12)">[ Foto: Trainingsfläche ]</div></div>
+<div style="padding:30px 20px 34px">
+<div style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-bottom:18px">LEISTUNGEN</div>
+<div style="font:400 11.5px/1.4 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-bottom:12px">Auf Rezept — gesetzlich &amp; privat</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:26px">
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KG</span>
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KGG</span>
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">MT</span>
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">CMD</span>
+<span style="border:1px solid rgba(0,0,0,.2);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KMT</span>
+</div>
+<div style="display:flex;align-items:center;gap:10px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(0,0,0,.4);margin-bottom:14px"><span style="display:block;width:22px;height:3px;background:oklch(0.74 0.12 150)"></span>PRIVATLEISTUNGEN</div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:500 15px/1.3 Archivo,sans-serif">Personal Training</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace">100 € / Std.</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="font:500 15px/1.3 Archivo,sans-serif">Massage</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace">26 €</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12)"><span style="font:500 15px/1.3 Archivo,sans-serif">Wärmepackung</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5)">auf Anfrage</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Datenblatt — Split-Hero, Terminkarte direkt im Bild, Grün als Fläche</div>
+<div class="dv-pair">
+<div class="dv-card" style="width:1440px">
+<div style="background:#FAFAF8;color:#0E0F0E">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:58px;background:#0E0F0E;color:#FAFAF8;font:400 11.5px/1 'IBM Plex Mono',monospace">
+<span>PRAXIS MÜNSTER · MO–FR 07:30–19:00</span>
+<span style="display:flex;gap:26px;align-items:center"><span>0251 · 12 34 56</span><span>praxis@physiofabrik.de</span><span style="color:rgba(255,255,255,.5)">DE / EN</span></span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:88px;border-bottom:2px solid #0E0F0E">
+<img src="assets/logo-schwarz.png" alt="PhysioFabrik" style="height:26px;width:auto;display:block">
+<div style="display:flex;align-items:center;gap:8px;font:500 13px/1 Archivo,sans-serif">
+<span style="padding:10px 14px;border:1px solid rgba(0,0,0,.15)">Leistungen</span>
+<span style="padding:10px 14px;border:1px solid rgba(0,0,0,.15)">Team</span>
+<span style="padding:10px 14px;border:1px solid rgba(0,0,0,.15)">Praxis</span>
+<span style="padding:10px 14px;background:oklch(0.74 0.12 150);border:1px solid #0E0F0E">Kontakt</span>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr">
+<div style="padding:80px 52px 68px;border-right:2px solid #0E0F0E">
+<div style="display:inline-block;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;background:oklch(0.74 0.12 150);padding:7px 10px;margin-bottom:28px">TERMINE KURZFRISTIG FREI</div>
+<h1 style="margin:0 0 22px;font:600 56px/1.05 Archivo,sans-serif;letter-spacing:-.03em">Physiotherapie,<br>die nachvollziehbar ist.</h1>
+<p style="margin:0 0 34px;max-width:42ch;font:400 16.5px/1.65 Archivo,sans-serif;color:rgba(0,0,0,.62);text-wrap:pretty">Befund, Ziel, Plan — schriftlich. Sie wissen nach dem ersten Termin, woran wir arbeiten und wie lange es dauert.</p>
+<div style="border:2px solid #0E0F0E">
+<div style="padding:14px 18px;border-bottom:1px solid rgba(0,0,0,.15);font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;background:#0E0F0E;color:#FAFAF8">TERMIN ANFRAGEN</div>
+<div style="padding:18px">
+<div style="display:flex;gap:10px;margin-bottom:10px">
+<div style="flex:1;border:1px solid rgba(0,0,0,.2);padding:13px 12px;font:400 13.5px/1 Archivo,sans-serif;color:rgba(0,0,0,.4)">Name</div>
+<div style="flex:1;border:1px solid rgba(0,0,0,.2);padding:13px 12px;font:400 13.5px/1 Archivo,sans-serif;color:rgba(0,0,0,.4)">Telefon</div>
+</div>
+<div style="border:1px solid rgba(0,0,0,.2);padding:13px 12px;font:400 13.5px/1 Archivo,sans-serif;color:rgba(0,0,0,.4);margin-bottom:12px">Anliegen / Verordnung vorhanden?</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:14px">
+<span style="font:400 11px/1.4 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">Rückruf innerhalb von 24 h</span>
+<span style="background:#0E0F0E;color:#FAFAF8;font:500 13.5px/1 Archivo,sans-serif;padding:14px 20px">Absenden</span>
+</div>
+</div>
+</div>
+</div>
+<div style="position:relative;min-height:560px;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.05) 0 7px,transparent 7px 14px);display:flex;align-items:flex-end;padding:22px">
+<div style="font:400 11px/1.5 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45);background:#FAFAF8;padding:8px 10px;border:1px solid rgba(0,0,0,.12)">[ Foto: Praxisraum, quadratisch ]</div>
+<div style="position:absolute;top:0;left:0;right:0;display:grid;grid-template-columns:repeat(2,1fr);border-bottom:1px solid rgba(0,0,0,.12)">
+<div style="padding:22px 22px;background:#FAFAF8;border-right:1px solid rgba(0,0,0,.12)"><div style="font:600 22px/1 Archivo,sans-serif">Alle Kassen</div><div style="font:400 11.5px/1.4 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:6px">gesetzlich &amp; privat</div></div>
+<div style="padding:22px 22px;background:#FAFAF8"><div style="font:600 22px/1 Archivo,sans-serif">Zertifiziert</div><div style="font:400 11.5px/1.4 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:6px">MT · CMD · KGG</div></div>
+</div>
+</div>
+</div>
+<div style="border-top:2px solid #0E0F0E;display:grid;grid-template-columns:1.15fr .85fr">
+<div style="padding:38px 52px 44px;border-right:2px solid #0E0F0E">
+<div style="font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(0,0,0,.45);margin-bottom:6px">AUF REZEPT · GESETZLICH &amp; PRIVAT VERSICHERT</div>
+<p style="margin:0 0 20px;font:400 13.5px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.55)">Verordnung mitbringen — wir rechnen direkt mit der Kasse ab.</p>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 44px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.15)"><span style="font:500 16px/1.3 Archivo,sans-serif">Krankengymnastik</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KG</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.15)"><span style="font:500 16px/1.3 Archivo,sans-serif">Manuelle Therapie</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">MT</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.15)"><span style="font:500 16px/1.3 Archivo,sans-serif">KG am Gerät</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KGG</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.15)"><span style="font:500 16px/1.3 Archivo,sans-serif">Kiefergelenk</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">CMD</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.15)"><span style="font:500 16px/1.3 Archivo,sans-serif">Klassische Massage</span><span style="font:500 11.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45)">KMT</span></div>
+</div>
+</div>
+<div style="padding:38px 52px 44px;background:oklch(0.96 0.02 150)">
+<div style="font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(0,0,0,.5);margin-bottom:6px">PRIVATLEISTUNGEN</div>
+<p style="margin:0 0 20px;font:400 13.5px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.55)">Ohne Verordnung buchbar.</p>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.2)"><span style="font:500 17px/1.3 Archivo,sans-serif">Personal Training</span><span style="font:500 14px/1 'IBM Plex Mono',monospace">100 € / Std.</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.2)"><span style="font:500 17px/1.3 Archivo,sans-serif">Massage</span><span style="font:500 14px/1 'IBM Plex Mono',monospace">26 €</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.2)"><span style="font:500 17px/1.3 Archivo,sans-serif">Wärmepackung</span><span style="font:500 14px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5)">auf Anfrage</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="dv-card" style="width:390px">
+<div style="background:#FAFAF8;color:#0E0F0E">
+<div style="background:#0E0F0E;color:#FAFAF8;font:400 10.5px/1 'IBM Plex Mono',monospace;padding:13px 20px;display:flex;justify-content:space-between"><span>0251 · 12 34 56</span><span style="color:rgba(255,255,255,.5)">DE / EN</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:64px;border-bottom:2px solid #0E0F0E">
+<img src="assets/logo-schwarz.png" alt="PhysioFabrik" style="height:19px;width:auto;display:block">
+<div style="display:flex;flex-direction:column;gap:5px;width:22px"><div style="height:1.5px;background:#0E0F0E"></div><div style="height:1.5px;background:#0E0F0E"></div></div>
+</div>
+<div style="padding:30px 20px 32px;border-bottom:2px solid #0E0F0E">
+<div style="display:inline-block;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;background:oklch(0.74 0.12 150);padding:6px 9px;margin-bottom:20px">TERMINE KURZFRISTIG FREI</div>
+<h1 style="margin:0 0 16px;font:600 38px/1.06 Archivo,sans-serif;letter-spacing:-.03em">Physiotherapie, die nachvollziehbar ist.</h1>
+<p style="margin:0 0 22px;font:400 15px/1.6 Archivo,sans-serif;color:rgba(0,0,0,.62)">Befund, Ziel, Plan — schriftlich. Nach dem ersten Termin wissen Sie, woran wir arbeiten.</p>
+<div style="border:2px solid #0E0F0E">
+<div style="padding:12px 16px;font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;background:#0E0F0E;color:#FAFAF8">TERMIN ANFRAGEN</div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:9px">
+<div style="border:1px solid rgba(0,0,0,.2);padding:13px 12px;font:400 13.5px/1 Archivo,sans-serif;color:rgba(0,0,0,.4)">Name</div>
+<div style="border:1px solid rgba(0,0,0,.2);padding:13px 12px;font:400 13.5px/1 Archivo,sans-serif;color:rgba(0,0,0,.4)">Telefon</div>
+<div style="border:1px solid rgba(0,0,0,.2);padding:13px 12px;font:400 13.5px/1 Archivo,sans-serif;color:rgba(0,0,0,.4)">Anliegen</div>
+<div style="background:#0E0F0E;color:#FAFAF8;font:500 14px/1 Archivo,sans-serif;padding:15px;text-align:center">Absenden</div>
+</div>
+</div>
+</div>
+<div style="height:180px;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.05) 0 7px,transparent 7px 14px);display:flex;align-items:flex-end;padding:16px;border-bottom:1px solid rgba(0,0,0,.12)"><div style="font:400 10px/1.5 'IBM Plex Mono',monospace;color:rgba(0,0,0,.45);background:#FAFAF8;padding:6px 8px;border:1px solid rgba(0,0,0,.12)">[ Foto: Praxisraum ]</div></div>
+<div style="display:flex">
+<div style="flex:1;padding:20px 16px;border-right:1px solid rgba(0,0,0,.12)"><div style="font:600 17px/1.1 Archivo,sans-serif">Alle Kassen</div><div style="font:400 10.5px/1.3 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:5px">gesetzlich &amp; privat</div></div>
+<div style="flex:1;padding:20px 16px"><div style="font:600 17px/1.1 Archivo,sans-serif">Zertifiziert</div><div style="font:400 10.5px/1.3 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5);margin-top:5px">MT · CMD · KGG</div></div>
+</div>
+<div style="padding:28px 20px 32px;border-top:2px solid #0E0F0E">
+<div style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(0,0,0,.45);margin-bottom:14px">AUF REZEPT</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<span style="border:1px solid rgba(0,0,0,.25);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KG</span>
+<span style="border:1px solid rgba(0,0,0,.25);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KGG</span>
+<span style="border:1px solid rgba(0,0,0,.25);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">MT</span>
+<span style="border:1px solid rgba(0,0,0,.25);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">CMD</span>
+<span style="border:1px solid rgba(0,0,0,.25);padding:9px 11px;font:500 13px/1 Archivo,sans-serif">KMT</span>
+</div>
+</div>
+<div style="padding:26px 20px 32px;background:oklch(0.96 0.02 150);border-top:1px solid rgba(0,0,0,.15)">
+<div style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(0,0,0,.5);margin-bottom:12px">PRIVATLEISTUNGEN</div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.2)"><span style="font:500 15px/1.3 Archivo,sans-serif">Personal Training</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace">100 € / Std.</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.2)"><span style="font:500 15px/1.3 Archivo,sans-serif">Massage</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace">26 €</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.2)"><span style="font:500 15px/1.3 Archivo,sans-serif">Wärmepackung</span><span style="font:500 12.5px/1 'IBM Plex Mono',monospace;color:rgba(0,0,0,.5)">auf Anfrage</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Weiter mit: „baue <a class="dv-oid" href="#1b">1b</a> als komplette Seite aus (Leistungen, Team, Kontakt, Impressum)“ · „<a class="dv-oid" href="#1a">1a</a> aber mit dem Formular aus <a class="dv-oid" href="#1c">1c</a>“ · „mehr Grün / weniger Grün“ · „neue Richtungen“</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhysioFabrik — Praxis für Physiotherapie</title>
+<meta name="description" content="Krankengymnastik, manuelle Therapie, Gerätetraining und CMD. Alle Kassen und Privat. Termine kurzfristig — jetzt anrufen.">
+<meta name="theme-color" content="#0E0F0E">
+<link rel="canonical" href="https://www.physiofabrik.de/">
+<link rel="icon" href="assets/img/logo-schwarz.png">
+<link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="PhysioFabrik — Praxis für Physiotherapie">
+<meta property="og:description" content="Krankengymnastik, manuelle Therapie, Gerätetraining und CMD. Alle Kassen und Privat.">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="logo" href="/" aria-label="PhysioFabrik — Startseite">
+      <img src="assets/img/logo-weiss.png" alt="PhysioFabrik">
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <ul class="nav__list">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#praxis">Praxis</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <p class="lang">
+        <span aria-current="true" lang="de">DE</span>
+        <span aria-hidden="true">/</span>
+        <!-- TODO: auf <a href="/en/" hreflang="en" lang="en">EN</a> umstellen, sobald die EN-Fassung existiert -->
+        <span class="lang__inactive" lang="en">EN</span>
+      </p>
+      <a class="header-cta" href="#kontakt">Termin anfragen</a>
+    </nav>
+
+    <button class="burger" type="button" id="menu-open" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+      <span class="visually-hidden">Menü öffnen</span>
+    </button>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu__bar">
+    <a class="logo" href="/" aria-label="PhysioFabrik — Startseite">
+      <img src="assets/img/logo-weiss.png" alt="PhysioFabrik">
+    </a>
+    <button class="menu__close" type="button" id="menu-close">
+      <span class="visually-hidden">Menü schließen</span>
+    </button>
+  </div>
+  <nav class="menu__nav" aria-label="Hauptnavigation (mobil)">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#team">Team</a>
+    <a href="#praxis">Praxis</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--green" href="tel:+4925112345678" data-placeholder="telefon">Anrufen · 0251 12 34 56</a>
+    <a class="btn btn--ghost-dark" href="#kontakt">Termin per E-Mail</a>
+    <p class="menu__lang">
+      <span aria-current="true" lang="de">DE</span>
+      <span aria-hidden="true">/</span>
+      <span class="lang__inactive" lang="en">EN</span>
+    </p>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ===== Hero ========================================================= -->
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="eyebrow eyebrow--hero eyebrow--on-dark">Praxis für Physiotherapie</p>
+      <h1>Wir bringen Körper zurück in Betrieb.</h1>
+      <p class="hero__lead">
+        Krankengymnastik, manuelle Therapie, Gerätetraining und CMD — strukturiert,
+        nachvollziehbar, ohne Fließband. Alle Kassen und Privat.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--paper" href="tel:+4925112345678" data-placeholder="telefon">Anrufen · 0251 12 34 56</a>
+        <a class="btn btn--ghost-dark" href="#kontakt">Termin per E-Mail</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="factbar">
+    <ul class="factbar__inner">
+      <li data-placeholder="oeffnungszeiten">MO–FR 07:30–19:00</li>
+      <li>Hausbesuche möglich</li>
+      <li>Parkplätze am Haus</li>
+      <li>Barrierefrei</li>
+    </ul>
+  </div>
+
+  <!-- ===== Leistungen =================================================== -->
+  <section class="services" id="leistungen" aria-labelledby="leistungen-titel">
+    <div class="services__inner">
+      <div class="photo services__photo" role="img" aria-label="Foto: Trainingsfläche mit Geräten">
+        <!-- TODO: ersetzen durch <img src="…" alt="Trainingsfläche der PhysioFabrik" style="object-fit:cover"> -->
+        <p class="photo__label" data-placeholder="foto">[ Foto: Trainingsfläche /<br>Geräte, weit ]</p>
+      </div>
+
+      <div class="services__body">
+        <h2 class="label" id="leistungen-titel">Leistungen</h2>
+
+        <div class="services__group">
+          <p class="services__note">Auf Rezept — gesetzlich &amp; privat versichert</p>
+          <ul class="rows rows--lg rows--chips">
+            <li><span class="rows__name">Krankengymnastik</span><span class="rows__meta">KG</span></li>
+            <li><span class="rows__name">Krankengymnastik am Gerät</span><span class="rows__meta">KGG</span></li>
+            <li><span class="rows__name">Manuelle Therapie</span><span class="rows__meta">MT</span></li>
+            <li><span class="rows__name">Craniomandibuläre Dysfunktion</span><span class="rows__meta">CMD</span></li>
+            <li><span class="rows__name">Klassische Massagetherapie</span><span class="rows__meta">KMT</span></li>
+          </ul>
+        </div>
+
+        <div class="services__group">
+          <p class="eyebrow eyebrow--thick">Privatleistungen</p>
+          <p class="services__note">Ohne Verordnung buchbar</p>
+          <!-- Preise werden ausschließlich hier gepflegt. Nicht an anderer Stelle wiederholen. -->
+          <ul class="rows">
+            <li><span class="rows__name">Personal Training</span><span class="rows__meta">100 € / Std.</span></li>
+            <li><span class="rows__name">Massage</span><span class="rows__meta">26 €</span></li>
+            <li><span class="rows__name">Wärmepackung</span><span class="rows__meta rows__meta--muted" data-placeholder="preis">auf Anfrage</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Team ========================================================= -->
+  <section class="section" id="team" aria-labelledby="team-titel">
+    <div class="section__inner">
+      <div class="section__head">
+        <p class="eyebrow">Team</p>
+        <h2 id="team-titel">Behandelt wird von Menschen, die den Befund erklären können.</h2>
+        <p>
+          Feste Bezugstherapeuten statt wechselnder Zuständigkeiten. Jede Behandlung
+          beginnt mit einem Befund und endet mit einem nachvollziehbaren nächsten Schritt.
+        </p>
+      </div>
+
+      <ul class="team__grid" data-placeholder="team">
+        <li class="team__member">
+          <div class="photo team__photo" role="img" aria-label="Porträtfoto folgt">
+            <p class="photo__label">[ Porträt ]</p>
+          </div>
+          <h3 class="team__name">Vorname Nachname</h3>
+          <p class="team__role">Praxisleitung · Physiotherapeut:in</p>
+          <ul class="team__quals">
+            <li>Manuelle Therapie</li>
+            <li>CMD</li>
+            <li>KG am Gerät</li>
+          </ul>
+        </li>
+        <li class="team__member">
+          <div class="photo team__photo" role="img" aria-label="Porträtfoto folgt">
+            <p class="photo__label">[ Porträt ]</p>
+          </div>
+          <h3 class="team__name">Vorname Nachname</h3>
+          <p class="team__role">Physiotherapeut:in</p>
+          <ul class="team__quals">
+            <li>Manuelle Lymphdrainage</li>
+            <li>Sportphysiotherapie</li>
+          </ul>
+        </li>
+        <li class="team__member">
+          <div class="photo team__photo" role="img" aria-label="Porträtfoto folgt">
+            <p class="photo__label">[ Porträt ]</p>
+          </div>
+          <h3 class="team__name">Vorname Nachname</h3>
+          <p class="team__role">Physiotherapeut:in</p>
+          <ul class="team__quals">
+            <li>Klassische Massagetherapie</li>
+            <li>Wärmetherapie</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Praxis ======================================================= -->
+  <section class="section section--surface" id="praxis" aria-labelledby="praxis-titel">
+    <div class="section__inner">
+      <div class="section__head">
+        <p class="eyebrow">Praxis</p>
+        <h2 id="praxis-titel">Werkstatt statt Wartezimmer.</h2>
+        <p>
+          Große Trainingsfläche, geschlossene Behandlungsräume, kurze Wege.
+          Termine werden so getaktet, dass die Zeit auch wirklich bei Ihnen ankommt.
+        </p>
+      </div>
+
+      <div class="photo praxis__photo" role="img" aria-label="Foto: Praxisräume">
+        <p class="photo__label" data-placeholder="foto">[ Foto: Praxisraum / Trainingsfläche, quer ]</p>
+      </div>
+
+      <ul class="stats" data-placeholder="kennzahlen">
+        <li>
+          <span class="stats__num">14</span>
+          <span class="stats__label">Jahre Praxis</span>
+        </li>
+        <li>
+          <span class="stats__num">30 min</span>
+          <span class="stats__label">Behandlungszeit</span>
+        </li>
+        <li>
+          <span class="stats__num">Alle</span>
+          <span class="stats__label">Kassen &amp; Privat</span>
+        </li>
+      </ul>
+
+      <ul class="praxis__features">
+        <li>Trainingsfläche mit medizinischen Geräten (KGG-zugelassen)</li>
+        <li>Geschlossene Behandlungsräume</li>
+        <li>Ebenerdiger, barrierefreier Zugang</li>
+        <li>Parkplätze direkt am Haus</li>
+        <li>Hausbesuche im Stadtgebiet</li>
+        <li>Terminvergabe ohne Warteliste für Akutfälle</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Kontakt ====================================================== -->
+  <section class="section section--dark" id="kontakt" aria-labelledby="kontakt-titel">
+    <div class="section__inner">
+      <div class="section__head">
+        <p class="eyebrow eyebrow--on-dark">Kontakt</p>
+        <h2 id="kontakt-titel">Termin anfragen — Rückruf innerhalb von 24 Stunden.</h2>
+      </div>
+
+      <div class="contact__grid">
+
+        <div class="contact__data">
+          <div class="contact__block">
+            <span class="label">Praxis</span>
+            <address data-placeholder="adresse">
+              PhysioFabrik<br>
+              Musterstraße 12<br>
+              48143 Münster
+            </address>
+          </div>
+
+          <div class="contact__block">
+            <span class="label">Direkt</span>
+            <p data-placeholder="telefon">
+              <a href="tel:+4925112345678">0251 12 34 56</a>
+            </p>
+            <p data-placeholder="email">
+              <a href="mailto:praxis@physiofabrik.de">praxis@physiofabrik.de</a>
+            </p>
+          </div>
+
+          <div class="contact__block">
+            <span class="label">Öffnungszeiten</span>
+            <dl class="hours" data-placeholder="oeffnungszeiten">
+              <dt>Mo–Do</dt><dd>07:30 – 19:00</dd>
+              <dt>Fr</dt><dd>07:30 – 15:00</dd>
+              <dt>Sa–So</dt><dd>geschlossen</dd>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Versand folgt im zweiten Schritt (Mail-Endpoint). Markup, Validierung
+             und Spamschutz sind bereits vollständig. -->
+        <form class="form" id="kontaktformular" method="post" action="#" novalidate>
+          <div class="form__cols">
+            <div class="form__row">
+              <label for="f-name">Name</label>
+              <input type="text" id="f-name" name="name" placeholder="Vor- und Nachname"
+                     required autocomplete="name" aria-describedby="e-name">
+              <p class="form__error" id="e-name" role="alert"></p>
+            </div>
+
+            <div class="form__row">
+              <label for="f-tel">Telefon</label>
+              <input type="tel" id="f-tel" name="telefon" placeholder="Für den Rückruf"
+                     required autocomplete="tel" aria-describedby="e-tel">
+              <p class="form__error" id="e-tel" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="form__row">
+            <label for="f-mail">E-Mail <span aria-hidden="true">(optional)</span></label>
+            <input type="email" id="f-mail" name="email" placeholder="name@beispiel.de"
+                   autocomplete="email" aria-describedby="e-mail">
+            <p class="form__error" id="e-mail" role="alert"></p>
+          </div>
+
+          <div class="form__row">
+            <label for="f-anliegen">Anliegen</label>
+            <textarea id="f-anliegen" name="anliegen" required
+                      placeholder="Verordnung vorhanden? Beschwerden? Wunschzeiten?"
+                      aria-describedby="e-anliegen"></textarea>
+            <p class="form__error" id="e-anliegen" role="alert"></p>
+          </div>
+
+          <!-- Honeypot gegen Spam — nicht entfernen, nicht sichtbar machen -->
+          <div class="form__hp" aria-hidden="true">
+            <label for="f-website">Website (bitte frei lassen)</label>
+            <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="form__row">
+            <div class="form__consent">
+              <input type="checkbox" id="f-datenschutz" name="datenschutz" required
+                     aria-describedby="e-datenschutz">
+              <label for="f-datenschutz">
+                Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und
+                bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage
+                gespeichert werden.
+              </label>
+            </div>
+            <p class="form__error" id="e-datenschutz" role="alert"></p>
+          </div>
+
+          <p class="form__hint">Rückruf innerhalb von 24 Stunden — werktags.</p>
+
+          <button class="btn btn--green" type="submit">Anfrage senden</button>
+
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <img src="assets/img/logo-weiss.png" alt="PhysioFabrik">
+      <address data-placeholder="adresse">
+        Musterstraße 12 · 48143 Münster<br>
+        <a href="tel:+4925112345678">0251 12 34 56</a> ·
+        <a href="mailto:praxis@physiofabrik.de">praxis@physiofabrik.de</a>
+      </address>
+    </div>
+
+    <nav class="site-footer__links" aria-label="Rechtliches">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+
+    <p class="site-footer__legal">
+      © <span id="jahr">2026</span> PhysioFabrik. Alle Angaben ohne Gewähr.
+      Keine Behandlung ohne ärztliche Verordnung, soweit gesetzlich vorgeschrieben.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
