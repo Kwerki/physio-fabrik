@@ -294,33 +294,40 @@ p {
   }
 }
 
-/* Foto-Platzhalter — im finalen Bau durch <img object-fit:cover> ersetzen */
-.photo {
+/* Bildrahmen — das Bild füllt den Rahmen, der Rest wird beschnitten.
+   Radius 0, kein Schatten; abgeteilt wird über die Rasterlinien. */
+.frame {
   position: relative;
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.05) 0 7px,
-    transparent 7px 14px
-  );
-  display: flex;
-  align-items: flex-end;
-  padding: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  margin: 0;
 }
 
-.photo__label {
-  font: 400 10px/1.5 var(--mono);
-  color: var(--text-3);
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bildunterschrift unten links im Bild — nimmt das Mono-Label auf,
+   mit dem der Entwurf seine Foto-Platzhalter beschriftet hat. */
+.frame figcaption {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  max-width: calc(100% - 32px);
+  font: 400 10px/1.4 var(--mono);
+  color: var(--ink);
   background: var(--paper);
   padding: 6px 8px;
   border: 1px solid var(--line-light);
 }
 
 @media (min-width: 768px) {
-  .photo {
-    padding: 22px;
-  }
-
-  .photo__label {
+  .frame figcaption {
+    left: 22px;
+    bottom: 22px;
     font-size: 11px;
     padding: 8px 10px;
   }
@@ -816,8 +823,10 @@ body.is-locked {
   display: grid;
 }
 
+/* Mobil ein Bildband über die volle Breite, auf Desktop die volle Höhe
+   der Leistungsspalte daneben. */
 .services__photo {
-  min-height: 190px;
+  aspect-ratio: 3 / 2;
 }
 
 .services__body {
@@ -830,6 +839,7 @@ body.is-locked {
   }
 
   .services__photo {
+    aspect-ratio: auto;
     min-height: 420px;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
   }
@@ -966,6 +976,20 @@ body.is-locked {
 
 /* --- Team ---------------------------------------------------------------- */
 
+/* Breites Band über dem Team — Behandlung statt Porträts, solange die
+   Porträtfotos fehlen. Hochformat-Quelle, hier bewusst schmal beschnitten. */
+.team__band {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 34px;
+}
+
+@media (min-width: 768px) {
+  .team__band {
+    aspect-ratio: 21 / 9;
+    margin-bottom: 44px;
+  }
+}
+
 .team__grid {
   display: grid;
   gap: 1px;
@@ -976,11 +1000,6 @@ body.is-locked {
 .team__member {
   background: var(--paper);
   padding: 22px 0;
-}
-
-.team__photo {
-  aspect-ratio: 3 / 4;
-  margin-bottom: 18px;
 }
 
 .team__name {
@@ -1101,6 +1120,29 @@ body.is-locked {
   .praxis__features {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 48px;
+  }
+}
+
+/* Galerie — Kacheln durch 1px-Fugen getrennt, nicht durch Abstände.
+   Die Fugen entstehen als Hintergrund des Grids. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line-light);
+  border: 1px solid var(--line-light);
+  margin-top: 34px;
+}
+
+.gallery .frame {
+  aspect-ratio: 3 / 4;
+  background: var(--paper);
+}
+
+@media (min-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 44px;
   }
 }
 

@@ -15,6 +15,8 @@
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="PhysioFabrik — Praxis für Physiotherapie">
 <meta property="og:description" content="Krankengymnastik, manuelle Therapie, Gerätetraining und CMD. Alle Kassen und Privat.">
+<!-- Absolute URL nötig; Domain zusammen mit dem canonical-Link oben anpassen -->
+<meta property="og:image" content="https://www.physiofabrik.de/assets/img/trainingsflaeche-weit.webp">
 </head>
 <body>
 
@@ -105,10 +107,11 @@
   <!-- ===== Leistungen =================================================== -->
   <section class="services" id="leistungen" aria-labelledby="leistungen-titel">
     <div class="services__inner">
-      <div class="photo services__photo" role="img" aria-label="Foto: Trainingsfläche mit Geräten">
-        <!-- TODO: ersetzen durch <img src="…" alt="Trainingsfläche der PhysioFabrik" style="object-fit:cover"> -->
-        <p class="photo__label" data-placeholder="foto">[ Foto: Trainingsfläche /<br>Geräte, weit ]</p>
-      </div>
+      <figure class="frame services__photo">
+        <img src="assets/img/trainingsflaeche-hoch.webp" width="1200" height="1600"
+             alt="Trainingsfläche der Praxis mit Sprossenwand, Zugapparat und Hantelbank,
+                  Tageslicht durch bodentiefe Fenster">
+      </figure>
 
       <div class="services__body">
         <h2 class="label" id="leistungen-titel">Leistungen</h2>
@@ -150,11 +153,17 @@
         </p>
       </div>
 
+      <figure class="frame team__band">
+        <img src="assets/img/behandlung.webp" width="1200" height="1600" loading="lazy"
+             alt="Therapeut behandelt mit beiden Händen den Rücken einer auf der
+                  Behandlungsliege liegenden Person">
+        <figcaption>Manuelle Therapie</figcaption>
+      </figure>
+
+      <!-- Porträtfotos fehlen noch; die Karten laufen bis dahin rein textlich,
+           das passt zum Datenblatt-Charakter besser als leere Bildflächen. -->
       <ul class="team__grid" data-placeholder="team">
         <li class="team__member">
-          <div class="photo team__photo" role="img" aria-label="Porträtfoto folgt">
-            <p class="photo__label">[ Porträt ]</p>
-          </div>
           <h3 class="team__name">Vorname Nachname</h3>
           <p class="team__role">Praxisleitung · Physiotherapeut:in</p>
           <ul class="team__quals">
@@ -164,9 +173,6 @@
           </ul>
         </li>
         <li class="team__member">
-          <div class="photo team__photo" role="img" aria-label="Porträtfoto folgt">
-            <p class="photo__label">[ Porträt ]</p>
-          </div>
           <h3 class="team__name">Vorname Nachname</h3>
           <p class="team__role">Physiotherapeut:in</p>
           <ul class="team__quals">
@@ -175,9 +181,6 @@
           </ul>
         </li>
         <li class="team__member">
-          <div class="photo team__photo" role="img" aria-label="Porträtfoto folgt">
-            <p class="photo__label">[ Porträt ]</p>
-          </div>
           <h3 class="team__name">Vorname Nachname</h3>
           <p class="team__role">Physiotherapeut:in</p>
           <ul class="team__quals">
@@ -201,9 +204,11 @@
         </p>
       </div>
 
-      <div class="photo praxis__photo" role="img" aria-label="Foto: Praxisräume">
-        <p class="photo__label" data-placeholder="foto">[ Foto: Praxisraum / Trainingsfläche, quer ]</p>
-      </div>
+      <figure class="frame praxis__photo">
+        <img src="assets/img/trainingsflaeche-weit.webp" width="1600" height="1200" loading="lazy"
+             alt="Weite Trainingsfläche mit Seilzügen, Hantelbank und Spiegelwand,
+                  Fensterfront über den Dächern des Ortes">
+      </figure>
 
       <ul class="stats" data-placeholder="kennzahlen">
         <li>
@@ -227,6 +232,55 @@
         <li>Parkplätze direkt am Haus</li>
         <li>Hausbesuche im Stadtgebiet</li>
         <li>Terminvergabe ohne Warteliste für Akutfälle</li>
+      </ul>
+
+      <ul class="gallery">
+        <li>
+          <figure class="frame">
+            <img src="assets/img/behandlungszimmer.webp" width="800" height="1067" loading="lazy"
+                 alt="Behandlungszimmer mit Liege, Sprossenwand, Anatomiemodell und
+                      Hantelablage">
+            <figcaption>Behandlungszimmer</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="frame">
+            <img src="assets/img/behandlungszimmer-liege.webp" width="800" height="1067" loading="lazy"
+                 alt="Zweites Behandlungszimmer mit Liege, Gymnastikbällen und
+                      Kleingeräten">
+            <figcaption>Zweiter Behandlungsraum</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="frame">
+            <img src="assets/img/praxis-flur.webp" width="800" height="1067" loading="lazy"
+                 alt="Flur der Praxis mit Empfangstresen, dahinter Blick in die
+                      Trainingsfläche">
+            <figcaption>Empfang und Flur</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="frame">
+            <img src="assets/img/sitzecke.webp" width="800" height="1067" loading="lazy"
+                 alt="Sitzecke mit zwei Stühlen und Tisch unter einem großformatigen
+                      Landschaftsbild">
+            <figcaption>Wartebereich</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="frame">
+            <img src="assets/img/uebung-am-geraet.webp" width="800" height="1067" loading="lazy"
+                 alt="Person trainiert am Zuggerät vor der Fensterfront">
+            <figcaption>Training am Gerät</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="frame">
+            <img src="assets/img/beinpresse.webp" width="800" height="1067" loading="lazy"
+                 alt="Blick von oben auf die Fußplatte der Beinpresse während einer Übung">
+            <figcaption>Beinpresse</figcaption>
+          </figure>
+        </li>
       </ul>
     </div>
   </section>

@@ -18,25 +18,40 @@ diese Regel einkommentieren:
 | `oeffnungszeiten` | Infoleiste unter dem Hero, Kontakt | Echte Zeiten. Beide Stellen abgleichen |
 | `preis` | Leistungen | Preis „Wärmepackung" statt „auf Anfrage" |
 | `kennzahlen` | Praxis | 14 Jahre / 30 min / „Alle Kassen" bestätigen oder ersetzen |
-| `team` | Team | Namen, Rollen, Qualifikationen der drei Mitglieder |
-| `foto` | Leistungen, Praxis, Team | Siehe unten |
+| `team` | Team | Namen, Rollen, Qualifikationen der drei Mitglieder — dazu Porträtfotos, siehe unten |
 | `impressum-*` | Impressum | Inhaber:in, Aufsichtsbehörde, USt-Angabe, Verantwortliche:r |
 | `hoster`, `datenschutzbeauftragter`, `aufsichtsbehoerde`, `stand` | Datenschutz | Hoster, ggf. DSB, Landesbehörde, Datum |
 
 Die Preise stehen **nur** in [index.html](index.html) im Block
 `services__group` unter „Privatleistungen". Nicht an anderer Stelle wiederholen.
 
-## Fotos
+## Fotos — weitgehend erledigt
 
-Die Platzhalter sind `<div class="photo">` mit Schraffur. Ersetzen durch:
+Die Praxisfotos sind eingebaut. Aufbereitet aus den Originalen in
+`design_handoff_physiofabrik/assets/` mit `werkzeuge/bilder.py`: EXIF-Daten
+entfernt (die Originale enthalten Geräte- und teils GPS-Angaben), auf die
+tatsächlich gebrauchte Breite gerechnet, als WebP gespeichert. 1,7 MB → 768 KB.
 
-```html
-<img src="assets/img/trainingsflaeche.webp" alt="Trainingsfläche der PhysioFabrik"
-     width="1200" height="800" loading="lazy" style="object-fit:cover;width:100%;height:100%">
-```
+| Datei | Wo |
+|---|---|
+| `trainingsflaeche-hoch.webp` | Leistungen, linke Spalte |
+| `behandlung.webp` | Team, Band über den Karten |
+| `trainingsflaeche-weit.webp` | Praxis, großes Bild |
+| `behandlungszimmer.webp`, `behandlungszimmer-liege.webp`, `praxis-flur.webp`, `sitzecke.webp`, `uebung-am-geraet.webp`, `beinpresse.webp` | Praxis, Galerie |
 
-Benötigt: Trainingsfläche quer (Leistungen), Praxisraum quer (Praxis),
-drei Porträts hochformat 3:4 (Team). Das erste Bild im Viewport ohne `loading="lazy"`.
+Werden Fotos ausgetauscht: neue Datei nach `design_handoff_physiofabrik/assets/`,
+Eintrag in `werkzeuge/bilder.py` ergänzen, Skript laufen lassen. Nicht
+unbearbeitete Handyfotos direkt einbinden — die sind mehrere MB groß und
+tragen Metadaten.
+
+**Noch offen:** drei Porträts der Teammitglieder, Hochformat 3:4. Solange sie
+fehlen, laufen die Team-Karten rein textlich. Mit Porträts: pro `team__member`
+eine `<figure class="frame team__photo">` mit `aspect-ratio: 3/4` vor die
+Überschrift setzen.
+
+`beinpresse.webp` ist die schwächste Aufnahme der Reihe — nackte Beine aus der
+Ich-Perspektive, wirkt eher privat als professionell. Steht als letzte Kachel
+in der Galerie und lässt sich ersatzlos streichen.
 
 ## Schriften — erledigt
 
