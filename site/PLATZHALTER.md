@@ -28,13 +28,20 @@ neben den Namen) — nicht an anderer Stelle wiederholen.
 
 ## Leistungstexte gegenlesen
 
-Die fünf Rezeptleistungen (KG, KGG, MT, CMD, KMT) sind aufklappbar und haben je
-zwei Absätze Erklärung. Die Texte sind fachlich allgemein formuliert und **nicht
-von der Praxis geprüft** — sie stehen nicht unter `data-placeholder`, weil sie
-inhaltlich tragen, müssen vor Livegang aber einmal durchgesehen werden. Zu
-prüfen sind vor allem die Aussagen zur Verordnung (MT braucht eine eigene
-Angabe auf dem Rezept, KGG-Zulassung der Trainingsfläche) und die
-Zuzahlungsangabe bei KG.
+Alle acht Leistungen sind aufklappbar und haben je zwei Absätze Erklärung —
+fünf auf Rezept (KG, KGG, MT, CMD, KMT) und drei Privatleistungen (Personal
+Training, Massage, Wärmepackung). Die Texte sind fachlich allgemein formuliert
+und **nicht von der Praxis geprüft** — sie stehen nicht unter
+`data-placeholder`, weil sie inhaltlich tragen, müssen vor Livegang aber einmal
+durchgesehen werden.
+
+Besonders zu prüfen:
+
+- Verordnung: MT braucht eine eigene Angabe auf dem Rezept, KGG-Zulassung der
+  Trainingsfläche
+- Zuzahlungsangabe bei KG
+- Dauer der Massage (steht mit 25 Minuten im Text)
+- Ob die Wärmepackung tatsächlich einzeln buchbar ist oder nur begleitend
 
 ## Fotos — weitgehend erledigt
 

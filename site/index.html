@@ -13,7 +13,7 @@
 <!-- Mono 500 traegt Eyebrow, Sprachumschalter und Sektionslabels und steht damit
      schon oberhalb der Falz. Ohne Preload springt genau dieser Text nach. -->
 <link rel="preload" href="assets/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=13">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="PhysioFabrik — Praxis für Physiotherapie">
@@ -111,27 +111,27 @@
   </div>
 
   <!-- ===== Leistungen =================================================== -->
-  <section class="services" id="leistungen" aria-labelledby="leistungen-titel">
-    <div class="services__inner">
-      <figure class="frame services__photo">
+  <!-- Aufbau wie Team und Praxis: Kopf, Bildband, dann der Inhalt. Die
+       Sektion war zuvor ein zweispaltiger Split mit Foto links — dadurch
+       lief sie als einzige aus dem Rhythmus der uebrigen Abschnitte.
+       Copy vor Livegang von der Praxis gegenlesen lassen. -->
+  <section class="section section--surface" id="leistungen" aria-labelledby="leistungen-titel">
+    <div class="section__inner">
+      <div class="section__head">
+        <p class="eyebrow">Leistungen</p>
+        <h2 id="leistungen-titel">Was auf Rezept geht — und was Sie ohne Verordnung buchen können.</h2>
+        <p>
+          Jede Zeile lässt sich aufklappen: was die Behandlung umfasst, wann sie
+          sinnvoll ist und was auf dem Rezept stehen muss.
+        </p>
+      </div>
+
+      <figure class="frame services__band">
         <img src="assets/img/trainingsflaeche-hoch.webp" width="1200" height="1600"
              alt="Trainingsfläche der Praxis mit Sprossenwand, Zugapparat und Hantelbank, Tageslicht durch bodentiefe Fenster">
       </figure>
 
-      <div class="services__body">
-        <!-- Team, Praxis und Kontakt tragen alle Eyebrow + Ueberschrift + Lead.
-             Hier stand zuvor nur ein 10px-Mono-Label — dadurch war die
-             wichtigste Sektion der Seite die einzige ohne sichtbare
-             Ueberschrift. Copy vor Livegang von der Praxis gegenlesen lassen. -->
-        <div class="section__head">
-          <p class="eyebrow">Leistungen</p>
-          <h2 id="leistungen-titel">Was auf Rezept geht — und was Sie ohne Verordnung buchen können.</h2>
-          <p>
-            Jede Zeile lässt sich aufklappen: was die Behandlung umfasst, wann sie
-            sinnvoll ist und was auf dem Rezept stehen muss.
-          </p>
-        </div>
-
+      <div class="services__groups">
         <div class="services__group">
           <p class="eyebrow eyebrow--thick">Auf Rezept</p>
           <p class="services__note">Gesetzlich &amp; privat versichert</p>
@@ -141,9 +141,10 @@
                gehalten — vor Livegang von der Praxis gegenlesen lassen. -->
           <ul class="rows rows--lg rows--acc">
             <li>
-              <!-- Erste Zeile offen: zeigt sofort, dass sich hier etwas
-                   aufklappen laesst, ohne dass es im Text erklaert werden muss. -->
-              <details open>
+              <!-- Alle Zeilen starten zu. Frueher stand die erste offen, damit
+                   sichtbar ist, dass sich hier etwas aufklappen laesst — das
+                   sagt jetzt der Lead ueber der Liste in Worten. -->
+              <details>
                 <summary>
                   <span class="rows__name">Krankengymnastik</span>
                   <span class="rows__meta">KG</span>
@@ -248,34 +249,76 @@
         <div class="services__group">
           <p class="eyebrow eyebrow--thick">Privatleistungen</p>
           <p class="services__note">Ohne Verordnung buchbar</p>
-          <!-- Bewusst ohne Preisangaben. Sollen wieder welche rein, kommt je
-               Zeile ein <span class="rows__meta"> neben den Namen zurück in
-               .rows__main — und dann ausschließlich hier, nicht an weiteren
-               Stellen wiederholt. -->
-          <ul class="rows rows--hint">
+          <!-- Gleicher Aufbau wie „Auf Rezept": dieselbe Zeilenform, dieselbe
+               Schriftgroesse, ebenfalls aufklappbar. Vorher war das die
+               kleinere rows--hint-Variante, was neben der linken Spalte nach
+               zwei verschiedenen Bausteinen aussah.
+               Bewusst ohne Preisangaben — sollen wieder welche rein, kommt je
+               Zeile ein <span class="rows__meta"> ins <summary> neben den
+               Namen, genau wie dort die Kuerzel.
+               Die Beschreibungen sind fachlich allgemein gehalten und vor
+               Livegang von der Praxis gegenzulesen. -->
+          <ul class="rows rows--lg rows--acc">
             <li>
-              <div class="rows__main">
-                <span class="rows__name">Personal Training</span>
-              </div>
-              <p class="rows__subtext">1:1 an den Geräten, individueller Trainingsplan</p>
+              <details>
+                <summary>
+                  <span class="rows__name">Personal Training</span>
+                </summary>
+                <div class="rows__text">
+                  <p>
+                    Training zu zweit an den medizinischen Geräten — ohne Rezept und
+                    ohne Verordnungszeitraum. Wir nehmen einen Befund auf, legen
+                    gemeinsam Ziele fest und bauen daraus einen Plan.
+                  </p>
+                  <p>
+                    Sinnvoll, wenn eine Verordnung ausgelaufen ist und Sie das
+                    Erreichte halten wollen — oder als Einstieg, wenn Sie trainieren
+                    möchten, aber nicht wissen, womit.
+                  </p>
+                </div>
+              </details>
             </li>
             <li>
-              <div class="rows__main">
-                <span class="rows__name">Massage</span>
-              </div>
-              <p class="rows__subtext">25 Minuten, klassisch</p>
+              <details>
+                <summary>
+                  <span class="rows__name">Massage</span>
+                </summary>
+                <div class="rows__text">
+                  <p>
+                    Klassische Massage gegen Verspannung und Druckschmerz, meist an
+                    Nacken, Schultern und Rücken. Eine Einheit dauert 25 Minuten.
+                  </p>
+                  <p>
+                    Ohne Verordnung buchen Sie die Massage frei als Privatleistung.
+                    Steht sie auf einem Rezept, rechnen wir über die Kasse ab.
+                  </p>
+                </div>
+              </details>
             </li>
             <li>
-              <div class="rows__main">
-                <span class="rows__name">Wärmepackung</span>
-              </div>
-              <p class="rows__subtext">Fango, zur Vor- oder Nachbereitung einer Behandlung</p>
+              <details>
+                <summary>
+                  <span class="rows__name">Wärmepackung</span>
+                </summary>
+                <div class="rows__text">
+                  <p>
+                    Erwärmter Fango auf die betroffene Region. Die Wärme fördert die
+                    Durchblutung und macht Gewebe geschmeidiger.
+                  </p>
+                  <p>
+                    Meist als Vorbereitung auf eine Behandlung gebucht, nicht als
+                    Ersatz dafür. Sagen Sie bei der Terminvergabe Bescheid, dann
+                    planen wir die Zeit dafür ein.
+                  </p>
+                </div>
+              </details>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- ===== Team ========================================================= -->
   <section class="section" id="team" aria-labelledby="team-titel">
@@ -544,6 +587,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=13" defer></script>
 </body>
 </html>

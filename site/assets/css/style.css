@@ -337,6 +337,8 @@ p {
   color: var(--ink);
   background: var(--paper);
   padding: 6px 8px;
+  transition: background-color 0.15s ease-out, color 0.15s ease-out,
+    border-color 0.15s ease-out;
   border: 1px solid var(--line-light);
 }
 
@@ -660,6 +662,10 @@ body.is-locked {
   background: var(--ink);
   color: var(--paper);
   overflow: hidden;
+  /* Startwerte, damit die Lichtmaske auch vor der ersten Mausbewegung
+     einen gueltigen Ort hat. main.js schreibt sie danach fort. */
+  --mx: 50%;
+  --my: 50%;
 }
 
 /* Raster-Overlay */
@@ -673,8 +679,36 @@ body.is-locked {
   pointer-events: none;
 }
 
+/* Werkstattlicht: unter dem Zeiger wird das Raster heller, als wanderte eine
+   Lampe darueber. Zweite Rasterebene in gleicher Zellgroesse, per Maske auf
+   einen Kreis begrenzt. Rein dekorativ — ohne JavaScript bleibt die Flaeche
+   dunkel wie bisher. Nur Maus und Trackpad: auf Touch gibt es keinen
+   Zeiger, der etwas beleuchten koennte. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.17) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.17) 1px, transparent 1px);
+    background-size: var(--grid-cell) var(--grid-cell);
+    -webkit-mask-image: radial-gradient(circle 15rem at var(--mx) var(--my), #000 0%, transparent 70%);
+    mask-image: radial-gradient(circle 15rem at var(--mx) var(--my), #000 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 260ms ease-out;
+  }
+
+  .hero.is-lit::after {
+    opacity: 1;
+  }
+}
+
 .hero__inner {
   position: relative;
+  /* Hebt den Text ueber die Lichtebene: ::after steht im DOM hinter dem
+     Inhalt und wuerde sonst darueber gezeichnet. */
+  z-index: 1;
   max-width: var(--maxw);
   margin-inline: auto;
   padding: 40px var(--gutter) 32px;
@@ -851,81 +885,46 @@ body.is-locked {
 
 /* --- Leistungen ---------------------------------------------------------- */
 
-.services {
-  background: var(--paper);
-  color: var(--ink);
+/* Die Sektion laeuft ueber .section / .section__inner wie Team, Praxis und
+   Kontakt — Kopf, Bildband, Inhalt. Damit stimmen Seitenrand, vertikaler
+   Rhythmus und Ueberschriftengroesse ohne eigene Regeln. */
+
+/* Bildband unter dem Kopf, an derselben Stelle wie .team__band und
+   .praxis__photo. Die Quelle ist Hochformat (3:4); im liegenden Band bleibt
+   ein Streifen stehen, und der sitzt tief genug fuer Sprossenwand,
+   Fensterfront und Geraete statt fuer die Decke. */
+.services__band {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 34px;
 }
 
-/* Gleiche Innenkante wie .section__inner: ohne padding-inline lief dieser
-   Block bis an den Viewportrand und damit sichtbar breiter als Team, Praxis
-   und Kontakt darunter. Das Foto sitzt damit auch auf derselben Kante wie
-   alle anderen Bilder der Seite. */
-.services__inner {
-  max-width: var(--maxw);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  display: grid;
-}
-
-/* Mobil ein liegendes Bildband über die Spaltenbreite, auf Desktop die
-   stehende Bildspalte links neben der Leistungsliste. */
-.services__photo {
-  aspect-ratio: 3 / 2;
-}
-
-/* Die Quelle ist Hochformat (3:4). Im mobilen 3:2-Band bleibt davon nur die
-   Haelfte stehen — mittig zentriert waere das ueberwiegend Decke. Der Schnitt
-   wandert nach unten auf Sprossenwand, Fensterfront und Geraete.
-   Auf Desktop laeuft der Schnitt horizontal, dort bleibt der Wert wirkungslos. */
-.services__photo img {
+.services__band img {
   object-position: center 62%;
 }
 
-/* Seitenabstand kommt jetzt von .services__inner — hier nur noch vertikal,
-   sonst stuende der Text doppelt eingerueckt. */
-.services__body {
-  padding: 30px 0 34px;
+@media (min-width: 768px) {
+  .services__band {
+    aspect-ratio: 16 / 9;
+    margin-bottom: 44px;
+  }
+}
+
+.services__groups {
+  display: grid;
+  gap: 34px;
 }
 
 @media (min-width: 1024px) {
-  .services__inner {
-    grid-template-columns: 0.9fr 1.1fr;
+  .services__groups {
+    /* Gleiche Spalten, weil beide Gruppen dieselbe Zeilenform tragen — eine
+       ungleiche Teilung liesse sie wieder wie zwei verschiedene Bausteine
+       aussehen. align-items: start, damit die kuerzere Spalte nicht auf die
+       Hoehe der laengeren gestreckt wird; sonst wandert ihr Inhalt beim
+       Aufklappen in der Nachbarspalte mit. */
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    column-gap: 64px;
   }
-
-  .services__photo {
-    /* align-self: start + feste Hoehe statt min-height: ohne das streckt
-       sich die Bildspalte per Grid-Default (align-items: stretch) auf die
-       Hoehe der Textspalte. Klappt eine Leistungszeile auf, wuerde das Bild
-       dann mitwachsen und object-fit: cover zoomt staendig neu. Jetzt bleibt
-       das Bild bei jeder Akkordeon-Position gleich gross — und bleibt beim
-       Scrollen durch die geoeffnete Liste im Blick, statt oben abgeschnitten
-       aus dem Viewport zu laufen. */
-    aspect-ratio: auto;
-    align-self: start;
-    position: sticky;
-    /* Buendig an die Headerkante, ohne Versatz. Ein Abstand hier laesst beim
-       Andocken einen hellen Streifen Sektionshintergrund zwischen schwarzem
-       Header und Bild stehen — gegen die Tinte liest der sich als weisser
-       Balken. Die 1px-Unterkante des Headers ueberlagert das Bild dabei
-       minimal, das ist unauffaelliger als eine Luecke. */
-    top: var(--header-h);
-    height: 640px;
-    max-height: calc(100vh - var(--header-h));
-  }
-
-  .services__body {
-    /* Rechts kein Polster: der Text soll auf derselben Kante enden wie der
-       Inhalt der folgenden Sektionen. Links der Abstand zur Trennlinie. */
-    padding: 56px 0 56px 44px;
-    /* Die Trennlinie sitzt hier statt am Bild: sie soll die ganze
-       Spaltenhoehe laufen, auch wenn aufgeklappte Zeilen den Text laenger
-       machen als das (jetzt feste) Bild. */
-    border-left: 1px solid var(--line-light);
-  }
-}
-
-.services__group + .services__group {
-  margin-top: 34px;
 }
 
 .services__note {
@@ -964,10 +963,6 @@ body.is-locked {
 .rows__meta {
   font: 500 12.5px/1 var(--mono);
   flex: none;
-}
-
-.rows__meta--muted {
-  color: var(--text-2);
 }
 
 @media (min-width: 768px) {
@@ -1023,37 +1018,6 @@ body.is-locked {
 
   .rows--acc summary:hover {
     background: var(--green-tint);
-  }
-}
-
-/* Privatleistungen: Name/Preis wie gehabt, dazu eine gedaempfte Unterzeile.
-   .rows li ist von Haus aus eine Flexzeile fuer Name+Preis — hier wird
-   daraus ein Block, .rows__main uebernimmt die Flexzeile. */
-.rows--hint li {
-  display: block;
-  padding: 13px 0 15px;
-}
-
-.rows__main {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-}
-
-.rows__subtext {
-  font: 400 12.5px/1.5 var(--sans);
-  color: var(--text-3);
-  margin-top: 4px;
-}
-
-@media (min-width: 768px) {
-  .rows--hint li {
-    padding: 14px 0 17px;
-  }
-
-  .rows__subtext {
-    font-size: 13.5px;
   }
 }
 
@@ -1130,6 +1094,13 @@ body.is-locked {
     font-size: 16px;
   }
 }
+
+/* Die Hoehenfahrt beim Aufklappen sitzt in main.js, nicht hier. Zwei reine
+   CSS-Wege wurden verworfen: block-size 0 -> auto braucht interpolate-size
+   und das kennt nur Chromium; ::details-content als Grid mit 0fr -> 1fr
+   nimmt Firefox das display: grid nicht ab. Beides haette je einen der
+   beiden Browser ohne Animation gelassen. Ohne JavaScript klappt <details>
+   nativ und hart um — die Funktion haengt nicht an der Animation. */
 
 /* --- Team ---------------------------------------------------------------- */
 
@@ -1344,6 +1315,20 @@ body.is-locked {
 .gallery .frame {
   aspect-ratio: 3 / 4;
   background: var(--paper);
+}
+
+/* Die Beschriftung invertiert bei Mauskontakt — dieselbe Sprache wie die
+   Buttons, keine Transforms. Bewusst nicht: Beschriftung erst bei Hover
+   einblenden. Das kostet Information, laesst sich auf Touch gar nicht
+   ausloesen und die vier Raumnamen sind der eigentliche Nutzen der
+   Galerie. Und bewusst kein Zoom auf dem Bild: die Kacheln sind nicht
+   anklickbar, sie sollen nicht so tun. */
+@media (hover: hover) {
+  .gallery .frame:hover figcaption {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
 }
 
 @media (min-width: 768px) {
