@@ -27,14 +27,20 @@ DST = os.path.join(WURZEL, "site", "assets", "img")
 JOBS = [
     ("trainings_bereich_1.jpeg", "trainingsflaeche-hoch", 1200),
     ("trainings_bereich_2.jpeg", "trainingsflaeche-weit", 1600),
-    ("behandlung_am_mensch.jpeg", "behandlung", 1200),
+    # Stockfoto (Unsplash-Lizenz, Edward Muntinga), bereits auf 3:4 beschnitten.
+    # Ersetzt das Handyfoto behandlung_am_mensch.jpeg, das fuer die Flaeche im
+    # Team-Band zu eng geschnitten war. Quelle steht in site/PLATZHALTER.md.
+    ("manuelle_therapie_stock.jpeg", "manuelle-therapie", 1200),
     ("behandlungszimmer.jpeg", "behandlungszimmer", 800),
     ("behandlungszimmer_liege.jpeg", "behandlungszimmer-liege", 800),
     ("praxis_flur.jpeg", "praxis-flur", 800),
     ("sitzecke.jpeg", "sitzecke", 800),
-    ("mensch_macht_übung.jpeg", "uebung-am-geraet", 800),
-    ("beinpresse.jpeg", "beinpresse", 800),
 ]
+
+# Bewusst nicht mehr aufbereitet: mensch_macht_übung.jpeg ("Training am Gerät")
+# und beinpresse.jpeg. Die Galerie zeigt nur noch die Raeume. Die Originale
+# liegen weiter im Handoff-Ordner, falls sie zurueckkommen sollen — dann hier
+# wieder eintragen und die <li> in der Galerie ergaenzen.
 
 
 def main():

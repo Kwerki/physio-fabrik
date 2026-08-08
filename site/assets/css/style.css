@@ -85,16 +85,29 @@
   --surface: #f2f3ef;
 
   --green: oklch(0.74 0.12 150);
-  --green-text: oklch(0.55 0.11 150);
+  /* Grüner Text auf Papier. Der Handoff nennt 0.55 — gemessen sind das nur
+     3.7:1 gegen #FAFAF8 und damit kein AA. 0.50 bringt 4.6:1 bei praktisch
+     gleichem Farbeindruck. Verwendet fuer .team__role (11px) und das Minus
+     der aufgeklappten Leistungszeile. */
+  --green-text: oklch(0.5 0.11 150);
   --green-tint: oklch(0.96 0.02 150);
+
+  /* Signalfarbe fuer Formularfehler. Bewusst nicht Gruen: Gruen ist auf
+     dieser Seite der Marken-Akzent und markiert an anderer Stelle Erfolg
+     (.form__status). Fehler und Bestaetigung duerfen nicht dieselbe Farbe
+     tragen. Bernstein statt Rot, weil die Seite niemanden anschreien soll. */
+  --signal: oklch(0.84 0.14 75);
 
   --line-light: rgba(0, 0, 0, 0.12);
   --line-strong: rgba(0, 0, 0, 0.2);
   --line-dark: rgba(255, 255, 255, 0.14);
   --line-dark-strong: rgba(255, 255, 255, 0.3);
 
+  /* Textstufen. Die tertiaere Stufe traegt Eyebrows, Labels und Kuerzel bei
+     10–13px — also durchweg kleine Schrift, die AA erfuellen muss. Der
+     Handoff-Wert .45 liegt bei 3.3:1; .55 bringt 4.7:1. */
   --text-2: rgba(0, 0, 0, 0.62);
-  --text-3: rgba(0, 0, 0, 0.45);
+  --text-3: rgba(0, 0, 0, 0.55);
   --text-2-dark: rgba(255, 255, 255, 0.68);
   --text-3-dark: rgba(255, 255, 255, 0.5);
 
@@ -131,6 +144,9 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* Der Header klebt oben; ohne diesen Wert verschwindet das Sprungziel
+     eines Ankerlinks darunter. */
+  scroll-padding-top: var(--header-h);
 }
 
 body {
@@ -399,7 +415,14 @@ p {
 
 /* --- Header -------------------------------------------------------------- */
 
+/* Mitlaufender Header: der Telefon- bzw. Termin-Weg ist der eigentliche Zweck
+   der Seite und soll auf einem One-Pager nicht nach dem ersten Scrollen
+   verschwinden. Kein Ein-/Ausblenden beim Scrollen — die Leiste steht
+   einfach, das passt zum ruhigen Bewegungsbudget der Richtung. */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
   background: var(--ink);
   color: var(--paper);
   border-bottom: 1px solid var(--line-dark);
@@ -460,7 +483,7 @@ p {
 .lang {
   font: 500 11px/1 var(--mono);
   color: var(--text-3-dark);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid var(--line-dark-strong);
   padding-left: 22px;
   display: flex;
   gap: 4px;
@@ -709,9 +732,14 @@ body.is-locked {
   font: 400 11.5px/1.5 var(--mono);
 }
 
+/* Die Schrift der Randzellen soll auf derselben Kante stehen wie der Inhalt
+   aller Sektionen. Das Zellpolster zaehlt dabei mit, also wird es vom
+   Seitenrand abgezogen: Text der ersten Zelle landet exakt auf dem Gutter,
+   die Trennlinien der Leiste laufen weiter durch wie zuvor. */
 .factbar__inner {
   max-width: var(--maxw);
   margin-inline: auto;
+  padding-inline: calc(var(--gutter) - 20px);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -737,6 +765,8 @@ body.is-locked {
 
   .factbar__inner {
     grid-template-columns: repeat(4, 1fr);
+    /* Zellpolster ist hier 22px statt 20px — Abzug entsprechend. */
+    padding-inline: calc(var(--gutter) - 22px);
   }
 
   .factbar li {
@@ -808,6 +838,15 @@ body.is-locked {
   .section__head {
     margin-bottom: 40px;
   }
+
+  /* Abweichung vom Handoff (dort 14px durchgaengig): Fliesstext geht auf
+     Desktop auf 16px. 14px ist fuer eine Praxis-Website, deren Publikum
+     ueberwiegend aelter ist, zu klein. Die Mono-Skala (Labels, Kuerzel,
+     Zahlen) bleibt unveraendert — sie traegt den technischen Charakter und
+     wird nicht am Stueck gelesen. */
+  .section__head p {
+    font-size: 16px;
+  }
 }
 
 /* --- Leistungen ---------------------------------------------------------- */
@@ -817,20 +856,35 @@ body.is-locked {
   color: var(--ink);
 }
 
+/* Gleiche Innenkante wie .section__inner: ohne padding-inline lief dieser
+   Block bis an den Viewportrand und damit sichtbar breiter als Team, Praxis
+   und Kontakt darunter. Das Foto sitzt damit auch auf derselben Kante wie
+   alle anderen Bilder der Seite. */
 .services__inner {
   max-width: var(--maxw);
   margin-inline: auto;
+  padding-inline: var(--gutter);
   display: grid;
 }
 
-/* Mobil ein Bildband über die volle Breite, auf Desktop die volle Höhe
-   der Leistungsspalte daneben. */
+/* Mobil ein liegendes Bildband über die Spaltenbreite, auf Desktop die
+   stehende Bildspalte links neben der Leistungsliste. */
 .services__photo {
   aspect-ratio: 3 / 2;
 }
 
+/* Die Quelle ist Hochformat (3:4). Im mobilen 3:2-Band bleibt davon nur die
+   Haelfte stehen — mittig zentriert waere das ueberwiegend Decke. Der Schnitt
+   wandert nach unten auf Sprossenwand, Fensterfront und Geraete.
+   Auf Desktop laeuft der Schnitt horizontal, dort bleibt der Wert wirkungslos. */
+.services__photo img {
+  object-position: center 62%;
+}
+
+/* Seitenabstand kommt jetzt von .services__inner — hier nur noch vertikal,
+   sonst stuende der Text doppelt eingerueckt. */
 .services__body {
-  padding: 30px var(--gutter) 34px;
+  padding: 30px 0 34px;
 }
 
 @media (min-width: 1024px) {
@@ -839,13 +893,34 @@ body.is-locked {
   }
 
   .services__photo {
+    /* align-self: start + feste Hoehe statt min-height: ohne das streckt
+       sich die Bildspalte per Grid-Default (align-items: stretch) auf die
+       Hoehe der Textspalte. Klappt eine Leistungszeile auf, wuerde das Bild
+       dann mitwachsen und object-fit: cover zoomt staendig neu. Jetzt bleibt
+       das Bild bei jeder Akkordeon-Position gleich gross — und bleibt beim
+       Scrollen durch die geoeffnete Liste im Blick, statt oben abgeschnitten
+       aus dem Viewport zu laufen. */
     aspect-ratio: auto;
-    min-height: 420px;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    align-self: start;
+    position: sticky;
+    /* Buendig an die Headerkante, ohne Versatz. Ein Abstand hier laesst beim
+       Andocken einen hellen Streifen Sektionshintergrund zwischen schwarzem
+       Header und Bild stehen — gegen die Tinte liest der sich als weisser
+       Balken. Die 1px-Unterkante des Headers ueberlagert das Bild dabei
+       minimal, das ist unauffaelliger als eine Luecke. */
+    top: var(--header-h);
+    height: 640px;
+    max-height: calc(100vh - var(--header-h));
   }
 
   .services__body {
-    padding: 56px 44px;
+    /* Rechts kein Polster: der Text soll auf derselben Kante enden wie der
+       Inhalt der folgenden Sektionen. Links der Abstand zur Trennlinie. */
+    padding: 56px 0 56px 44px;
+    /* Die Trennlinie sitzt hier statt am Bild: sie soll die ganze
+       Spaltenhoehe laufen, auch wenn aufgeklappte Zeilen den Text laenger
+       machen als das (jetzt feste) Bild. */
+    border-left: 1px solid var(--line-light);
   }
 }
 
@@ -855,7 +930,7 @@ body.is-locked {
 
 .services__note {
   font: 400 11.5px/1.4 var(--mono);
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--text-2);
   margin: 18px 0 12px;
 }
 
@@ -892,7 +967,7 @@ body.is-locked {
 }
 
 .rows__meta--muted {
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--text-2);
 }
 
 @media (min-width: 768px) {
@@ -938,39 +1013,121 @@ body.is-locked {
   .rows li:hover {
     background: var(--green-tint);
   }
+
+  /* Bei den aufklappbaren Zeilen ist nur die Kopfzeile anklickbar — dann darf
+     auch nur sie den Tint bekommen, sonst faerbt sich beim geoeffneten
+     Eintrag der ganze Fliesstext mit. */
+  .rows--acc li:hover {
+    background: none;
+  }
+
+  .rows--acc summary:hover {
+    background: var(--green-tint);
+  }
 }
 
-/* Phone: Kürzel werden zu Chips, Namen bleiben für Screenreader und SEO im DOM */
-@media (max-width: 767px) {
-  .rows--chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
+/* Privatleistungen: Name/Preis wie gehabt, dazu eine gedaempfte Unterzeile.
+   .rows li ist von Haus aus eine Flexzeile fuer Name+Preis — hier wird
+   daraus ein Block, .rows__main uebernimmt die Flexzeile. */
+.rows--hint li {
+  display: block;
+  padding: 13px 0 15px;
+}
+
+.rows__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.rows__subtext {
+  font: 400 12.5px/1.5 var(--sans);
+  color: var(--text-3);
+  margin-top: 4px;
+}
+
+@media (min-width: 768px) {
+  .rows--hint li {
+    padding: 14px 0 17px;
   }
 
-  .rows--chips li {
-    display: block;
-    border: 1px solid var(--line-strong);
-    padding: 9px 11px;
+  .rows__subtext {
+    font-size: 13.5px;
+  }
+}
+
+/* Aufklappbare Leistungszeilen (<details>). Das Polster sitzt hier auf dem
+   <summary> statt auf dem <li>, damit die Trennlinie des <li> die ganze
+   Zeile umfasst und der Klickbereich die volle Breite hat. */
+.rows--acc li {
+  display: block;
+  padding: 0;
+}
+
+.rows--acc summary {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 13px 0;
+  cursor: pointer;
+  list-style: none;          /* Standarddreieck weg, wir setzen ein eigenes */
+}
+
+.rows--acc summary::-webkit-details-marker {
+  display: none;
+}
+
+.rows--acc .rows__name {
+  flex: 1;                   /* schiebt Kürzel und Zeichen nach rechts */
+}
+
+/* Plus/Minus statt Pfeil — passt zum kantigen Rest. Feste Breite, damit
+   beim Umschalten nichts springt. */
+.rows--acc summary::after {
+  content: "+";
+  flex: none;
+  width: 1em;
+  text-align: right;
+  font: 400 16px/1 var(--mono);
+  color: var(--text-3);
+}
+
+.rows--acc details[open] summary::after {
+  content: "\2212";          /* echtes Minus, nicht der schmalere Bindestrich */
+  color: var(--green-text);
+}
+
+.rows--acc .rows__text {
+  padding: 0 0 18px;
+  max-width: 58ch;
+}
+
+.rows--acc .rows__text p {
+  font: 400 14.5px/1.6 var(--sans);
+  color: var(--text-2);
+}
+
+.rows--acc .rows__text p + p {
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .rows--acc summary {
+    gap: 20px;
+    padding: 16px 0;
   }
 
-  .rows--chips li:last-child {
-    border-bottom: 1px solid var(--line-strong);
+  .rows--acc summary::after {
+    font-size: 20px;
   }
 
-  .rows--chips .rows__name {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+  .rows--acc .rows__text {
+    padding-bottom: 24px;
   }
 
-  .rows--chips .rows__meta {
-    font: 500 13px/1 var(--sans);
-    color: var(--ink);
+  .rows--acc .rows__text p {
+    font-size: 16px;
   }
 }
 
@@ -983,9 +1140,19 @@ body.is-locked {
   margin-bottom: 34px;
 }
 
+/* Von der Hochformat-Quelle bleibt im Band nur ein schmaler Streifen. Er soll
+   auf den Haenden liegen — das ist der Inhalt des Bildes — und nicht auf dem
+   Bettlaken darunter. */
+.team__band img {
+  object-position: center 46%;
+}
+
 @media (min-width: 768px) {
   .team__band {
-    aspect-ratio: 21 / 9;
+    /* 21:9 laesst von einem 3:4-Bild nur noch 32 % der Hoehe stehen. 2:1 ist
+       immer noch ein Band, zeigt aber genug Kontext, dass die Szene lesbar
+       bleibt. */
+    aspect-ratio: 2 / 1;
     margin-bottom: 44px;
   }
 }
@@ -1000,6 +1167,39 @@ body.is-locked {
 .team__member {
   background: var(--paper);
   padding: 22px 0;
+}
+
+/* Platzhalter, solange Porträts fehlen: Rahmen mit Rasteroverlay wie im
+   Hero, dazu ein Monogramm — sichtbar unfertig statt leer. Sobald ein
+   echtes Foto da ist: figure.team__photo bekommt ein <img>, den
+   ::before-Raster und das Monogramm entfernen. */
+.team__photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  max-width: 220px;
+  margin: 0 0 18px;
+  background: var(--surface);
+  border: 1px solid var(--line-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.team__photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.team__monogram {
+  position: relative;
+  font: 500 15px/1 var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--text-3);
 }
 
 .team__name {
@@ -1066,6 +1266,7 @@ body.is-locked {
 .stats__num {
   display: block;
   font: 600 20px/1 var(--sans);
+  font-variant-numeric: tabular-nums;
   margin-bottom: 8px;
 }
 
@@ -1121,10 +1322,16 @@ body.is-locked {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 48px;
   }
+
+  .praxis__features li {
+    font-size: 15.5px;
+  }
 }
 
 /* Galerie — Kacheln durch 1px-Fugen getrennt, nicht durch Abstände.
-   Die Fugen entstehen als Hintergrund des Grids. */
+   Die Fugen entstehen als Hintergrund des Grids.
+   Vier Kacheln: 2x2 bis Tablet, ab Desktop eine durchgehende Reihe. Beides
+   geht glatt auf — eine angebrochene letzte Reihe zerstoert das Raster. */
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1141,8 +1348,13 @@ body.is-locked {
 
 @media (min-width: 768px) {
   .gallery {
-    grid-template-columns: repeat(3, 1fr);
     margin-top: 44px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -1212,8 +1424,14 @@ body.is-locked {
   gap: 18px;
 }
 
+/* align-content: start ist hier kein Feinschliff, sondern noetig: die Zeilen
+   des Rasters sind auto-hoch, und bei align-content: normal (= stretch)
+   wachsen Label, Feld und Abstand mit, sobald der Container hoeher wird als
+   sein Inhalt. Genau das passiert, wenn im Nachbarfeld eine Fehlermeldung
+   erscheint — dann skaliert das fehlerfreie Feld sichtbar mit. */
 .form__row {
   display: grid;
+  align-content: start;
   gap: 8px;
 }
 
@@ -1225,6 +1443,9 @@ body.is-locked {
 @media (min-width: 768px) {
   .form__cols {
     grid-template-columns: repeat(2, 1fr);
+    /* Ohne start strecken sich beide Spalten auf die Hoehe der hoeheren.
+       Zeigt „Telefon" einen Fehler, verschiebt sich sonst auch „Name". */
+    align-items: start;
   }
 }
 
@@ -1248,14 +1469,29 @@ body.is-locked {
   transition: border-color 0.15s ease-out;
 }
 
+/* Safari auf iOS zoomt die ganze Seite hinein, sobald ein fokussiertes Feld
+   kleiner als 16px gesetzt ist — und zoomt danach nicht von selbst zurueck.
+   Auf Desktop bleiben die 14px des Entwurfs. */
+@media (max-width: 767px) {
+  .form input[type="text"],
+  .form input[type="tel"],
+  .form input[type="email"],
+  .form textarea {
+    font-size: 16px;
+  }
+}
+
 .form textarea {
   min-height: 132px;
   resize: vertical;
 }
 
+/* Die Platzhalter tragen hier echte Hinweise ("Verordnung vorhanden?"),
+   also muessen sie lesbar sein — .35 lag bei 3.2:1. */
 .form ::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-3-dark);
   font: 400 13.5px/1 var(--sans);
+  opacity: 1;
 }
 
 @media (hover: hover) {
@@ -1271,13 +1507,31 @@ body.is-locked {
 }
 
 .form [aria-invalid="true"] {
-  border-color: var(--green);
+  border-color: var(--signal);
 }
 
+/* Fehler tragen Signalfarbe UND ein eigenes Zeichen — wer Farben schlecht
+   unterscheidet, erkennt den Fehler am Ausrufezeichen. Das Quadrat greift
+   den 10x10-Signalmarker der Praxis-Liste auf. */
 .form__error {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   font: 400 12px/1.4 var(--mono);
-  color: var(--green);
+  color: var(--signal);
   min-height: 0;
+}
+
+.form__error::before {
+  content: "!";
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background: var(--signal);
+  color: var(--ink);
+  font: 500 11px/16px var(--mono);
+  text-align: center;
+  transform: translateY(2px);
 }
 
 .form__error:empty {
@@ -1400,7 +1654,7 @@ body.is-locked {
 
 .site-footer__legal {
   font: 400 11px/1.6 var(--mono);
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-3-dark);
   border-top: 1px solid var(--line-dark);
   padding-top: 20px;
 }
@@ -1424,8 +1678,10 @@ body.is-locked {
 
 /* --- Legal-Seiten (Impressum, Datenschutz) -------------------------------- */
 
+/* 78ch lag ueber der komfortablen Lesebreite; 68ch haelt die Zeile bei rund
+   65–70 Zeichen. */
 .legal {
-  max-width: 78ch;
+  max-width: 68ch;
   padding-block: 44px 64px;
 }
 
@@ -1491,6 +1747,11 @@ body.is-locked {
 
   .legal h2 {
     font-size: 20px;
+  }
+
+  .legal p,
+  .legal li {
+    font-size: 16px;
   }
 }
 
