@@ -36,7 +36,10 @@ JOBS = [
     # als nils_fischer_alt1-3.jpeg, falls ein anderer Ausschnitt gewuenscht ist.
     ("nils_fischer.jpeg", "nils-fischer", 600),
     ("behandlungszimmer.jpeg", "behandlungszimmer", 800),
-    ("behandlungszimmer_liege.jpeg", "behandlungszimmer-liege", 800),
+    # behandlungszimmer_liege.jpeg faellt raus: Laut Praxis zeigt es denselben
+    # Raum wie behandlungszimmer.jpeg, nur aus anderer Richtung — in der
+    # Galerie sah das nach zwei Raeumen aus, die es nicht gibt. Das Original
+    # liegt weiter im Handoff-Ordner.
     ("behandlungsraum_orange.jpeg", "behandlungsraum-orange", 800),
     ("behandlungsraum_vellmax.jpeg", "behandlungsraum-balkon", 800),
     ("praxis_flur.jpeg", "praxis-flur", 800),

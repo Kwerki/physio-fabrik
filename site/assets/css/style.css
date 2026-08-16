@@ -1375,13 +1375,23 @@ body.is-locked {
    Die Fugen entstehen als Hintergrund des Grids.
    Vier Kacheln: 2x2 bis Tablet, ab Desktop eine durchgehende Reihe. Beides
    geht glatt auf — eine angebrochene letzte Reihe zerstoert das Raster. */
+/* Die Trennlinien haengen an den Kacheln, nicht am Containerhintergrund.
+   Vorher zeichnete ein grauer Container mit 1px-Luecken die Linien — elegant,
+   solange jede Zelle gefuellt ist, aber jede leere Zelle der letzten Reihe
+   stand dann als grauer Block da. Damit war die Kachelzahl an die Spaltenzahl
+   gekettet: 6 ging, 5 nicht. So gezeichnet ist die Anzahl egal, weil nur
+   vorhandene Kacheln Linien tragen. */
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--line-light);
-  border: 1px solid var(--line-light);
+  border-top: 1px solid var(--line-light);
+  border-left: 1px solid var(--line-light);
   margin-top: 34px;
+}
+
+.gallery > li {
+  border-right: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
 }
 
 .gallery .frame {
@@ -1409,12 +1419,9 @@ body.is-locked {
   }
 }
 
-/* Drei Spalten, nicht vier: Die Galerie zeigt sechs Raeume, und das Raster
-   zeichnet seine Trennlinien ueber den Containerhintergrund. Bei vier Spalten
-   blieben in der zweiten Reihe zwei Zellen leer — und leere Zellen zeigen
-   diesen Hintergrund als graue Bloecke. 6 geht in 2 und in 3 auf, in 4 nicht.
-   Wer Kacheln ergaenzt oder entfernt, muss die Zahl hier mitdenken: bei drei
-   Spalten sind 3, 6, 9 ... sauber. */
+/* Drei Spalten ab Desktop. Bei aktuell fuenf Kacheln bleibt die letzte Reihe
+   angebrochen — das faellt nicht mehr auf, seit die Linien an den Kacheln
+   haengen und dort schlicht nichts gezeichnet wird. */
 @media (min-width: 1024px) {
   .gallery {
     grid-template-columns: repeat(3, 1fr);

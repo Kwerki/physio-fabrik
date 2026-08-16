@@ -69,7 +69,7 @@ tatsächlich gebrauchte Breite gerechnet, als WebP gespeichert. 1,7 MB → 768 K
 | `manuelle-therapie.webp` | Team, Band über den Karten — **Stockfoto**, siehe unten |
 | `nils-fischer.webp` | Team, Porträtkarte Nils Fischer — echtes Foto, 3:4 direkt aus dem Handy |
 | `trainingsflaeche-weit.webp` | Praxis, großes Bild |
-| `behandlungszimmer.webp`, `behandlungszimmer-liege.webp`, `behandlungsraum-orange.webp`, `behandlungsraum-balkon.webp`, `praxis-flur.webp`, `sitzecke.webp` | Praxis, Galerie (sechs Kacheln) |
+| `behandlungszimmer.webp`, `behandlungsraum-orange.webp`, `behandlungsraum-balkon.webp`, `praxis-flur.webp`, `sitzecke.webp` | Praxis, Galerie (fünf Kacheln) |
 
 Bei `behandlungsraum-balkon.webp` ist im Hintergrund durch die Balkontür der
 Schriftzug „VellmaX Fitness & Reha-Sport“ zu sehen — auf Rückfrage bewusst so
@@ -82,9 +82,17 @@ Drei weitere Aufnahmen von Nils liegen unbearbeitet in
 Skript erneut laufen lassen.
 
 Die Galerie zeigt bewusst nur noch Räume. „Training am Gerät" und „Beinpresse"
-sind entfernt. Aktuell sechs Kacheln (2 Spalten mobil = drei volle Reihen, ab Desktop bei
-vier Spalten eine volle Reihe + eine halbe). Bei weiteren Ergänzungen: acht
-bleibt sauber, bei fünf oder sieben bricht die letzte Reihe an.
+sind entfernt, ebenso `behandlungszimmer-liege.webp` — das war laut Praxis
+derselbe Raum wie `behandlungszimmer.webp`, nur aus anderer Richtung, und ließ
+die Praxis größer wirken, als sie ist. Die drei Behandlungsräume sind
+entsprechend neu durchnummeriert.
+
+Aktuell **fünf** Kacheln. Die Anzahl ist inzwischen egal: Die Trennlinien hängen
+an den Kacheln selbst, nicht mehr am Containerhintergrund. Vorher zeichnete ein
+grauer Container mit 1px-Lücken die Linien — jede leere Zelle der letzten Reihe
+stand dadurch als grauer Block auf der Seite, und die Kachelzahl musste zur
+Spaltenzahl passen. Diese Kopplung ist weg; Kacheln lassen sich jetzt ergänzen
+oder entfernen, ohne das Raster nachzurechnen.
 
 **`manuelle-therapie.webp` ist als Einziges kein Praxisfoto**, sondern ein
 Stockfoto: <https://unsplash.com/photos/a-woman-getting-a-back-massage-from-a-man-Qcl0YqqGwus>,
@@ -160,10 +168,9 @@ werden:**
 | Nils Fischer + Qualifikationen | Abschnitt „Practice" |
 | Leistungen (5 auf Rezept, 3 privat) | Abschnitt „Treatments" |
 
-**Offen:** Ob Behandlungen auf Englisch stattfinden können, ist nicht
-bestätigt — die Seite behauptet dazu bewusst nichts. Sobald geklärt, gehört ein
-klarer Satz in „Before your first appointment". Wer aus dem Ausland anreist,
-sollte das vorher wissen und nicht erst im Behandlungsraum merken.
+**Behandlung auf Englisch** ist von der Praxis bestätigt und steht im ersten
+Absatz der englischen Seite. Ändert sich das — etwa weil künftig jemand
+behandelt, der kein Englisch spricht —, muss der Satz sofort raus.
 
 ## Kontaktformular: aktuell mailto
 
