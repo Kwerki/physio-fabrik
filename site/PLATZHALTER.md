@@ -21,6 +21,7 @@ diese Regel einkommentieren:
 | ~~`impressum-*`~~ | Impressum | Erledigt: Anbieter/Kontakt/Verantwortlich = Nils Fischer, Aufsichtsbehörde = Gesundheitsamt Kassel. Keine USt-IdNr vorhanden — § 5 DDG verlangt sie nur „soweit vorhanden", der Absatz nennt daher nur die Steuerbefreiung nach § 4 Nr. 14 UStG |
 | ~~`aufsichtsbehoerde`~~, ~~`stand`~~, ~~`datenschutzbeauftragter`~~ | Datenschutz | Erledigt: HBDI Wiesbaden (Praxissitz Hessen), Stand August 2026. DSB-Abschnitt entfernt — bei dieser Praxisgröße nicht erforderlich |
 | `hoster` | Datenschutz | Hoster ist benannt (GitHub Pages, GitHub Inc., USA, EU-U.S. DPF). **Offen und anwaltlich zu prüfen:** ob für GitHub Pages ein wirksamer AVV nach Art. 28 DSGVO vorliegt. Der Absatz behauptet bewusst keinen — siehe unten |
+| — | Datenschutz | **Von der Praxis zu bestätigen:** Löschfrist für Kontaktanfragen. Steht jetzt auf sechs Monaten (Vorschlag der Vorlage, üblicher Wert). Vorher stand dort sichtbar „[z. B. 6 Monaten]" auf der Live-Seite. Wird eine andere Frist gelebt, muss der Satz angepasst werden — die Erklärung muss die tatsächliche Praxis beschreiben |
 
 **Telefonnummer bewusst reduziert:** Die Vorlage nannte zusätzlich 0561 82020145
 sowie einen Hinweis „(Vellmax, macht Terminvergabe)" bei der zweiten Nummer —
