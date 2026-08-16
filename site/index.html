@@ -6,7 +6,15 @@
 <title>PhysioFabrik — Praxis für Physiotherapie</title>
 <meta name="description" content="Krankengymnastik, manuelle Therapie, Gerätetraining und CMD. Alle Kassen und Privat. Termine kurzfristig — jetzt anrufen.">
 <meta name="theme-color" content="#0E0F0E">
-<link rel="canonical" href="https://www.physiofabrik.de/">
+<!-- Die eigene Domain ist physio-fabrik.de MIT Bindestrich (siehe CNAME).
+     Hier stand bis zuletzt www.physiofabrik.de ohne Bindestrich — das ist eine
+     fremde Domain, auf der eine Verkaufsseite liegt. Ein canonical zeigt
+     Suchmaschinen die "richtige" Adresse einer Seite; er verwies also auf
+     fremdes Gebiet und konnte die echte Seite aus dem Index draengen. -->
+<link rel="canonical" href="https://physio-fabrik.de/">
+<link rel="alternate" hreflang="de" href="https://physio-fabrik.de/">
+<link rel="alternate" hreflang="en" href="https://physio-fabrik.de/en/">
+<link rel="alternate" hreflang="x-default" href="https://physio-fabrik.de/">
 <link rel="icon" href="assets/img/logo-schwarz.png">
 <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -18,8 +26,11 @@
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="PhysioFabrik — Praxis für Physiotherapie">
 <meta property="og:description" content="Krankengymnastik, manuelle Therapie, Gerätetraining und CMD. Alle Kassen und Privat.">
-<!-- Absolute URL nötig; Domain zusammen mit dem canonical-Link oben anpassen -->
-<meta property="og:image" content="https://www.physiofabrik.de/assets/img/trainingsflaeche-weit.webp">
+<meta property="og:url" content="https://physio-fabrik.de/">
+<!-- Absolute URL nötig. Zeigte ebenfalls auf die fremde Domain ohne
+     Bindestrich — dort liegt das Bild nicht, weshalb beim Teilen per
+     WhatsApp oder Facebook gar keine Vorschau erschien. -->
+<meta property="og:image" content="https://physio-fabrik.de/assets/img/trainingsflaeche-weit.webp">
 </head>
 <body>
 
@@ -41,8 +52,7 @@
       <p class="lang">
         <span aria-current="true" lang="de">DE</span>
         <span aria-hidden="true">/</span>
-        <!-- TODO: auf <a href="/en/" hreflang="en" lang="en">EN</a> umstellen, sobald die EN-Fassung existiert -->
-        <span class="lang__inactive" lang="en">EN</span>
+        <a href="en/index.html" hreflang="en" lang="en">EN</a>
       </p>
       <a class="header-cta" href="#kontakt">Termin anfragen</a>
     </nav>
@@ -75,7 +85,7 @@
     <p class="menu__lang">
       <span aria-current="true" lang="de">DE</span>
       <span aria-hidden="true">/</span>
-      <span class="lang__inactive" lang="en">EN</span>
+      <a href="en/index.html" hreflang="en" lang="en">EN</a>
     </p>
   </div>
 </div>

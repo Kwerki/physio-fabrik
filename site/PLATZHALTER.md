@@ -21,6 +21,7 @@ diese Regel einkommentieren:
 | ~~`impressum-*`~~ | Impressum | Erledigt: Anbieter/Kontakt/Verantwortlich = Nils Fischer, Aufsichtsbehörde = Gesundheitsamt Kassel. Keine USt-IdNr vorhanden — § 5 DDG verlangt sie nur „soweit vorhanden", der Absatz nennt daher nur die Steuerbefreiung nach § 4 Nr. 14 UStG |
 | ~~`aufsichtsbehoerde`~~, ~~`stand`~~, ~~`datenschutzbeauftragter`~~ | Datenschutz | Erledigt: HBDI Wiesbaden (Praxissitz Hessen), Stand August 2026. DSB-Abschnitt entfernt — bei dieser Praxisgröße nicht erforderlich |
 | `hoster` | Datenschutz | Hoster ist benannt (GitHub Pages, GitHub Inc., USA, EU-U.S. DPF). **Offen und anwaltlich zu prüfen:** ob für GitHub Pages ein wirksamer AVV nach Art. 28 DSGVO vorliegt. Der Absatz behauptet bewusst keinen — siehe unten |
+| — | index.html | **Behoben:** `canonical` und `og:image` zeigten auf `www.physiofabrik.de` — eine **fremde** Domain ohne Bindestrich, auf der eine Verkaufsseite liegt. Die eigene Domain ist `physio-fabrik.de` (siehe [CNAME](CNAME)). Beide zeigen jetzt dorthin. Wird die Domain je gewechselt, müssen `canonical`, `og:url`, `og:image` und die drei `hreflang`-Zeilen mit |
 | — | Datenschutz | **Von der Praxis zu bestätigen:** Löschfrist für Kontaktanfragen. Steht jetzt auf sechs Monaten (Vorschlag der Vorlage, üblicher Wert). Vorher stand dort sichtbar „[z. B. 6 Monaten]" auf der Live-Seite. Wird eine andere Frist gelebt, muss der Satz angepasst werden — die Erklärung muss die tatsächliche Praxis beschreiben |
 
 **Telefonnummer bewusst reduziert:** Die Vorlage nannte zusätzlich 0561 82020145
@@ -125,12 +126,44 @@ Verbindung zu Google auf; das darf auch nicht wieder eingebaut werden.
   [datenschutz.html](datenschutz.html) der Absatz „Kontaktformular" zurück auf
   echte Übertragung und der Abschnitt „Spamschutz" (Honeypot) wieder hinein —
   beide Stellen sind dort kommentiert.
-- **EN-Fassung.** Der Umschalter zeigt EN auf 30 % Deckkraft als inaktiven
-  `<span>`. Sobald `/en/` existiert: in allen drei HTML-Dateien zu
-  `<a href="/en/" hreflang="en" lang="en">EN</a>` machen (Kommentar steht im Markup).
+- ~~**EN-Fassung.**~~ Erledigt als **einzelne** englische Infoseite unter
+  [en/index.html](en/index.html) — siehe eigener Abschnitt unten.
 - ~~**Anfahrt/Karte.**~~ Erledigt: Kein iframe, stattdessen ein Link
   „In Google Maps öffnen" im Kontaktblock (öffnet Google Maps erst nach Klick,
   siehe Datenschutzerklärung).
+
+## Englische Seite — und was bei Änderungen mitmuss
+
+[en/index.html](en/index.html) ist **eine** Seite, keine Spiegelung der
+deutschen Fassung. Bewusst so: Vier Seiten doppelt zu pflegen führt früher oder
+später dazu, dass dort eine alte Telefonnummer oder falsche Öffnungszeiten
+stehen — und eine Praxisseite, die zwei verschiedene Uhrzeiten nennt, ist
+schlimmer als eine, die nur Deutsch kann.
+
+Impressum und Datenschutz bleiben deutsch; für eine deutsche Praxis genügt das.
+Der Umschalter auf diesen beiden Seiten führt deshalb auf die englische
+Infoseite, nicht auf eine Übersetzung.
+
+**Diese Angaben stehen doppelt und müssen bei jeder Änderung an
+[index.html](index.html) auch in [en/index.html](en/index.html) nachgezogen
+werden:**
+
+| Angabe | Steht dort als |
+|---|---|
+| Telefon `0561 8200615` | Header-Button, Menü, Abschnitt „Contact", Footer |
+| E-Mail `physio.fabrik@outlook.de` | Abschnitt „Contact", Footer |
+| Adresse Brüder-Grimm-Straße 32, 2. OG | Abschnitt „Finding us", Footer |
+| Öffnungszeiten (alle fünf Tage) | Abschnitt „Opening hours" |
+| Behandlungstakt 20 min | Abschnitt „Appointments" |
+| Massage 20 min | Abschnitt „Treatments" |
+| Keine Hausbesuche | Abschnitt „Appointments" |
+| Nils Fischer + Qualifikationen | Abschnitt „Practice" |
+| Leistungen (5 auf Rezept, 3 privat) | Abschnitt „Treatments" |
+
+**Offen:** Ob Behandlungen auf Englisch stattfinden können, ist nicht
+bestätigt — die Seite behauptet dazu bewusst nichts. Sobald geklärt, gehört ein
+klarer Satz in „Before your first appointment". Wer aus dem Ausland anreist,
+sollte das vorher wissen und nicht erst im Behandlungsraum merken.
 
 ## Kontaktformular: aktuell mailto
 

@@ -508,8 +508,18 @@ p {
   color: var(--ink);
 }
 
-.lang .lang__inactive {
-  opacity: 0.3;
+/* .lang__inactive entfernt: Die Klasse graute EN aus, solange es keine
+   englische Fassung gab. Jetzt ist EN ein echter Link auf /en/. */
+.lang a {
+  color: inherit;
+  opacity: 0.55;
+  transition: opacity 0.15s ease-out;
+}
+
+@media (hover: hover) {
+  .lang a:hover {
+    opacity: 1;
+  }
 }
 
 .header-cta {
@@ -647,8 +657,9 @@ p {
   color: var(--paper);
 }
 
-.menu__lang .lang__inactive {
-  opacity: 0.3;
+.menu__lang a {
+  color: inherit;
+  opacity: 0.55;
 }
 
 body.is-locked {
