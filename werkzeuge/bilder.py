@@ -37,6 +37,8 @@ JOBS = [
     ("nils_fischer.jpeg", "nils-fischer", 600),
     ("behandlungszimmer.jpeg", "behandlungszimmer", 800),
     ("behandlungszimmer_liege.jpeg", "behandlungszimmer-liege", 800),
+    ("behandlungsraum_orange.jpeg", "behandlungsraum-orange", 800),
+    ("behandlungsraum_vellmax.jpeg", "behandlungsraum-balkon", 800),
     ("praxis_flur.jpeg", "praxis-flur", 800),
     ("sitzecke.jpeg", "sitzecke", 800),
 ]

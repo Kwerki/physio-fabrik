@@ -66,21 +66,22 @@ tatsächlich gebrauchte Breite gerechnet, als WebP gespeichert. 1,7 MB → 768 K
 | `manuelle-therapie.webp` | Team, Band über den Karten — **Stockfoto**, siehe unten |
 | `nils-fischer.webp` | Team, Porträtkarte Nils Fischer — echtes Foto, 3:4 direkt aus dem Handy |
 | `trainingsflaeche-weit.webp` | Praxis, großes Bild |
-| `behandlungszimmer.webp`, `behandlungszimmer-liege.webp`, `praxis-flur.webp`, `sitzecke.webp` | Praxis, Galerie (vier Kacheln) |
+| `behandlungszimmer.webp`, `behandlungszimmer-liege.webp`, `behandlungsraum-orange.webp`, `behandlungsraum-balkon.webp`, `praxis-flur.webp`, `sitzecke.webp` | Praxis, Galerie (sechs Kacheln) |
+
+Bei `behandlungsraum-balkon.webp` ist im Hintergrund durch die Balkontür der
+Schriftzug „VellmaX Fitness & Reha-Sport“ zu sehen — auf Rückfrage bewusst so
+mit aufgenommen, nicht zugeschnitten.
 
 Drei weitere Aufnahmen von Nils liegen unbearbeitet in
 `design_handoff_physiofabrik/assets/` als `nils_fischer_alt1.jpeg` bis
 `_alt3.jpeg`, falls ein anderer Ausschnitt gewünscht ist — dafür in
 `werkzeuge/bilder.py` den Dateinamen im `nils-fischer`-Job tauschen und das
-Skript erneut laufen lassen. Zusätzlich liegen dort zwei weitere
-Behandlungsraum-Fotos (`behandlungsraum_orange.jpeg`,
-`behandlungsraum_vellmax.jpeg`), noch nicht in die Galerie aufgenommen — bei
-Letzterem ist im Hintergrund die Glastür mit dem Vellmax-Schriftzug zu sehen.
+Skript erneut laufen lassen.
 
 Die Galerie zeigt bewusst nur noch Räume. „Training am Gerät" und „Beinpresse"
-sind entfernt; das Raster ist auf vier Kacheln umgestellt (2×2 mobil, eine Reihe
-ab Desktop). Sollen sie zurück, müssen es sechs oder acht bleiben — bei fünf
-oder sieben bricht die letzte Reihe an.
+sind entfernt. Aktuell sechs Kacheln (2 Spalten mobil = drei volle Reihen, ab Desktop bei
+vier Spalten eine volle Reihe + eine halbe). Bei weiteren Ergänzungen: acht
+bleibt sauber, bei fünf oder sieben bricht die letzte Reihe an.
 
 **`manuelle-therapie.webp` ist als Einziges kein Praxisfoto**, sondern ein
 Stockfoto: <https://unsplash.com/photos/a-woman-getting-a-back-massage-from-a-man-Qcl0YqqGwus>,
