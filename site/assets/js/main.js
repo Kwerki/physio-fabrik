@@ -180,7 +180,7 @@
         status.dataset.state = "todo";
         status.textContent =
           "Der Formularversand ist noch nicht angeschlossen. " +
-          "Bitte rufen Sie uns an oder schreiben Sie an praxis@physiofabrik.de.";
+          "Bitte rufen Sie uns an oder schreiben Sie an physio.fabrik@outlook.de.";
       }
     });
   }

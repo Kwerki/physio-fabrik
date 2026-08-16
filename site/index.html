@@ -70,7 +70,7 @@
     <a href="#kontakt">Kontakt</a>
   </nav>
   <div class="menu__foot">
-    <a class="btn btn--green" href="tel:+4925112345678" data-placeholder="telefon">Anrufen · 0251 12 34 56</a>
+    <a class="btn btn--green" href="tel:+495618200615">Anrufen · 0561 8200615</a>
     <a class="btn btn--ghost-dark" href="#kontakt">Termin per E-Mail</a>
     <p class="menu__lang">
       <span aria-current="true" lang="de">DE</span>
@@ -92,7 +92,7 @@
         nachvollziehbar, ohne Fließband. Alle Kassen und Privat.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--paper" href="tel:+4925112345678" data-placeholder="telefon">Anrufen · 0251 12 34 56</a>
+        <a class="btn btn--paper" href="tel:+495618200615">Anrufen · 0561 8200615</a>
         <a class="btn btn--ghost-dark" href="#kontakt">Termin per E-Mail</a>
       </div>
     </div>
@@ -104,7 +104,7 @@
            Zeiten stehen im Kontaktabschnitt. Zwei widersprechende Angaben auf
            einer Seite sind schlimmer als eine ungenaue. -->
       <li data-placeholder="oeffnungszeiten">MO–FR AB 07:30</li>
-      <li>Hausbesuche möglich</li>
+      <li>Fahrstuhl vorhanden</li>
       <li>Parkplätze am Haus</li>
       <li>Barrierefrei</li>
     </ul>
@@ -192,8 +192,9 @@
                   <p>
                     Behandlung mit den Händen an Gelenken, Muskeln und Nerven — bei
                     Bewegungseinschränkungen und Schmerzen, die von einer bestimmten
-                    Struktur ausgehen. Typisch bei blockierten Wirbeln, Schulter- und
-                    Nackenbeschwerden.
+                    Struktur ausgehen. Dient zumeist als Tor zu mehr Bewegung: über
+                    manuelle Mobilisation und Traktion lässt sich Beweglichkeit im
+                    betroffenen Segment gezielt zurückgewinnen.
                   </p>
                   <p>
                     Setzt eine Zusatzqualifikation voraus und braucht eine eigene
@@ -232,8 +233,8 @@
                 <div class="rows__text">
                   <p>
                     Massage von Muskulatur und Bindegewebe gegen Verspannung und
-                    Druckschmerz. Sie fördert die Durchblutung und macht Gewebe
-                    geschmeidiger.
+                    Druckschmerz. Sie fördert die Durchblutung und kann zur
+                    Entspannung sowie temporärer Schmerzreduktion führen.
                   </p>
                   <p>
                     Auf Rezept meist in Kombination mit Wärme und als Vorbereitung auf
@@ -286,7 +287,7 @@
                 <div class="rows__text">
                   <p>
                     Klassische Massage gegen Verspannung und Druckschmerz, meist an
-                    Nacken, Schultern und Rücken. Eine Einheit dauert 25 Minuten.
+                    Nacken, Schultern und Rücken. Eine Einheit dauert 20 Minuten.
                   </p>
                   <p>
                     Ohne Verordnung buchen Sie die Massage frei als Privatleistung.
@@ -303,7 +304,7 @@
                 <div class="rows__text">
                   <p>
                     Erwärmter Fango auf die betroffene Region. Die Wärme fördert die
-                    Durchblutung und macht Gewebe geschmeidiger.
+                    Durchblutung und fördert die Entspannung.
                   </p>
                   <p>
                     Meist als Vorbereitung auf eine Behandlung gebucht, nicht als
@@ -338,45 +339,29 @@
         <figcaption>Manuelle Therapie</figcaption>
       </figure>
 
-      <!-- Porträtfotos fehlen noch. Statt leerer Textkarten ein Rahmen mit
-           Monogramm, damit sichtbar ist, dass hier bewusst ein Platzhalter
-           steht statt eines Fehlers. Ersetzen: figure.team__photo pro
-           Mitglied gegen <img> mit dem echten Porträt (Hochformat 3:4)
-           tauschen, den Rest der figure entfernen. -->
-      <ul class="team__grid" data-placeholder="team">
+      <ul class="team__grid">
         <li class="team__member">
-          <figure class="team__photo" aria-hidden="true">
-            <span class="team__monogram">VN</span>
+          <figure class="team__photo">
+            <img src="assets/img/nils-fischer.webp" width="600" height="800" loading="lazy"
+                 alt="Portrait von Nils Fischer">
           </figure>
-          <h3 class="team__name">Vorname Nachname</h3>
-          <p class="team__role">Praxisleitung · Physiotherapeut:in</p>
+          <h3 class="team__name">Nils Fischer</h3>
+          <p class="team__role">Praxisleitung (Inhaber) · Physiotherapeut</p>
           <ul class="team__quals">
-            <li>Manuelle Therapie</li>
+            <li>Krankengymnastik (KG, KGG)</li>
+            <li>Manuelle Therapie (MT, KMT)</li>
             <li>CMD</li>
-            <li>KG am Gerät</li>
-          </ul>
-        </li>
-        <li class="team__member">
-          <figure class="team__photo" aria-hidden="true">
-            <span class="team__monogram">VN</span>
-          </figure>
-          <h3 class="team__name">Vorname Nachname</h3>
-          <p class="team__role">Physiotherapeut:in</p>
-          <ul class="team__quals">
-            <li>Manuelle Lymphdrainage</li>
+            <li>Medizinische Trainingstherapie (MTT)</li>
             <li>Sportphysiotherapie</li>
           </ul>
         </li>
-        <li class="team__member">
-          <figure class="team__photo" aria-hidden="true">
-            <span class="team__monogram">VN</span>
-          </figure>
-          <h3 class="team__name">Vorname Nachname</h3>
-          <p class="team__role">Physiotherapeut:in</p>
-          <ul class="team__quals">
-            <li>Klassische Massagetherapie</li>
-            <li>Wärmetherapie</li>
-          </ul>
+        <li class="team__member team__member--hiring">
+          <h3 class="team__name">Wir suchen Verstärkung</h3>
+          <p class="team__role">Physiotherapeut:in (m/w/d)</p>
+          <p class="team__hiring-text">
+            Sie möchten Teil des Teams werden? Melden Sie sich formlos per
+            E-Mail: <a href="mailto:physio.fabrik@outlook.de">physio.fabrik@outlook.de</a>
+          </p>
         </li>
       </ul>
     </div>
@@ -399,13 +384,13 @@
              alt="Weite Trainingsfläche mit Seilzügen, Hantelbank und Spiegelwand, Fensterfront über den Dächern des Ortes">
       </figure>
 
-      <ul class="stats" data-placeholder="kennzahlen">
+      <ul class="stats">
         <li>
-          <span class="stats__num">14</span>
+          <span class="stats__num">7</span>
           <span class="stats__label">Jahre Praxis</span>
         </li>
         <li>
-          <span class="stats__num">30 min</span>
+          <span class="stats__num">20 min</span>
           <span class="stats__label">Behandlungszeit</span>
         </li>
         <li>
@@ -417,9 +402,9 @@
       <ul class="praxis__features">
         <li>Trainingsfläche mit medizinischen Geräten (KGG-zugelassen)</li>
         <li>Geschlossene Behandlungsräume</li>
-        <li>Ebenerdiger, barrierefreier Zugang</li>
+        <li>Barrierefrei, 2. OG mit Fahrstuhl</li>
         <li>Parkplätze direkt am Haus</li>
-        <li>Hausbesuche im Stadtgebiet</li>
+        <li>Keine Hausbesuche</li>
         <li>Terminvergabe ohne Warteliste für Akutfälle</li>
       </ul>
 
@@ -469,20 +454,21 @@
         <div class="contact__data">
           <div class="contact__block">
             <span class="label">Praxis</span>
-            <address data-placeholder="adresse">
+            <address>
               PhysioFabrik<br>
-              Musterstraße 12<br>
-              48143 Münster
+              Brüder-Grimm-Straße 32, 2. OG<br>
+              34246 Vellmar
             </address>
+            <p><a href="https://www.google.com/maps/search/?api=1&amp;query=PhysioFabrik+Br%C3%BCder-Grimm-Stra%C3%9Fe+32+34246+Vellmar" target="_blank" rel="noopener">In Google Maps öffnen</a></p>
           </div>
 
           <div class="contact__block">
             <span class="label">Direkt</span>
-            <p data-placeholder="telefon">
-              <a href="tel:+4925112345678">0251 12 34 56</a>
+            <p>
+              <a href="tel:+495618200615">0561 8200615</a>
             </p>
-            <p data-placeholder="email">
-              <a href="mailto:praxis@physiofabrik.de">praxis@physiofabrik.de</a>
+            <p>
+              <a href="mailto:physio.fabrik@outlook.de">physio.fabrik@outlook.de</a>
             </p>
           </div>
 
@@ -566,10 +552,10 @@
   <div class="site-footer__inner">
     <div class="site-footer__brand">
       <img src="assets/img/logo-weiss.png" alt="PhysioFabrik">
-      <address data-placeholder="adresse">
-        Musterstraße 12 · 48143 Münster<br>
-        <a href="tel:+4925112345678">0251 12 34 56</a> ·
-        <a href="mailto:praxis@physiofabrik.de">praxis@physiofabrik.de</a>
+      <address>
+        Brüder-Grimm-Straße 32, 2. OG · 34246 Vellmar<br>
+        <a href="tel:+495618200615">0561 8200615</a> ·
+        <a href="mailto:physio.fabrik@outlook.de">physio.fabrik@outlook.de</a>
       </address>
     </div>
 

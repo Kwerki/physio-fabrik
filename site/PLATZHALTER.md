@@ -12,14 +12,24 @@ diese Regel einkommentieren:
 
 | Marker | Wo | Was fehlt |
 |---|---|---|
-| `telefon` | Hero, Menü, Kontakt, Footer, Impressum | Echte Nummer — im Text **und** in `href="tel:+49…"` (ohne Leerzeichen, mit Ländervorwahl) |
-| `email` | Kontakt, Footer, Impressum | Echte Adresse — im Text und in `href="mailto:…"` |
-| `adresse` | Kontakt, Footer, Impressum, Datenschutz | Straße, PLZ, Ort |
-| `oeffnungszeiten` | Infoleiste unter dem Hero, Kontakt | Echte Zeiten. Beide Stellen abgleichen |
-| `kennzahlen` | Praxis | 14 Jahre / 30 min / „Alle Kassen" bestätigen oder ersetzen |
-| `team` | Team | Namen, Rollen, Qualifikationen der drei Mitglieder — dazu Porträtfotos, siehe unten |
-| `impressum-*` | Impressum | Inhaber:in, Aufsichtsbehörde, USt-Angabe, Verantwortliche:r |
+| ~~`telefon`~~ | Hero, Menü, Kontakt, Footer, Impressum | Erledigt: 0561 8200615 (einzige Nummer — die zweite Nummer aus der Vorlage sowie der Vellmax-Hinweis wurden bewusst weggelassen, siehe unten) |
+| ~~`email`~~ | Kontakt, Footer, Impressum | Erledigt: physio.fabrik@outlook.de |
+| ~~`adresse`~~ | Kontakt, Footer, Impressum, Datenschutz | Erledigt: Brüder-Grimm-Straße 32, 2. OG, 34246 Vellmar |
+| `oeffnungszeiten` | Infoleiste unter dem Hero, Kontakt | Weiterhin offen — keine echten Zeiten geliefert. Beide Stellen abgleichen |
+| ~~`kennzahlen`~~ | Praxis | Erledigt: 7 Jahre / 20 min / „Alle Kassen und Privat" |
+| ~~`team`~~ | Team | Erledigt für Nils Fischer (Praxisleitung/Inhaber) mit echtem Foto. Die zwei fiktiven Kolleg:innen sind raus, stattdessen eine Stellenanzeige-Karte — die Praxis sucht aktiv Personal |
+| `impressum-*` | Impressum | Anbieter/Kontakt/Verantwortlich sind mit Nils Fischer gefüllt. Weiterhin offen: Aufsichtsbehörde, USt-Angabe |
 | `hoster`, `datenschutzbeauftragter`, `aufsichtsbehoerde`, `stand` | Datenschutz | Hoster, ggf. DSB, Landesbehörde, Datum |
+
+**Telefonnummer bewusst reduziert:** Die Vorlage nannte zusätzlich 0561 82020145
+sowie einen Hinweis „(Vellmax, macht Terminvergabe)" bei der zweiten Nummer —
+auf ausdrücklichen Wunsch der Praxis wird nur noch die eine Nummer
+0561 8200615 angezeigt, ohne den Vellmax-Hinweis.
+
+**Keine Hausbesuche:** Die Vorlage stellte klar, dass keine Hausbesuche
+angeboten werden. Die vorherigen Behauptungen „Hausbesuche möglich" (Infoleiste)
+und „Hausbesuche im Stadtgebiet" (Praxis-Merkmale) waren falsch und sind entfernt
+bzw. ersetzt (Fahrstuhl-Hinweis, „Keine Hausbesuche").
 
 Die Privatleistungen stehen bewusst **ohne Preise** auf der Seite. Sollen wieder
 welche rein, gehören sie ausschließlich in [index.html](index.html) in den Block
@@ -40,7 +50,7 @@ Besonders zu prüfen:
 - Verordnung: MT braucht eine eigene Angabe auf dem Rezept, KGG-Zulassung der
   Trainingsfläche
 - Zuzahlungsangabe bei KG
-- Dauer der Massage (steht mit 25 Minuten im Text)
+- Dauer der Massage: korrigiert auf 20 Minuten (Vorlage nannte fälschlich 25 Minuten)
 - Ob die Wärmepackung tatsächlich einzeln buchbar ist oder nur begleitend
 
 ## Fotos — weitgehend erledigt
@@ -54,8 +64,18 @@ tatsächlich gebrauchte Breite gerechnet, als WebP gespeichert. 1,7 MB → 768 K
 |---|---|
 | `trainingsflaeche-hoch.webp` | Leistungen, linke Spalte |
 | `manuelle-therapie.webp` | Team, Band über den Karten — **Stockfoto**, siehe unten |
+| `nils-fischer.webp` | Team, Porträtkarte Nils Fischer — echtes Foto, 3:4 direkt aus dem Handy |
 | `trainingsflaeche-weit.webp` | Praxis, großes Bild |
 | `behandlungszimmer.webp`, `behandlungszimmer-liege.webp`, `praxis-flur.webp`, `sitzecke.webp` | Praxis, Galerie (vier Kacheln) |
+
+Drei weitere Aufnahmen von Nils liegen unbearbeitet in
+`design_handoff_physiofabrik/assets/` als `nils_fischer_alt1.jpeg` bis
+`_alt3.jpeg`, falls ein anderer Ausschnitt gewünscht ist — dafür in
+`werkzeuge/bilder.py` den Dateinamen im `nils-fischer`-Job tauschen und das
+Skript erneut laufen lassen. Zusätzlich liegen dort zwei weitere
+Behandlungsraum-Fotos (`behandlungsraum_orange.jpeg`,
+`behandlungsraum_vellmax.jpeg`), noch nicht in die Galerie aufgenommen — bei
+Letzterem ist im Hintergrund die Glastür mit dem Vellmax-Schriftzug zu sehen.
 
 Die Galerie zeigt bewusst nur noch Räume. „Training am Gerät" und „Beinpresse"
 sind entfernt; das Raster ist auf vier Kacheln umgestellt (2×2 mobil, eine Reihe
@@ -76,10 +96,11 @@ Eintrag in `werkzeuge/bilder.py` ergänzen, Skript laufen lassen. Nicht
 unbearbeitete Handyfotos direkt einbinden — die sind mehrere MB groß und
 tragen Metadaten.
 
-**Noch offen:** drei Porträts der Teammitglieder, Hochformat 3:4. Solange sie
-fehlen, laufen die Team-Karten rein textlich. Mit Porträts: pro `team__member`
-eine `<figure class="frame team__photo">` mit `aspect-ratio: 3/4` vor die
-Überschrift setzen.
+**Erledigt:** Porträt von Nils Fischer eingebaut. Die Team-Sektion zeigt aktuell
+nur ihn plus eine Stellenanzeige-Karte, weil keine weiteren Teammitglieder
+namentlich bekannt sind. Kommt echtes Personal dazu: neues `<li class="team__member">`
+mit `<figure class="frame team__photo">` (Bild 3:4) nach demselben Muster wie
+bei Nils ergänzen.
 
 ## Schriften — erledigt
 
@@ -97,5 +118,6 @@ Verbindung zu Google auf; das darf auch nicht wieder eingebaut werden.
 - **EN-Fassung.** Der Umschalter zeigt EN auf 30 % Deckkraft als inaktiven
   `<span>`. Sobald `/en/` existiert: in allen drei HTML-Dateien zu
   `<a href="/en/" hreflang="en" lang="en">EN</a>` machen (Kommentar steht im Markup).
-- **Anfahrt/Karte.** Kein iframe — statisches Kartenbild plus Link
-  „In Google Maps öffnen" oder Leaflet/OpenStreetMap.
+- ~~**Anfahrt/Karte.**~~ Erledigt: Kein iframe, stattdessen ein Link
+  „In Google Maps öffnen" im Kontaktblock (öffnet Google Maps erst nach Klick,
+  siehe Datenschutzerklärung).

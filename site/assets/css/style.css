@@ -1166,6 +1166,14 @@ body.is-locked {
   background-size: 22px 22px;
 }
 
+.team__photo img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .team__monogram {
   position: relative;
   font: 500 15px/1 var(--mono);
@@ -1193,6 +1201,23 @@ body.is-locked {
 .team__quals li {
   padding: 5px 0;
   border-top: 1px solid var(--line-light);
+}
+
+/* Stellenangebot-Karte: gleiche Zelle wie ein team__member, aber ohne Foto —
+   Inhalt startet direkt mit der Ueberschrift. */
+.team__member--hiring {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.team__hiring-text {
+  font: 400 13px/1.6 var(--mono);
+  color: var(--text-2);
+}
+
+.team__hiring-text a {
+  color: var(--green-text);
 }
 
 @media (min-width: 768px) {

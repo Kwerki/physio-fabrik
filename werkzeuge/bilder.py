@@ -31,6 +31,10 @@ JOBS = [
     # Ersetzt das Handyfoto behandlung_am_mensch.jpeg, das fuer die Flaeche im
     # Team-Band zu eng geschnitten war. Quelle steht in site/PLATZHALTER.md.
     ("manuelle_therapie_stock.jpeg", "manuelle-therapie", 1200),
+    # Portraet Nils Fischer, Praxisleitung. 3:4 direkt aus dem Handy, keine
+    # weitere Beschneidung noetig. Drei Alternativaufnahmen liegen daneben
+    # als nils_fischer_alt1-3.jpeg, falls ein anderer Ausschnitt gewuenscht ist.
+    ("nils_fischer.jpeg", "nils-fischer", 600),
     ("behandlungszimmer.jpeg", "behandlungszimmer", 800),
     ("behandlungszimmer_liege.jpeg", "behandlungszimmer-liege", 800),
     ("praxis_flur.jpeg", "praxis-flur", 800),
