@@ -1203,21 +1203,57 @@ body.is-locked {
   border-top: 1px solid var(--line-light);
 }
 
-/* Stellenangebot-Karte: gleiche Zelle wie ein team__member, aber ohne Foto —
-   Inhalt startet direkt mit der Ueberschrift. */
-.team__member--hiring {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* --- Team: Solo-Auftritt ------------------------------------------------
+   Solange nur eine Person im Team steht, waere das dreispaltige team__grid
+   falsch: es zeichnet seine Trennlinien ueber den Containerhintergrund, und
+   leere Zellen zeigen dann genau diesen Hintergrund als grauen Block. Statt
+   einer Karte mit zwei toten Spalten daneben laeuft die Person hier ueber die
+   volle Breite — Foto links, Angaben rechts. */
+.team__solo {
+  display: grid;
+  gap: 22px;
+  padding: 24px 0;
+  border-block: 1px solid var(--line-light);
 }
 
-.team__hiring-text {
-  font: 400 13px/1.6 var(--mono);
-  color: var(--text-2);
+@media (min-width: 768px) {
+  .team__solo {
+    /* Feste Obergrenze fuer die Bildspalte: Das Portraet ist 600px breit,
+       darueber hinaus skaliert es sichtbar weich. Der Rest geht an den Text,
+       damit die Zeilen nicht auf halber Seitenbreite umbrechen. */
+    grid-template-columns: minmax(0, 320px) 1fr;
+    align-items: start;
+    gap: 48px;
+    padding: 34px 0;
+  }
 }
 
-.team__hiring-text a {
-  color: var(--green-text);
+/* In der Kartenansicht deckelt team__photo die Breite auf 220px. Hier traegt
+   das Foto eine eigene Spalte und darf sie ausfuellen. */
+.team__solo .team__photo {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.team__solo .team__name {
+  font-size: 22px;
+}
+
+@media (min-width: 768px) {
+  .team__solo .team__name {
+    font-size: 26px;
+  }
+}
+
+/* Zweispaltig ab Tablet: fuenf Qualifikationen untereinander sind neben einem
+   3:4-Foto eine schmale Saeule mit viel Luft daneben. Nebeneinander stehen sie
+   naeher an der Bildhoehe. */
+@media (min-width: 600px) {
+  .team__solo .team__quals {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1362,9 +1398,15 @@ body.is-locked {
   }
 }
 
+/* Drei Spalten, nicht vier: Die Galerie zeigt sechs Raeume, und das Raster
+   zeichnet seine Trennlinien ueber den Containerhintergrund. Bei vier Spalten
+   blieben in der zweiten Reihe zwei Zellen leer — und leere Zellen zeigen
+   diesen Hintergrund als graue Bloecke. 6 geht in 2 und in 3 auf, in 4 nicht.
+   Wer Kacheln ergaenzt oder entfernt, muss die Zahl hier mitdenken: bei drei
+   Spalten sind 3, 6, 9 ... sauber. */
 @media (min-width: 1024px) {
   .gallery {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

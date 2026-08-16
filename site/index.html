@@ -341,12 +341,21 @@
         <figcaption>Manuelle Therapie</figcaption>
       </figure>
 
-      <ul class="team__grid">
-        <li class="team__member">
-          <figure class="team__photo">
-            <img src="assets/img/nils-fischer.webp" width="600" height="800" loading="lazy"
-                 alt="Portrait von Nils Fischer">
-          </figure>
+      <!-- Eine Person, deshalb bewusst kein Raster: team__grid zieht seine
+           Trennlinien ueber den Containerhintergrund, und jede Zelle ohne
+           Inhalt zeigt genau diesen Hintergrund — bei einem einzigen Mitglied
+           stuenden also zwei graue Bloecke daneben. Solo-Layout ist Foto
+           links, Angaben rechts, ueber die volle Breite.
+           Kommen Kolleg:innen dazu: zurueck auf <ul class="team__grid"> mit
+           je einem <li class="team__member"> pro Person (CSS steht noch) —
+           dann aber auf drei Karten auffuellen, sonst ist das graue Feld
+           wieder da. -->
+      <div class="team__solo">
+        <figure class="frame team__photo">
+          <img src="assets/img/nils-fischer.webp" width="600" height="800" loading="lazy"
+               alt="Portrait von Nils Fischer">
+        </figure>
+        <div class="team__solo-text">
           <h3 class="team__name">Nils Fischer</h3>
           <p class="team__role">Praxisleitung (Inhaber) · Physiotherapeut</p>
           <ul class="team__quals">
@@ -356,16 +365,8 @@
             <li>Medizinische Trainingstherapie (MTT)</li>
             <li>Sportphysiotherapie</li>
           </ul>
-        </li>
-        <li class="team__member team__member--hiring">
-          <h3 class="team__name">Wir suchen Verstärkung</h3>
-          <p class="team__role">Physiotherapeut:in (m/w/d)</p>
-          <p class="team__hiring-text">
-            Sie möchten Teil des Teams werden? Melden Sie sich formlos per
-            E-Mail: <a href="mailto:physio.fabrik@outlook.de">physio.fabrik@outlook.de</a>
-          </p>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </section>
 
