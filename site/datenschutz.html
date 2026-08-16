@@ -86,41 +86,58 @@
       E-Mail: <a href="mailto:physio.fabrik@outlook.de">physio.fabrik@outlook.de</a>
     </address>
 
-    <h2>Datenschutzbeauftragte:r</h2>
-    <p data-placeholder="datenschutzbeauftragter">
-      [Falls benannt: Name und Kontaktdaten eintragen. Für Praxen mit weniger als
-      20 regelmäßig mit Datenverarbeitung befassten Personen in der Regel nicht
-      erforderlich — Absatz dann streichen.]
-    </p>
+    <!-- Abschnitt "Datenschutzbeauftragte:r" entfernt: Bei einer Praxis dieser
+         Groesse ist keine Benennung erforderlich (§ 38 BDSG — unter 20 staendig
+         mit Datenverarbeitung befassten Personen; Art. 37 Abs. 1 lit. c DSGVO
+         greift laut Erwaegungsgrund 91 bei einzelnen Heilberuflern nicht).
+         Wird spaeter doch jemand benannt, gehoert der Abschnitt hier wieder rein. -->
 
     <h2>Hosting und Server-Logfiles</h2>
+    <!-- Hoster steht fest (GitHub Pages, siehe .github/workflows/pages.yml).
+         Offen und anwaltlich zu klaeren: ob fuer GitHub Pages ein wirksamer
+         Auftragsverarbeitungsvertrag nach Art. 28 DSGVO vorliegt und wie lange
+         GitHub die Zugriffsprotokolle speichert — beides liegt nicht in der
+         Hand der Praxis. Der Absatz behauptet deshalb bewusst keinen AVV. -->
     <p data-placeholder="hoster">
-      Die Website wird bei [Hoster eintragen] gehostet. Beim Aufruf der Seite werden
-      automatisch Zugriffsdaten in Server-Logfiles gespeichert: IP-Adresse, Datum und
-      Uhrzeit, aufgerufene Datei, übertragene Datenmenge, Browsertyp und Betriebssystem.
-      Die Verarbeitung erfolgt zur Sicherstellung eines störungsfreien Betriebs und der
-      Systemsicherheit auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Die Logs werden nach
-      [z. B. 7 Tagen] gelöscht. Mit dem Hoster besteht ein Auftragsverarbeitungsvertrag
-      nach Art. 28 DSGVO.
+      Die Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc.,
+      88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seite
+      werden automatisch Zugriffsdaten in Server-Logfiles verarbeitet: IP-Adresse, Datum
+      und Uhrzeit, aufgerufene Datei, übertragene Datenmenge, Browsertyp und
+      Betriebssystem. Die Verarbeitung erfolgt zur Sicherstellung eines störungsfreien
+      Betriebs und der Systemsicherheit auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
+      Dabei werden Daten in die USA übermittelt; GitHub ist unter dem
+      EU-U.S. Data Privacy Framework zertifiziert. Auf Umfang und Speicherdauer dieser
+      Protokolle hat die Praxis keinen Einfluss, sie richten sich nach den
+      Datenschutzbestimmungen von GitHub.
     </p>
 
     <h2>Kontaktformular, Telefon und E-Mail</h2>
+    <!-- Wichtig fuer die Richtigkeit dieser Erklaerung: Das Formular auf der
+         Startseite verschickt derzeit nichts an uns, es oeffnet nur das
+         Mailprogramm des Besuchers mit vorbereitetem Text (mailto). Es findet
+         also keine Uebertragung an einen Server der Praxis statt, solange kein
+         Mail-Endpoint angeschlossen ist. Wird der Versand spaeter umgestellt,
+         muss dieser Absatz zusammen mit index.html wieder angepasst werden. -->
     <p>
-      Wenn Sie uns über das Formular, per E-Mail oder telefonisch kontaktieren, verarbeiten
-      wir Ihre Angaben — Name, Telefonnummer, gegebenenfalls E-Mail-Adresse und die
-      Beschreibung Ihres Anliegens — ausschließlich zur Bearbeitung Ihrer Anfrage und für
-      den Fall von Anschlussfragen.
+      Das Kontaktformular auf dieser Website überträgt Ihre Eingaben <strong>nicht</strong>
+      an uns. Ein Klick auf „E-Mail vorbereiten“ öffnet lediglich Ihr eigenes
+      E-Mail-Programm mit einem vorformulierten Text. Ob und wann Sie diese Nachricht
+      absenden, entscheiden Sie; bis dahin verlassen die Angaben Ihr Gerät nicht.
     </p>
     <p>
-      Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) sowie
-      Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Beschreiben Sie im Anliegen
-      Gesundheitsdaten, verarbeiten wir diese zusätzlich auf Grundlage von
-      Art. 9 Abs. 2 lit. h DSGVO.
+      Wenn Sie uns per E-Mail oder telefonisch erreichen, verarbeiten wir Ihre Angaben —
+      Name, Telefonnummer, E-Mail-Adresse und die Beschreibung Ihres Anliegens —
+      ausschließlich zur Bearbeitung Ihrer Anfrage und für den Fall von Anschlussfragen.
     </p>
     <p>
-      <strong>Bitte übermitteln Sie über das Formular keine detaillierten
-      Gesundheitsdaten.</strong> Für Befunde und Diagnosen nutzen Sie bitte das Telefon
-      oder den persönlichen Termin.
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).
+      Beschreiben Sie dabei Gesundheitsdaten, verarbeiten wir diese zusätzlich auf
+      Grundlage von Art. 9 Abs. 2 lit. h DSGVO.
+    </p>
+    <p>
+      <strong>Bitte schicken Sie uns per E-Mail keine detaillierten
+      Gesundheitsdaten.</strong> Unverschlüsselte E-Mail ist dafür kein sicherer Weg.
+      Für Befunde und Diagnosen nutzen Sie bitte das Telefon oder den persönlichen Termin.
     </p>
     <p>
       Ihre Angaben löschen wir, sobald die Anfrage abschließend bearbeitet ist und keine
@@ -129,12 +146,11 @@
       widerrufen.
     </p>
 
-    <h2>Spamschutz</h2>
-    <p>
-      Das Kontaktformular enthält ein für Sie unsichtbares Zusatzfeld (Honeypot), um
-      automatisierte Einsendungen zu erkennen. Dabei werden keine personenbezogenen Daten
-      erhoben und keine Dienste Dritter eingebunden.
-    </p>
+    <!-- Abschnitt "Spamschutz" entfernt: Der Honeypot gehoert zur stillgelegten
+         Formularfassung mit Serverversand. Solange das Formular nur einen
+         mailto-Link baut, wird nichts eingesendet, was gefiltert werden
+         muesste. Kommt der Serverversand zurueck, gehoert der Absatz wieder
+         hier hin. -->
 
     <h2>Cookies, Tracking, Einbindungen Dritter</h2>
     <p>
@@ -166,11 +182,12 @@
       Wenden Sie sich dafür an die oben genannte verantwortliche Stelle. Unabhängig davon
       steht Ihnen ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu, in der
       Regel bei der Behörde Ihres Wohnsitzes oder unseres Praxissitzes
-      (<span data-placeholder="aufsichtsbehoerde">[zuständige Landesbehörde eintragen]</span>).
+      (für den Praxissitz in Vellmar: Der Hessische Beauftragte für Datenschutz und
+      Informationsfreiheit, Postfach 3163, 65021 Wiesbaden).
     </p>
 
     <h2>Stand</h2>
-    <p data-placeholder="stand">Diese Erklärung hat den Stand [Monat/Jahr eintragen].</p>
+    <p>Diese Erklärung hat den Stand August 2026.</p>
 
     <h2>Kein Ersatz für rechtliche Prüfung</h2>
     <p>

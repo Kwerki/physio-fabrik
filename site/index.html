@@ -100,10 +100,12 @@
 
   <div class="factbar">
     <ul class="factbar__inner">
-      <!-- Bewusst ohne Endzeit: freitags wird frueher geschlossen, die genauen
-           Zeiten stehen im Kontaktabschnitt. Zwei widersprechende Angaben auf
-           einer Seite sind schlimmer als eine ungenaue. -->
-      <li data-placeholder="oeffnungszeiten">MO–FR AB 07:30</li>
+      <!-- Bewusst ohne Uhrzeiten: die Zeiten wechseln taeglich (Di ab 08:00,
+           Mi bis 20:00, Fr nur bis 14:00) — keine kurze Zusammenfassung waere
+           fuer alle fuenf Tage richtig. Die genauen Zeiten stehen im
+           Kontaktabschnitt. Zwei widersprechende Angaben auf einer Seite sind
+           schlimmer als eine ungenaue. -->
+      <li>MO–FR NACH VEREINBARUNG</li>
       <li>Fahrstuhl vorhanden</li>
       <li>Parkplätze am Haus</li>
       <li>Barrierefrei</li>
@@ -488,16 +490,39 @@
 
           <div class="contact__block">
             <span class="label">Öffnungszeiten</span>
-            <dl class="hours" data-placeholder="oeffnungszeiten">
-              <dt>Mo–Do</dt><dd>07:30 – 19:00</dd>
-              <dt>Fr</dt><dd>07:30 – 15:00</dd>
+            <dl class="hours">
+              <dt>Mo</dt><dd>10:00 – 18:00</dd>
+              <dt>Di</dt><dd>08:00 – 16:00</dd>
+              <dt>Mi</dt><dd>12:00 – 20:00</dd>
+              <dt>Do</dt><dd>10:00 – 18:00</dd>
+              <dt>Fr</dt><dd>10:00 – 14:00</dd>
               <dt>Sa–So</dt><dd>geschlossen</dd>
             </dl>
           </div>
         </div>
 
-        <!-- Versand folgt im zweiten Schritt (Mail-Endpoint). Markup, Validierung
-             und Spamschutz sind bereits vollständig. -->
+        <!-- =================================================================
+             STILLGELEGT, NICHT LOESCHEN: Fassung mit echtem Serverversand.
+
+             Sie braucht einen Mail-Endpoint, der den POST entgegennimmt und
+             weitermailt. Den gibt es noch nicht — GitHub Pages liefert nur
+             Dateien aus und kann selbst keine Mail verschicken. Solange das
+             so ist, steht darunter die mailto-Fassung.
+
+             Zurueckholen: diesen Block wieder aktivieren, die mailto-Fassung
+             darunter entfernen und in assets/js/main.js den mit "mailto"
+             markierten Zweig gegen den POST tauschen (Hinweis steht dort).
+
+             Consent-Checkbox und Honeypot gehoeren ausdruecklich zu DIESER
+             Fassung: Sie ergeben nur Sinn, wenn Daten wirklich an einen
+             Server gehen. Bei mailto verlaesst nichts den Rechner des
+             Besuchers ausser der Mail, die er selbst abschickt.
+
+             Der Honeypot-Hinweis stand im Original als eigener
+             HTML-Kommentar. HTML-Kommentare lassen sich nicht schachteln:
+             sein Schlusszeichen haette diesen Block hier vorzeitig beendet.
+             Er steht deshalb unten in eckigen Klammern.
+        ==================================================================
         <form class="form" id="kontaktformular" method="post" action="#" novalidate>
           <div class="form__cols">
             <div class="form__row">
@@ -530,7 +555,7 @@
             <p class="form__error" id="e-anliegen" role="alert"></p>
           </div>
 
-          <!-- Honeypot gegen Spam — nicht entfernen, nicht sichtbar machen -->
+          [ Honeypot gegen Spam - nicht entfernen, nicht sichtbar machen ]
           <div class="form__hp" aria-hidden="true">
             <label for="f-website">Website (bitte frei lassen)</label>
             <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
@@ -554,6 +579,61 @@
           <button class="btn btn--green" type="submit">Anfrage senden</button>
 
           <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+        ================================================================== -->
+
+        <!-- Zwischenloesung: Das Formular verschickt nichts selbst, sondern
+             oeffnet das Mailprogramm des Besuchers mit vorbereitetem Text.
+             Es traegt bewusst dieselbe id wie die stillgelegte Fassung, damit
+             die Validierung in main.js unveraendert greift.
+
+             Weil das nicht auf jedem Geraet klappt (Webmail ohne registrierten
+             mailto-Handler), steht die Adresse darunter im Klartext und laesst
+             sich mit einem Klick kopieren. Das ist kein Beiwerk, sondern der
+             eigentliche Rueckfallweg. -->
+        <form class="form" id="kontaktformular" novalidate>
+          <div class="form__cols">
+            <div class="form__row">
+              <label for="f-name">Name</label>
+              <input type="text" id="f-name" name="name" placeholder="Vor- und Nachname"
+                     required autocomplete="name" aria-describedby="e-name">
+              <p class="form__error" id="e-name" role="alert"></p>
+            </div>
+
+            <div class="form__row">
+              <label for="f-tel">Telefon</label>
+              <input type="tel" id="f-tel" name="telefon" placeholder="Für den Rückruf"
+                     required autocomplete="tel" aria-describedby="e-tel">
+              <p class="form__error" id="e-tel" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="form__row">
+            <label for="f-anliegen">Anliegen</label>
+            <textarea id="f-anliegen" name="anliegen" required
+                      placeholder="Verordnung vorhanden? Beschwerden? Wunschzeiten?"
+                      aria-describedby="e-anliegen"></textarea>
+            <p class="form__error" id="e-anliegen" role="alert"></p>
+          </div>
+
+          <p class="form__hint">
+            Der Knopf öffnet Ihr E-Mail-Programm mit den Angaben — abgeschickt
+            wird die Mail erst von Ihnen.
+          </p>
+
+          <button class="btn btn--green" type="submit">E-Mail vorbereiten</button>
+
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+
+          <div class="form__direct">
+            <span class="label">Oder direkt schreiben an</span>
+            <div class="form__direct-row">
+              <a class="form__direct-mail" href="mailto:physio.fabrik@outlook.de">physio.fabrik@outlook.de</a>
+              <button class="form__copy" type="button" id="mail-kopieren"
+                      data-mail="physio.fabrik@outlook.de">Adresse kopieren</button>
+            </div>
+            <p class="form__copy-status" id="kopier-status" role="status" aria-live="polite"></p>
+          </div>
         </form>
 
       </div>

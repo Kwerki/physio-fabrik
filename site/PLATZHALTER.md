@@ -15,11 +15,12 @@ diese Regel einkommentieren:
 | ~~`telefon`~~ | Hero, Menü, Kontakt, Footer, Impressum | Erledigt: 0561 8200615 (einzige Nummer — die zweite Nummer aus der Vorlage sowie der Vellmax-Hinweis wurden bewusst weggelassen, siehe unten) |
 | ~~`email`~~ | Kontakt, Footer, Impressum | Erledigt: physio.fabrik@outlook.de |
 | ~~`adresse`~~ | Kontakt, Footer, Impressum, Datenschutz | Erledigt: Brüder-Grimm-Straße 32, 2. OG, 34246 Vellmar |
-| `oeffnungszeiten` | Infoleiste unter dem Hero, Kontakt | Weiterhin offen — keine echten Zeiten geliefert. Beide Stellen abgleichen |
+| ~~`oeffnungszeiten`~~ | Infoleiste unter dem Hero, Kontakt | Erledigt: Mo 10–18, Di 8–16, Mi 12–20, Do 10–18, Fr 10–14, Sa/So geschlossen. Die Infoleiste nennt bewusst keine Uhrzeit („MO–FR NACH VEREINBARUNG"), weil die Zeiten täglich wechseln — Details nur im Kontaktabschnitt |
 | ~~`kennzahlen`~~ | Praxis | Erledigt: 7 Jahre / 20 min / „Alle Kassen und Privat" |
 | ~~`team`~~ | Team | Erledigt für Nils Fischer (Praxisleitung/Inhaber) mit echtem Foto. Die zwei fiktiven Kolleg:innen sind raus, stattdessen eine Stellenanzeige-Karte — die Praxis sucht aktiv Personal |
-| `impressum-*` | Impressum | Anbieter/Kontakt/Verantwortlich sind mit Nils Fischer gefüllt. Weiterhin offen: Aufsichtsbehörde, USt-Angabe |
-| `hoster`, `datenschutzbeauftragter`, `aufsichtsbehoerde`, `stand` | Datenschutz | Hoster, ggf. DSB, Landesbehörde, Datum |
+| ~~`impressum-*`~~ | Impressum | Erledigt: Anbieter/Kontakt/Verantwortlich = Nils Fischer, Aufsichtsbehörde = Gesundheitsamt Kassel. Keine USt-IdNr vorhanden — § 5 DDG verlangt sie nur „soweit vorhanden", der Absatz nennt daher nur die Steuerbefreiung nach § 4 Nr. 14 UStG |
+| ~~`aufsichtsbehoerde`~~, ~~`stand`~~, ~~`datenschutzbeauftragter`~~ | Datenschutz | Erledigt: HBDI Wiesbaden (Praxissitz Hessen), Stand August 2026. DSB-Abschnitt entfernt — bei dieser Praxisgröße nicht erforderlich |
+| `hoster` | Datenschutz | Hoster ist benannt (GitHub Pages, GitHub Inc., USA, EU-U.S. DPF). **Offen und anwaltlich zu prüfen:** ob für GitHub Pages ein wirksamer AVV nach Art. 28 DSGVO vorliegt. Der Absatz behauptet bewusst keinen — siehe unten |
 
 **Telefonnummer bewusst reduziert:** Die Vorlage nannte zusätzlich 0561 82020145
 sowie einen Hinweis „(Vellmax, macht Terminvergabe)" bei der zweiten Nummer —
@@ -113,12 +114,40 @@ Verbindung zu Google auf; das darf auch nicht wieder eingebaut werden.
 
 ## Noch nicht gebaut
 
-- **Mailversand** des Kontaktformulars. Markup, Validierung, Honeypot und
-  Einwilligung stehen; in [assets/js/main.js](assets/js/main.js) markiert
-  `TODO Mailversand` die Stelle für den POST.
+- **Echter Mailversand** des Kontaktformulars. Zwischenlösung steht (siehe
+  unten), aber sie hängt am Mailprogramm des Besuchers. Sobald ein Endpoint da
+  ist (Cloudflare Worker, Netlify Function oder eigenes Skript in der EU):
+  in [assets/js/main.js](assets/js/main.js) den mit `TODO Mailversand`
+  markierten mailto-Zweig gegen den POST tauschen, in
+  [index.html](index.html) die stillgelegte Formularfassung wieder aktivieren
+  und die mailto-Fassung entfernen. Danach gehören in
+  [datenschutz.html](datenschutz.html) der Absatz „Kontaktformular" zurück auf
+  echte Übertragung und der Abschnitt „Spamschutz" (Honeypot) wieder hinein —
+  beide Stellen sind dort kommentiert.
 - **EN-Fassung.** Der Umschalter zeigt EN auf 30 % Deckkraft als inaktiven
   `<span>`. Sobald `/en/` existiert: in allen drei HTML-Dateien zu
   `<a href="/en/" hreflang="en" lang="en">EN</a>` machen (Kommentar steht im Markup).
 - ~~**Anfahrt/Karte.**~~ Erledigt: Kein iframe, stattdessen ein Link
   „In Google Maps öffnen" im Kontaktblock (öffnet Google Maps erst nach Klick,
   siehe Datenschutzerklärung).
+
+## Kontaktformular: aktuell mailto
+
+Das Formular verschickt nichts selbst. „E-Mail vorbereiten" baut einen
+`mailto:`-Link mit Name, Telefon und Anliegen und öffnet damit das
+E-Mail-Programm des Besuchers — abgeschickt wird die Mail von ihm.
+
+Das ist bewusst eine Zwischenlösung mit einer bekannten Schwäche: Wer Webmail
+im Browser nutzt (GMX, Web.de, Gmail ohne registrierten Handler), bei dem
+öffnet sich unter Umständen gar nichts. **Deshalb steht die Adresse darunter
+im Klartext, ist per Klick vollständig markierbar (`user-select: all`) und hat
+einen Kopierknopf.** Dieser Rückfallweg ist kein Beiwerk — er ist der Grund,
+warum die mailto-Fassung vertretbar ist. Er darf nicht wegoptimiert werden,
+solange kein echter Versand existiert.
+
+Ebenfalls bewusst: Der Knopf heißt „E-Mail vorbereiten", nicht „Anfrage
+senden". Niemand soll glauben, die Anfrage sei raus, wenn sie es nicht ist.
+
+Nicht in der mailto-Fassung enthalten und auch nicht nötig: Consent-Checkbox
+und Honeypot. Beide setzen voraus, dass Daten an einen Server gehen. Sie
+stehen im stillgelegten Block und kommen mit ihm zurück.

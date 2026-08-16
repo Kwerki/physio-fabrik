@@ -1618,6 +1618,82 @@ body.is-locked {
   color: var(--text-2-dark);
 }
 
+/* Direkte Adresse unter dem Formular. Solange der Versand ueber mailto
+   laeuft, ist das der Rueckfallweg fuer alle, bei denen sich kein
+   Mailprogramm oeffnet — deshalb steht die Adresse im Klartext da und nicht
+   nur hinter einem Link. Abgesetzt durch eine Linie, damit sie nicht wie ein
+   weiteres Formularfeld wirkt. */
+.form__direct {
+  margin-top: 8px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line-dark);
+}
+
+.form__direct .label {
+  display: block;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3-dark);
+  margin-bottom: 12px;
+}
+
+.form__direct-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+
+/* user-select: all — ein Klick markiert die ganze Adresse. Wer den
+   Kopierknopf nicht sieht oder ihm nicht traut, kommt so trotzdem schnell
+   an den Text. */
+.form__direct-mail {
+  font: 400 15px/1.4 var(--mono);
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-dark-strong);
+  user-select: all;
+  word-break: break-all;
+}
+
+@media (hover: hover) {
+  .form__direct-mail:hover {
+    color: var(--green);
+    border-bottom-color: var(--green);
+  }
+}
+
+.form__copy {
+  flex: none;
+  background: transparent;
+  color: var(--text-2-dark);
+  border: 1px solid var(--line-dark-strong);
+  padding: 8px 14px;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.15s ease-out, color 0.15s ease-out;
+}
+
+@media (hover: hover) {
+  .form__copy:hover {
+    border-color: var(--green);
+    color: var(--green);
+  }
+}
+
+.form__copy-status {
+  font: 400 12px/1.5 var(--mono);
+  color: var(--green);
+  margin-top: 12px;
+}
+
+.form__copy-status:empty {
+  display: none;
+}
+
 /* --- Footer -------------------------------------------------------------- */
 
 .site-footer {

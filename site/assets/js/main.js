@@ -173,14 +173,85 @@
         return;
       }
 
-      /* TODO Mailversand:
-         Hier den POST an den Mail-Endpoint einsetzen (z. B. Cloudflare Worker,
-         Netlify Function oder eigenes PHP-Skript in der EU). Bis dahin nur Hinweis. */
+      /* mailto-Zweig (Zwischenloesung).
+
+         TODO Mailversand: Sobald ein Mail-Endpoint steht (z. B. Cloudflare
+         Worker, Netlify Function oder eigenes PHP-Skript in der EU), diesen
+         Zweig gegen den POST tauschen und in index.html die stillgelegte
+         Formularfassung mit Consent und Honeypot wieder aktivieren.
+
+         Wir verschicken hier nichts selbst — die Seite liegt auf reinem
+         Datei-Hosting. Stattdessen bauen wir einen mailto-Link und ueberlassen
+         das Abschicken dem Besucher. Das ist absichtlich sichtbar so benannt
+         ("E-Mail vorbereiten"), damit niemand glaubt, die Anfrage sei raus. */
+
+      var wert = function (name) {
+        var feld = form.querySelector('[name="' + name + '"]');
+        return feld ? feld.value.trim() : "";
+      };
+
+      /* Manche Mailprogramme kappen sehr lange mailto-Adressen. Das Anliegen
+         wird deshalb begrenzt; der Rest steht dann in der Mail als Hinweis,
+         statt still zu verschwinden. */
+      var anliegen = wert("anliegen");
+      var gekuerzt = anliegen.length > 1200;
+      if (gekuerzt) anliegen = anliegen.slice(0, 1200) + " […]";
+
+      var text = [
+        "Name: " + wert("name"),
+        "Telefon: " + wert("telefon"),
+        "",
+        "Anliegen:",
+        anliegen
+      ];
+      if (gekuerzt) {
+        text.push("", "(Der Text wurde gekürzt — bitte hier ergänzen.)");
+      }
+
+      var ziel =
+        "mailto:physio.fabrik@outlook.de" +
+        "?subject=" + encodeURIComponent("Terminanfrage über die Website") +
+        "&body=" + encodeURIComponent(text.join("\n"));
+
       if (status) {
         status.dataset.state = "todo";
         status.textContent =
-          "Der Formularversand ist noch nicht angeschlossen. " +
-          "Bitte rufen Sie uns an oder schreiben Sie an physio.fabrik@outlook.de.";
+          "Ihr E-Mail-Programm sollte sich jetzt öffnen. Tut sich nichts, " +
+          "schreiben Sie uns bitte direkt an physio.fabrik@outlook.de.";
+      }
+
+      window.location.href = ziel;
+    });
+  }
+
+  /* --- E-Mail-Adresse kopieren -------------------------------------------
+     Rueckfallweg fuer alle, bei denen mailto nichts oeffnet (Webmail ohne
+     registrierten Handler). Die Adresse steht ohnehin im Klartext daneben —
+     der Knopf spart nur das Markieren. Faellt die Zwischenablage aus, bleibt
+     die Adresse lesbar; deshalb hier kein Alarm, nur ein Hinweis. */
+
+  var kopierKnopf = document.getElementById("mail-kopieren");
+  var kopierStatus = document.getElementById("kopier-status");
+
+  if (kopierKnopf) {
+    kopierKnopf.addEventListener("click", function () {
+      var adresse = kopierKnopf.dataset.mail || "";
+
+      var melde = function (nachricht) {
+        if (kopierStatus) kopierStatus.textContent = nachricht;
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(adresse).then(
+          function () {
+            melde("Adresse kopiert.");
+          },
+          function () {
+            melde("Kopieren hat nicht geklappt — bitte die Adresse markieren.");
+          }
+        );
+      } else {
+        melde("Kopieren hat nicht geklappt — bitte die Adresse markieren.");
       }
     });
   }
