@@ -1232,7 +1232,7 @@ body.is-locked {
     /* Feste Obergrenze fuer die Bildspalte: Das Portraet ist 600px breit,
        darueber hinaus skaliert es sichtbar weich. Der Rest geht an den Text,
        damit die Zeilen nicht auf halber Seitenbreite umbrechen. */
-    grid-template-columns: minmax(0, 320px) 1fr;
+    grid-template-columns: minmax(0, 420px) 1fr;
     align-items: start;
     gap: 48px;
     padding: 34px 0;
@@ -1256,16 +1256,6 @@ body.is-locked {
   }
 }
 
-/* Zweispaltig ab Tablet: fuenf Qualifikationen untereinander sind neben einem
-   3:4-Foto eine schmale Saeule mit viel Luft daneben. Nebeneinander stehen sie
-   naeher an der Bildhoehe. */
-@media (min-width: 600px) {
-  .team__solo .team__quals {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 40px;
-  }
-}
 
 @media (min-width: 768px) {
   .team__grid {
