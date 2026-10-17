@@ -12,7 +12,7 @@ diese Regel einkommentieren:
 
 | Marker | Wo | Was fehlt |
 |---|---|---|
-| ~~`telefon`~~ | Hero, Menü, Kontakt, Footer, Impressum | Erledigt: 0561 8200615 (einzige Nummer — die zweite Nummer aus der Vorlage sowie der Vellmax-Hinweis wurden bewusst weggelassen, siehe unten) |
+| ~~`telefon`~~ | Hero, Menü, Kontakt, Footer, Impressum | Erledigt: 0561 82020145, Link `tel:+4956182020145` (einzige Nummer, seit Commit 922b03d; Vellmax-Hinweis bewusst weggelassen, siehe unten) |
 | ~~`email`~~ | Kontakt, Footer, Impressum | Erledigt: physio.fabrik@outlook.de |
 | ~~`adresse`~~ | Kontakt, Footer, Impressum, Datenschutz | Erledigt: Brüder-Grimm-Straße 32, 2. OG, 34246 Vellmar |
 | ~~`oeffnungszeiten`~~ | Infoleiste unter dem Hero, Kontakt | Erledigt: Mo 10–18, Di 8–16, Mi 12–20, Do 10–18, Fr 10–14, Sa/So geschlossen. Die Infoleiste nennt bewusst keine Uhrzeit („MO–FR NACH VEREINBARUNG"), weil die Zeiten täglich wechseln — Details nur im Kontaktabschnitt |
@@ -24,10 +24,13 @@ diese Regel einkommentieren:
 | — | index.html | **Behoben:** `canonical` und `og:image` zeigten auf `www.physiofabrik.de` — eine **fremde** Domain ohne Bindestrich, auf der eine Verkaufsseite liegt. Die eigene Domain ist `physio-fabrik.de` (siehe [CNAME](CNAME)). Beide zeigen jetzt dorthin. Wird die Domain je gewechselt, müssen `canonical`, `og:url`, `og:image` und die drei `hreflang`-Zeilen mit |
 | — | Datenschutz | **Von der Praxis zu bestätigen:** Löschfrist für Kontaktanfragen. Steht jetzt auf sechs Monaten (Vorschlag der Vorlage, üblicher Wert). Vorher stand dort sichtbar „[z. B. 6 Monaten]" auf der Live-Seite. Wird eine andere Frist gelebt, muss der Satz angepasst werden — die Erklärung muss die tatsächliche Praxis beschreiben |
 
-**Telefonnummer bewusst reduziert:** Die Vorlage nannte zusätzlich 0561 82020145
-sowie einen Hinweis „(Vellmax, macht Terminvergabe)" bei der zweiten Nummer —
-auf ausdrücklichen Wunsch der Praxis wird nur noch die eine Nummer
-0561 8200615 angezeigt, ohne den Vellmax-Hinweis.
+**Telefonnummer:** Angezeigt wird nur eine Nummer, 0561 82020145 (bis August
+2026 stand hier 0561 8200615). Der Hinweis „(Vellmax, macht Terminvergabe)" aus
+der Vorlage ist auf Wunsch der Praxis weggelassen. Achtung beim Ändern: Der
+`tel:`-Link muss Ziffer für Ziffer zur angezeigten Nummer passen
+(0561 82020145 → `+4956182020145`) — zeitweise fehlte dort eine Ziffer und
+der Anruf-Knopf wählte eine fremde Nummer. Auch die strukturierten Daten
+(JSON-LD im `<head>` von index.html) enthalten die Nummer.
 
 **Keine Hausbesuche:** Die Vorlage stellte klar, dass keine Hausbesuche
 angeboten werden. Die vorherigen Behauptungen „Hausbesuche möglich" (Infoleiste)
@@ -136,9 +139,10 @@ Verbindung zu Google auf; das darf auch nicht wieder eingebaut werden.
   beide Stellen sind dort kommentiert.
 - ~~**EN-Fassung.**~~ Erledigt als **einzelne** englische Infoseite unter
   [en/index.html](en/index.html) — siehe eigener Abschnitt unten.
-- ~~**Anfahrt/Karte.**~~ Erledigt: Kein iframe, stattdessen ein Link
-  „In Google Maps öffnen" im Kontaktblock (öffnet Google Maps erst nach Klick,
-  siehe Datenschutzerklärung).
+- ~~**Anfahrt/Karte.**~~ Erledigt: Kein iframe, stattdessen ein statisches
+  Kartenbild aus OpenStreetMap-Daten (`assets/img/anfahrt-karte.svg`, erzeugt mit
+  `werkzeuge/karte.py`) plus Link „In Google Maps öffnen" im Kontaktblock (öffnet
+  Google Maps erst nach Klick, siehe Datenschutzerklärung).
 
 ## Englische Seite — und was bei Änderungen mitmuss
 
@@ -158,7 +162,7 @@ werden:**
 
 | Angabe | Steht dort als |
 |---|---|
-| Telefon `0561 8200615` | Header-Button, Menü, Abschnitt „Contact", Footer |
+| Telefon `0561 82020145` | Header-Button, Menü, Abschnitt „Contact", Footer |
 | E-Mail `physio.fabrik@outlook.de` | Abschnitt „Contact", Footer |
 | Adresse Brüder-Grimm-Straße 32, 2. OG | Abschnitt „Finding us", Footer |
 | Öffnungszeiten (alle fünf Tage) | Abschnitt „Opening hours" |

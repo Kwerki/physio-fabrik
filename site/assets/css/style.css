@@ -725,8 +725,11 @@ body.is-locked {
   padding: 40px var(--gutter) 32px;
 }
 
+/* Abweichung vom Handoff (dort 92px): Obergrenze 72px. Mit 92px und dem
+   grossen Polster fuellten Hero und Infoleiste auf Desktop den ganzen ersten
+   Bildschirm schwarz, vom Inhalt darunter war nichts zu sehen. */
 .hero h1 {
-  font: 700 clamp(2.875rem, 1.5rem + 6vw, 5.75rem) / 0.98 var(--sans);
+  font: 700 clamp(2.875rem, 1.5rem + 4.5vw, 4.5rem) / 0.98 var(--sans);
   letter-spacing: -0.03em;
   text-wrap: balance;
   margin: 20px 0 18px;
@@ -745,21 +748,21 @@ body.is-locked {
 
 @media (min-width: 768px) {
   .hero__inner {
-    padding: 112px var(--gutter) 64px;
+    padding: 72px var(--gutter) 52px;
   }
 
   .hero h1 {
     line-height: 0.96;
     letter-spacing: -0.035em;
     max-width: 15ch;
-    margin: 30px 0 28px;
+    margin: 24px 0 22px;
   }
 
   .hero__lead {
     font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
     line-height: 1.65;
     max-width: 50ch;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
 
   .hero__actions {
@@ -775,6 +778,10 @@ body.is-locked {
   color: rgba(255, 255, 255, 0.6);
   border-top: 1px solid var(--line-dark);
   font: 400 11.5px/1.5 var(--mono);
+  /* Grossschreibung per CSS statt im Text: alle vier Zellen sehen gleich aus,
+     und Screenreader lesen „Mo–Fr" nicht als Abkuerzung in Versalien vor. */
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 /* Die Schrift der Randzellen soll auf derselben Kante stehen wie der Inhalt
@@ -891,6 +898,30 @@ body.is-locked {
      wird nicht am Stueck gelesen. */
   .section__head p {
     font-size: 16px;
+  }
+}
+
+/* Kopf und Foto nebeneinander statt Foto als Band ueber die volle Breite.
+   Die Baender waren auf Desktop 1360px breit und bis zu 760px hoch — beim
+   Scrollen sah man minutenlang nur Bild. Nebeneinander ist das Foto gut halb
+   so gross und steht beim Text, den es illustriert. Unter 1024px bleibt die
+   Reihenfolge Kopf, dann Bild. */
+@media (min-width: 1024px) {
+  .section__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 64px;
+    align-items: start;
+    margin-bottom: 56px;
+  }
+
+  .section__intro .section__head {
+    margin-bottom: 0;
+  }
+
+  .section__intro > .frame {
+    aspect-ratio: 4 / 3;
+    margin-bottom: 0;
   }
 }
 
@@ -1135,7 +1166,6 @@ body.is-locked {
        immer noch ein Band, zeigt aber genug Kontext, dass die Szene lesbar
        bleibt. */
     aspect-ratio: 2 / 1;
-    margin-bottom: 44px;
   }
 }
 
@@ -1244,6 +1274,38 @@ body.is-locked {
 .team__solo .team__photo {
   max-width: none;
   margin-bottom: 0;
+}
+
+/* Im Solo-Block sitzt das Behandlungsfoto direkt in der Zeile mit Portraet
+   und Angaben. Ab 1024px als dritte Spalte, genau so hoch wie das Portraet:
+   aspect-ratio aus, Hoehe kommt aus der Rasterzeile. */
+.team__solo .team__band {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .team__solo .team__band {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .team__solo {
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr) minmax(0, 1.25fr);
+    align-items: stretch;
+  }
+
+  .team__solo .team__band {
+    grid-column: auto;
+    aspect-ratio: auto;
+  }
+
+  /* Absolut, damit das Hochformat-Bild die Zeile nicht nach seiner eigenen
+     Hoehe aufzieht — die Zeilenhoehe soll das Portraet bestimmen. */
+  .team__solo .team__band img {
+    position: absolute;
+    inset: 0;
+  }
 }
 
 .team__solo .team__name {
@@ -1405,16 +1467,18 @@ body.is-locked {
 
 @media (min-width: 768px) {
   .gallery {
+    grid-template-columns: repeat(3, 1fr);
     margin-top: 44px;
   }
 }
 
-/* Drei Spalten ab Desktop. Bei aktuell fuenf Kacheln bleibt die letzte Reihe
-   angebrochen — das faellt nicht mehr auf, seit die Linien an den Kacheln
-   haengen und dort schlicht nichts gezeichnet wird. */
+/* Ab Desktop alle Raeume in einer Reihe. Mit drei Spalten waren es zwei
+   Reihen Hochformat, zusammen ueber 1100px hoch, und eine leere Zelle.
+   Die Spaltenzahl haengt an der Zahl der Fotos — kommt eins dazu oder
+   faellt eins weg, hier mitaendern. */
 @media (min-width: 1024px) {
   .gallery {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
@@ -1429,6 +1493,18 @@ body.is-locked {
   .contact__grid {
     grid-template-columns: 0.85fr 1.15fr;
     gap: 64px;
+  }
+}
+
+/* Formular laeuft auf breiten Bildschirmen mit, solange die linke Spalte
+   (Adresse, Zeiten, Karte) laenger ist — sonst klafft rechts unten eine
+   leere Flaeche. Nur bei genug Hoehe, damit der Absende-Knopf nie unter
+   dem Bildschirmrand festklebt. */
+@media (min-width: 1024px) and (min-height: 760px) {
+  .contact__grid > .form {
+    position: sticky;
+    top: calc(var(--header-h) + 32px);
+    align-self: start;
   }
 }
 
@@ -1477,10 +1553,51 @@ body.is-locked {
   text-align: right;
 }
 
+.contact__map {
+  margin: 0;
+}
+
+.contact__map img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-dark);
+  transition: border-color 0.2s;
+}
+
+@media (hover: hover) {
+  .contact__map a:hover img {
+    border-color: var(--green);
+  }
+}
+
+.contact__map figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-top: 12px;
+}
+
+.contact__map figcaption span {
+  font-size: 11px;
+  color: var(--text-3-dark);
+}
+
+.contact__data .contact__map figcaption span a {
+  color: inherit;
+  border-bottom-color: var(--line-dark);
+}
+
 /* --- Formular ------------------------------------------------------------ */
 
+/* align-content: start aus demselben Grund wie bei .form__row (siehe unten):
+   Das Formular ist im Kontaktraster so hoch wie die linke Spalte. Seit dort
+   die Anfahrtskarte steht, ist die laenger als das Formular, und ohne start
+   wuerden alle Formularzeilen auseinandergezogen. */
 .form {
   display: grid;
+  align-content: start;
   gap: 18px;
 }
 

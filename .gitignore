@@ -16,3 +16,6 @@ dist/
 
 # Claude Code — lokale Genehmigungen, persoenlich
 .claude/settings.local.json
+
+# Zwischenspeicher von werkzeuge/karte.py (OSM-Rohdaten)
+werkzeuge/.karte-cache.json
