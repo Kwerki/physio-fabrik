@@ -418,45 +418,63 @@
           Feste Bezugstherapeuten statt wechselnder Zuständigkeiten. Jede Behandlung
           beginnt mit einem Befund und endet mit einem nachvollziehbaren nächsten Schritt.
         </p>
-        <p>
-          <a href="#wir-suchen">Wir suchen Verstärkung für unser Team →</a>
-        </p>
       </div>
 
-      <!-- Eine Person, deshalb bewusst kein Raster: team__grid zieht seine
-           Trennlinien ueber den Containerhintergrund, und jede Zelle ohne
-           Inhalt zeigt genau diesen Hintergrund — bei einem einzigen Mitglied
-           stuenden also zwei graue Bloecke daneben. Solo-Layout ist Foto
-           links, Angaben rechts, ueber die volle Breite.
-           Kommen Kolleg:innen dazu: zurueck auf <ul class="team__grid"> mit
-           je einem <li class="team__member"> pro Person (CSS steht noch) —
-           dann aber auf drei Karten auffuellen, sonst ist das graue Feld
-           wieder da. -->
-      <div class="team__solo">
-        <figure class="frame team__photo">
-          <img src="assets/img/nils-fischer.webp" width="600" height="800" loading="lazy"
-               alt="Portrait von Nils Fischer">
-        </figure>
-        <div class="team__solo-text">
-          <h3 class="team__name">Nils Fischer</h3>
-          <p class="team__role">Praxisleitung (Inhaber) · Physiotherapeut</p>
-          <ul class="team__quals">
-            <li>Krankengymnastik (KG, KGG)</li>
-            <li>Manuelle Therapie (MT, KMT)</li>
-            <li>CMD</li>
-            <li>Medizinische Trainingstherapie (MTT)</li>
-            <li>Sportphysiotherapie</li>
-          </ul>
-        </div>
-        <!-- Behandlungsfoto als dritte Spalte neben Portraet und Angaben,
-             statt als eigenes Band ueber die volle Breite darunter. Ab 1024px
-             so hoch wie das Portraet, darunter einfach unter dem Text. -->
-        <figure class="frame team__band">
-          <img src="assets/img/manuelle-therapie.webp" width="1200" height="1600" loading="lazy"
-               alt="Therapeut behandelt mit beiden Händen den Rücken einer bäuchlings auf der Behandlungsliege liegenden Person">
-          <figcaption>Manuelle Therapie</figcaption>
-        </figure>
-      </div>
+      <!-- Team nebeneinander (ab 1024px zwei Spalten), darunter das
+           Behandlungsfoto ueber die volle Breite. Bewusst kein team__grid:
+           das zieht seine Trennlinien ueber den Containerhintergrund, und
+           leere Zellen zeigen diesen als grauen Block. Kommt eine dritte
+           Person dazu: einfach ein weiteres <li class="team__person"> und
+           in style.css die Spaltenzahl von .team__duo anpassen. -->
+      <ul class="team__duo">
+        <li class="team__person">
+          <figure class="frame team__photo">
+            <img src="assets/img/nils-fischer.webp" width="600" height="800" loading="lazy"
+                 alt="Portrait von Nils Fischer">
+          </figure>
+          <div class="team__text">
+            <h3 class="team__name">Nils Fischer</h3>
+            <p class="team__role">Praxisleitung (Inhaber) · Physiotherapeut</p>
+            <ul class="team__quals">
+              <li>Krankengymnastik (KG, KGG)</li>
+              <li>Manuelle Therapie (MT, KMT)</li>
+              <li>CMD</li>
+              <li>Medizinische Trainingstherapie (MTT)</li>
+              <li>Sportphysiotherapie</li>
+            </ul>
+          </div>
+        </li>
+        <!-- Portraet folgt — bis dahin das Praxislogo als Platzhalter. Sobald das
+             Foto da ist: Logo-<img> durch <img src="assets/img/angelo-nolte.webp"
+             width="600" height="800" loading="lazy" alt="Portrait von Angelo Nolte">
+             ersetzen und die Klasse team__photo--leer entfernen. -->
+        <li class="team__person">
+          <figure class="frame team__photo team__photo--leer" data-placeholder="foto-angelo-nolte">
+            <img class="team__platzhalter-logo" src="assets/img/logo-schwarz.png" width="1685" height="266" loading="lazy" alt="">
+          </figure>
+          <div class="team__text">
+            <h3 class="team__name">Angelo Nolte</h3>
+            <p class="team__role">Physiotherapeut</p>
+            <ul class="team__quals">
+              <li>Krankengymnastik (KG)</li>
+              <li>Manuelle Lymphdrainage (MLD)</li>
+              <li>Sportphysiotherapie</li>
+              <li>Personal Training</li>
+              <li>Manuelle Therapie (KMT)</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <p class="team__jobs-link">
+        <a href="#wir-suchen">Wir suchen Verstärkung für unser Team →</a>
+      </p>
+
+      <figure class="frame team__band">
+        <img src="assets/img/manuelle-therapie.webp" width="1200" height="1600" loading="lazy"
+             alt="Therapeut behandelt mit beiden Händen den Rücken einer bäuchlings auf der Behandlungsliege liegenden Person">
+        <figcaption>Manuelle Therapie</figcaption>
+      </figure>
     </div>
   </section>
 

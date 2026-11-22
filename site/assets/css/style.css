@@ -1215,6 +1215,15 @@ body.is-locked {
   display: block;
 }
 
+/* Praxislogo als Platzhalter, solange ein Portraet fehlt: klein und blass
+   mittig im Rasterrahmen statt formatfuellend wie ein Foto. */
+.team__photo .team__platzhalter-logo {
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.35;
+}
+
 .team__monogram {
   position: relative;
   font: 500 15px/1 var(--mono);
@@ -1244,80 +1253,66 @@ body.is-locked {
   border-top: 1px solid var(--line-light);
 }
 
-/* --- Team: Solo-Auftritt ------------------------------------------------
-   Solange nur eine Person im Team steht, waere das dreispaltige team__grid
-   falsch: es zeichnet seine Trennlinien ueber den Containerhintergrund, und
-   leere Zellen zeigen dann genau diesen Hintergrund als grauen Block. Statt
-   einer Karte mit zwei toten Spalten daneben laeuft die Person hier ueber die
-   volle Breite — Foto links, Angaben rechts. */
-.team__solo {
+/* --- Team: Personen nebeneinander ------------------------------------------
+   Jede Person ist eine Zeile aus Foto und Angaben; ab 1024px stehen die
+   Personen in zwei Spalten nebeneinander. Trennlinien als echte Raender,
+   nicht ueber den Containerhintergrund wie bei team__grid — so bleibt keine
+   leere Zelle grau stehen. */
+.team__duo {
   display: grid;
-  gap: 22px;
+  border-top: 1px solid var(--line-light);
+  margin-bottom: 22px;
+}
+
+.team__person {
+  display: grid;
+  gap: 18px;
   padding: 24px 0;
-  border-block: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
 }
 
-@media (min-width: 768px) {
-  .team__solo {
-    /* Feste Obergrenze fuer die Bildspalte: Das Portraet ist 600px breit,
-       darueber hinaus skaliert es sichtbar weich. Der Rest geht an den Text,
-       damit die Zeilen nicht auf halber Seitenbreite umbrechen. */
-    grid-template-columns: minmax(0, 420px) 1fr;
+.team__person .team__photo {
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .team__person {
+    grid-template-columns: minmax(0, 200px) 1fr;
     align-items: start;
-    gap: 48px;
-    padding: 34px 0;
+    gap: 24px;
   }
-}
 
-/* In der Kartenansicht deckelt team__photo die Breite auf 220px. Hier traegt
-   das Foto eine eigene Spalte und darf sie ausfuellen. */
-.team__solo .team__photo {
-  max-width: none;
-  margin-bottom: 0;
-}
-
-/* Im Solo-Block sitzt das Behandlungsfoto direkt in der Zeile mit Portraet
-   und Angaben. Ab 1024px als dritte Spalte, genau so hoch wie das Portraet:
-   aspect-ratio aus, Hoehe kommt aus der Rasterzeile. */
-.team__solo .team__band {
-  margin-bottom: 0;
-}
-
-@media (min-width: 768px) {
-  .team__solo .team__band {
-    grid-column: 1 / -1;
+  .team__person .team__photo {
+    max-width: none;
   }
 }
 
 @media (min-width: 1024px) {
-  .team__solo {
-    grid-template-columns: minmax(0, 360px) minmax(0, 1fr) minmax(0, 1.25fr);
-    align-items: stretch;
+  .team__duo {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 48px;
   }
 
-  .team__solo .team__band {
-    grid-column: auto;
-    aspect-ratio: auto;
-  }
-
-  /* Absolut, damit das Hochformat-Bild die Zeile nicht nach seiner eigenen
-     Hoehe aufzieht — die Zeilenhoehe soll das Portraet bestimmen. */
-  .team__solo .team__band img {
-    position: absolute;
-    inset: 0;
+  .team__person {
+    grid-template-columns: minmax(0, 220px) 1fr;
+    padding: 34px 0;
   }
 }
 
-.team__solo .team__name {
+.team__person .team__name {
   font-size: 22px;
 }
 
-@media (min-width: 768px) {
-  .team__solo .team__name {
-    font-size: 26px;
-  }
+/* Link zur Stellenanzeige direkt unter den Teammitgliedern. */
+.team__jobs-link {
+  margin-bottom: 34px;
 }
 
+/* Das Behandlungsfoto schliesst die Sektion ab — kein Abstand darunter, den
+   liefert schon das Section-Padding. */
+.team__duo ~ .team__band {
+  margin-bottom: 0;
+}
 
 @media (min-width: 768px) {
   .team__grid {
