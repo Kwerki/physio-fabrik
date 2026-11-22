@@ -5,6 +5,14 @@
 (function () {
   "use strict";
 
+  /* Sprache der Seite: en/index.html ist eine vollstaendige Spiegelung der
+     deutschen Startseite und nutzt dieses Skript mit. Alle sichtbaren Texte
+     laufen deshalb ueber t(deutsch, englisch). */
+  var englisch = document.documentElement.lang === "en";
+  var t = function (de, en) {
+    return englisch ? en : de;
+  };
+
   /* --- Overlay-Menü ------------------------------------------------------ */
 
   var menu = document.getElementById("menu");
@@ -80,21 +88,21 @@
 
     var meldungen = {
       name: {
-        valueMissing: "Bitte tragen Sie Ihren Namen ein."
+        valueMissing: t("Bitte tragen Sie Ihren Namen ein.", "Please enter your name.")
       },
       telefon: {
-        valueMissing: "Bitte tragen Sie eine Telefonnummer für den Rückruf ein.",
-        typeMismatch: "Diese Telefonnummer sieht nicht gültig aus.",
-        custom: "Bitte tragen Sie eine gültige Telefonnummer ein."
+        valueMissing: t("Bitte tragen Sie eine Telefonnummer für den Rückruf ein.", "Please enter a phone number so we can call you back."),
+        typeMismatch: t("Diese Telefonnummer sieht nicht gültig aus.", "This phone number does not look valid."),
+        custom: t("Bitte tragen Sie eine gültige Telefonnummer ein.", "Please enter a valid phone number.")
       },
       email: {
-        typeMismatch: "Diese E-Mail-Adresse sieht nicht gültig aus."
+        typeMismatch: t("Diese E-Mail-Adresse sieht nicht gültig aus.", "This email address does not look valid.")
       },
       anliegen: {
-        valueMissing: "Bitte beschreiben Sie kurz Ihr Anliegen."
+        valueMissing: t("Bitte beschreiben Sie kurz Ihr Anliegen.", "Please briefly describe what you need.")
       },
       datenschutz: {
-        valueMissing: "Ohne Ihre Einwilligung dürfen wir die Anfrage nicht bearbeiten."
+        valueMissing: t("Ohne Ihre Einwilligung dürfen wir die Anfrage nicht bearbeiten.", "We cannot process your request without your consent.")
       }
     };
 
@@ -104,11 +112,11 @@
     };
 
     var texteFuer = function (feld) {
-      var t = meldungen[feld.name] || {};
-      if (feld.validity.valueMissing) return t.valueMissing || "Bitte füllen Sie dieses Feld aus.";
-      if (feld.validity.typeMismatch) return t.typeMismatch || "Bitte prüfen Sie diese Eingabe.";
-      if (feld.validity.customError) return t.custom || feld.validationMessage;
-      return feld.validationMessage || "Bitte prüfen Sie diese Eingabe.";
+      var m = meldungen[feld.name] || {};
+      if (feld.validity.valueMissing) return m.valueMissing || t("Bitte füllen Sie dieses Feld aus.", "Please fill in this field.");
+      if (feld.validity.typeMismatch) return m.typeMismatch || t("Bitte prüfen Sie diese Eingabe.", "Please check this entry.");
+      if (feld.validity.customError) return m.custom || feld.validationMessage;
+      return feld.validationMessage || t("Bitte prüfen Sie diese Eingabe.", "Please check this entry.");
     };
 
     // Telefon: mindestens 6 Ziffern, sonst ist das kein Rückrufweg
@@ -199,25 +207,28 @@
 
       var text = [
         "Name: " + wert("name"),
-        "Telefon: " + wert("telefon"),
+        t("Telefon: ", "Phone: ") + wert("telefon"),
         "",
-        "Anliegen:",
+        t("Anliegen:", "Request:"),
         anliegen
       ];
       if (gekuerzt) {
-        text.push("", "(Der Text wurde gekürzt — bitte hier ergänzen.)");
+        text.push("", t("(Der Text wurde gekürzt — bitte hier ergänzen.)", "(The text was shortened — please complete it here.)"));
       }
 
       var ziel =
         "mailto:physio.fabrik@outlook.de" +
-        "?subject=" + encodeURIComponent("Terminanfrage über die Website") +
+        "?subject=" + encodeURIComponent(t("Terminanfrage über die Website", "Appointment request via the website")) +
         "&body=" + encodeURIComponent(text.join("\n"));
 
       if (status) {
         status.dataset.state = "todo";
-        status.textContent =
+        status.textContent = t(
           "Ihr E-Mail-Programm sollte sich jetzt öffnen. Tut sich nichts, " +
-          "schreiben Sie uns bitte direkt an physio.fabrik@outlook.de.";
+            "schreiben Sie uns bitte direkt an physio.fabrik@outlook.de.",
+          "Your email program should open now. If nothing happens, " +
+            "please write to us directly at physio.fabrik@outlook.de."
+        );
       }
 
       window.location.href = ziel;
@@ -244,14 +255,14 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(adresse).then(
           function () {
-            melde("Adresse kopiert.");
+            melde(t("Adresse kopiert.", "Address copied."));
           },
           function () {
-            melde("Kopieren hat nicht geklappt — bitte die Adresse markieren.");
+            melde(t("Kopieren hat nicht geklappt — bitte die Adresse markieren.", "Copying did not work — please select the address."));
           }
         );
       } else {
-        melde("Kopieren hat nicht geklappt — bitte die Adresse markieren.");
+        melde(t("Kopieren hat nicht geklappt — bitte die Adresse markieren.", "Copying did not work — please select the address."));
       }
     });
   }

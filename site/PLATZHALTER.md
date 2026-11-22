@@ -16,7 +16,7 @@ diese Regel einkommentieren:
 | ~~`email`~~ | Kontakt, Footer, Impressum | Erledigt: physio.fabrik@outlook.de |
 | ~~`adresse`~~ | Kontakt, Footer, Impressum, Datenschutz | Erledigt: Brüder-Grimm-Straße 32, 2. OG, 34246 Vellmar |
 | ~~`oeffnungszeiten`~~ | Infoleiste unter dem Hero, Kontakt | Erledigt: Mo 10–18, Di 8–16, Mi 12–20, Do 10–18, Fr 10–14, Sa/So geschlossen. Die Infoleiste nennt bewusst keine Uhrzeit („MO–FR NACH VEREINBARUNG"), weil die Zeiten täglich wechseln — Details nur im Kontaktabschnitt |
-| ~~`kennzahlen`~~ | Praxis | Erledigt: 7 Jahre / 20 min / „Alle Kassen und Privat" |
+| ~~`kennzahlen`~~ | Praxis | Erledigt: 7 Jahre / 25 min / „Alle Kassen und Privat" |
 | ~~`team`~~ | Team | Erledigt für Nils Fischer (Praxisleitung/Inhaber) mit echtem Foto. Die zwei fiktiven Kolleg:innen sind raus, stattdessen eine Stellenanzeige-Karte — die Praxis sucht aktiv Personal |
 | `foto-angelo-nolte` | Team | Portrait von Angelo Nolte fehlt noch (Praxislogo als Platzhalter). Als `assets/img/angelo-nolte.webp`, 600×800, Hochformat 3:4 ablegen — Austausch-Anleitung steht im Kommentar über dem Block in index.html |
 | ~~`impressum-*`~~ | Impressum | Erledigt: Anbieter/Kontakt/Verantwortlich = Nils Fischer, Aufsichtsbehörde = Gesundheitsamt Kassel. Keine USt-IdNr vorhanden — § 5 DDG verlangt sie nur „soweit vorhanden", der Absatz nennt daher nur die Steuerbefreiung nach § 4 Nr. 14 UStG |
@@ -138,7 +138,7 @@ Verbindung zu Google auf; das darf auch nicht wieder eingebaut werden.
   [datenschutz.html](datenschutz.html) der Absatz „Kontaktformular" zurück auf
   echte Übertragung und der Abschnitt „Spamschutz" (Honeypot) wieder hinein —
   beide Stellen sind dort kommentiert.
-- ~~**EN-Fassung.**~~ Erledigt als **einzelne** englische Infoseite unter
+- ~~**EN-Fassung.**~~ Erledigt als vollständige Spiegelung unter
   [en/index.html](en/index.html) — siehe eigener Abschnitt unten.
 - ~~**Anfahrt/Karte.**~~ Erledigt: Kein iframe, stattdessen ein statisches
   Kartenbild aus OpenStreetMap-Daten (`assets/img/anfahrt-karte.svg`, erzeugt mit
@@ -147,35 +147,43 @@ Verbindung zu Google auf; das darf auch nicht wieder eingebaut werden.
 
 ## Englische Seite — und was bei Änderungen mitmuss
 
-[en/index.html](en/index.html) ist **eine** Seite, keine Spiegelung der
-deutschen Fassung. Bewusst so: Vier Seiten doppelt zu pflegen führt früher oder
-später dazu, dass dort eine alte Telefonnummer oder falsche Öffnungszeiten
-stehen — und eine Praxisseite, die zwei verschiedene Uhrzeiten nennt, ist
-schlimmer als eine, die nur Deutsch kann.
+[en/index.html](en/index.html) ist seit November 2026 eine **vollständige
+Spiegelung** der deutschen Startseite: gleicher Aufbau, gleiche Bilder, gleiche
+Abschnitte (Treatments, Team, Practice, Careers, Contact), alles übersetzt.
+Vorher war es eine einzelne abgespeckte Infoseite — auf Wunsch der Praxis
+umgestellt. Der Preis: **Jede inhaltliche Änderung an [index.html](index.html)
+muss auch in [en/index.html](en/index.html) nachgezogen werden.** Sonst steht dort
+irgendwann eine alte Nummer oder falsche Öffnungszeiten.
+
+**Die deutsche Seite ist die Quelle der Wahrheit** (von der Praxis so
+festgelegt). Widersprechen sich beide Fassungen, gilt Deutsch, und die
+englische Seite wird angepasst — nie umgekehrt.
 
 Impressum und Datenschutz bleiben deutsch; für eine deutsche Praxis genügt das.
-Der Umschalter auf diesen beiden Seiten führt deshalb auf die englische
-Infoseite, nicht auf eine Übersetzung.
 
-**Diese Angaben stehen doppelt und müssen bei jeder Änderung an
-[index.html](index.html) auch in [en/index.html](en/index.html) nachgezogen
-werden:**
+`assets/js/main.js` erkennt die Sprache am `lang`-Attribut von `<html>` und
+liefert Formularmeldungen, Mail-Vorlage und Kopier-Hinweis auf Englisch. Neue
+sichtbare Texte im Skript deshalb immer über `t("deutsch", "english")`.
 
-| Angabe | Steht dort als |
+Die Anker-IDs sind auf Englisch (`#treatments`, `#team`, `#practice`,
+`#careers`, `#contact`); die Formular-IDs sind dieselben wie auf Deutsch, weil
+main.js sie braucht.
+
+**Besonders leicht vergessen:**
+
+| Angabe | Steht auf der englischen Seite |
 |---|---|
-| Telefon `0561 82020145` | Header-Button, Menü, Abschnitt „Contact", Footer |
-| E-Mail `physio.fabrik@outlook.de` | Abschnitt „Contact", Footer |
-| Adresse Brüder-Grimm-Straße 32, 2. OG | Abschnitt „Finding us", Footer |
-| Öffnungszeiten (alle fünf Tage) | Abschnitt „Opening hours" |
-| Behandlungstakt 20 min | Abschnitt „Appointments" |
-| Massage 20 min | Abschnitt „Treatments" |
-| Keine Hausbesuche | Abschnitt „Appointments" |
-| Nils Fischer + Qualifikationen | Abschnitt „Practice" |
-| Leistungen (5 auf Rezept, 3 privat) | Abschnitt „Treatments" |
+| Telefon `0561 82020145` | Menü, Hero, Careers, Contact, Footer |
+| E-Mail `physio.fabrik@outlook.de` | Careers, Contact (3×), Footer |
+| Adresse Brüder-Grimm-Straße 32, 2. OG | Contact, Footer |
+| Öffnungszeiten | Contact |
+| Behandlungszeit 25 min, Massage 20 min | Practice (Kennzahlen), Treatments |
+| Teammitglieder + Qualifikationen | Team |
+| Stellenanzeige | Careers |
 
-**Behandlung auf Englisch** ist von der Praxis bestätigt und steht im ersten
-Absatz der englischen Seite. Ändert sich das — etwa weil künftig jemand
-behandelt, der kein Englisch spricht —, muss der Satz sofort raus.
+**Behandlung auf Englisch** ist von der Praxis bestätigt und steht im Hero der
+englischen Seite. Ändert sich das — etwa weil künftig jemand behandelt, der
+kein Englisch spricht —, muss der Satz sofort raus.
 
 ## Kontaktformular: aktuell mailto
 
