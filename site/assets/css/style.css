@@ -2003,6 +2003,578 @@ body.is-locked {
   }
 }
 
+/* ==========================================================================
+   Upgrade (11/2026) — gleiche Richtung „Werkstatt", mehr Gewicht:
+   Hero mit Foto, größere Sektionsüberschriften mit Nummer, kräftigere
+   Kennzahlen, aufgeräumte Stellenanzeige, Einblenden beim Scrollen.
+   Steht bewusst gesammelt am Ende, damit sich das Upgrade als Block
+   nachvollziehen (und notfalls entfernen) lässt.
+   ========================================================================== */
+
+/* --- Hero mit Portrait ------------------------------------------------- */
+
+.hero__media {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(320px, 27vw, 400px);
+    gap: clamp(56px, 7vw, 120px);
+    align-items: stretch;
+    padding-block: 48px 40px;
+  }
+
+  .hero__copy {
+    align-self: center;
+  }
+
+  /* Das Portrait als „Bauteil" auf dem Raster: Passermarken an allen vier
+     Ecken, ein Typenschild unten, Koordinaten am Rand. Keine Rundungen,
+     keine Schatten — nur Linien. */
+  /* Bild oben, Typenschild darunter — das Schild liegt bewusst NICHT im
+     Foto, damit es weder Kopf noch den Schriftzug auf dem Shirt verdeckt. */
+  .hero__media {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: visible;
+    /* Etwas flacher als das Foto (3:4): der leere Hintergrund ueber dem
+       Kopf wird oben abgeschnitten, Kopf und Shirt-Schriftzug bleiben ganz. */
+    aspect-ratio: 3 / 3.75;
+    align-self: center;
+    background: transparent;
+    --mark: 18px;
+  }
+
+  .hero__media img {
+    position: relative;
+    flex: 1 1 0;
+    min-height: 0;
+    height: auto;
+    background: #d9dbd6;
+    object-position: center 88%;
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.6s ease-out;
+  }
+
+  .hero:hover .hero__media img {
+    filter: grayscale(0) contrast(1);
+  }
+
+  /* Passermarken: vier Ecken aus zwei Hintergrundverläufen je Ecke */
+  .hero__media::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--green), var(--green)) top left / var(--mark) 2px,
+      linear-gradient(var(--green), var(--green)) top left / 2px var(--mark),
+      linear-gradient(var(--green), var(--green)) top right / var(--mark) 2px,
+      linear-gradient(var(--green), var(--green)) top right / 2px var(--mark),
+      linear-gradient(var(--paper), var(--paper)) bottom left / var(--mark) 1px,
+      linear-gradient(var(--paper), var(--paper)) bottom left / 1px var(--mark),
+      linear-gradient(var(--paper), var(--paper)) bottom right / var(--mark) 1px,
+      linear-gradient(var(--paper), var(--paper)) bottom right / 1px var(--mark);
+    background-repeat: no-repeat;
+  }
+
+  .hero__media .hero__tag {
+    position: static;
+    flex: none;
+    max-width: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 16px 0 0;
+    background: transparent;
+    color: var(--paper);
+    border: 0;
+    border-top: 2px solid var(--green);
+  }
+
+  .hero__tag-name {
+    font: 600 17px/1 var(--sans);
+    letter-spacing: -0.01em;
+  }
+
+  .hero__tag-role {
+    font: 500 10.5px/1 var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-2-dark);
+  }
+
+  /* Koordinaten senkrecht an der rechten Kante, wie eine Bemaßung */
+  .hero__coords {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    writing-mode: vertical-rl;
+    font: 400 10.5px/1 var(--mono);
+    letter-spacing: 0.12em;
+    color: var(--text-3-dark);
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .hero__coords {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .hero__media img {
+    animation: hero-zoom 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero__media .hero__tag {
+    animation: hero-rise 0.8s 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero__copy > * {
+    animation: hero-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero__copy > :nth-child(2) { animation-delay: 80ms; }
+  .hero__copy > :nth-child(3) { animation-delay: 160ms; }
+  .hero__copy > :nth-child(4) { animation-delay: 240ms; }
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1.06); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes hero-rise {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+/* --- Sektionsüberschriften ---------------------------------------------- */
+
+.section__head h2 {
+  font-weight: 700;
+  font-size: clamp(1.625rem, 1.05rem + 2.1vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  max-width: 30ch;
+}
+
+/* Laufende Sektionsnummer hinter dem Eyebrow: „Leistungen — 01" */
+main {
+  counter-reset: sektion;
+}
+
+main > .section {
+  counter-increment: sektion;
+}
+
+.section__head .eyebrow::after {
+  content: "/ " counter(sektion, decimal-leading-zero);
+  margin-left: 10px;
+  opacity: 0.55;
+}
+
+/* --- Kennzahlen kräftiger ------------------------------------------------ */
+
+.stats__num {
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1rem + 2.6vw, 3.25rem);
+  letter-spacing: -0.03em;
+}
+
+.stats li {
+  position: relative;
+}
+
+.stats li::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 28px;
+  height: 3px;
+  background: var(--green);
+}
+
+.stats li:not(:first-child)::before {
+  left: 16px;
+}
+
+@media (min-width: 768px) {
+  .stats li {
+    padding-block: 34px;
+  }
+
+  .stats li:not(:first-child)::before {
+    left: 24px;
+  }
+}
+
+/* --- Stellenanzeige ------------------------------------------------------ */
+
+.rows__card {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  padding-block: 12px;
+}
+
+.rows__card .rows__meta {
+  justify-self: start;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-text);
+  border: 1px solid currentColor;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+}
+
+.rows__card .rows__text {
+  display: grid;
+  gap: 12px;
+  max-width: 68ch;
+  font: 400 15px/1.65 var(--sans);
+  color: var(--text-2);
+}
+
+.rows__card .rows__text strong {
+  color: var(--ink);
+}
+
+.rows__card .rows__text a {
+  color: var(--ink);
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 1024px) {
+  .rows__card {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 64px;
+    padding-block: 20px;
+  }
+
+  .rows__card .rows__name,
+  .rows__card .rows__meta {
+    grid-column: 1;
+    align-self: start;
+  }
+
+  .rows__card .rows__text {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    font-size: 16px;
+  }
+}
+
+/* --- Einblenden beim Scrollen (Klasse setzt main.js) --------------------- */
+
+.reveal-on :is(.section__head, .section__intro > .frame, .services__group,
+  .team__person, .stats, .praxis__features, .gallery > li, .rows__card,
+  .contact__grid):not(.is-in) {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.reveal-on :is(.section__head, .section__intro > .frame, .services__group,
+  .team__person, .stats, .praxis__features, .gallery > li, .rows__card,
+  .contact__grid) {
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+
+
+/* --- Feinheiten ---------------------------------------------------------- */
+
+/* Lesefortschritt: haarfeine grüne Linie an der Unterkante des Headers.
+   Rein per CSS (scroll-driven animation); Browser ohne Unterstützung
+   zeigen einfach keine Linie. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .site-header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: var(--green);
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+      animation: fortschritt linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes fortschritt {
+  to { transform: scaleX(1); }
+}
+
+/* Öffnungsstatus in der Infoleiste (Text setzt main.js aus den
+   Öffnungszeiten im Kontaktabschnitt) */
+.factbar__status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--paper);
+}
+
+.factbar__status[data-offen]::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  background: var(--text-3-dark);
+}
+
+.factbar__status[data-offen="ja"]::before {
+  background: var(--green);
+  box-shadow: 0 0 0 0 var(--green);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .factbar__status[data-offen="ja"]::before {
+    animation: puls 2.4s ease-out infinite;
+  }
+}
+
+@keyframes puls {
+  0% { box-shadow: 0 0 0 0 oklch(0.74 0.12 150 / 0.6); }
+  70%, 100% { box-shadow: 0 0 0 8px oklch(0.74 0.12 150 / 0); }
+}
+
+/* Passermarken an den Sektionskanten — kleine Kreuze links und rechts auf
+   der Trennkante, wie auf einer technischen Zeichnung */
+@media (min-width: 1024px) {
+  main > .section {
+    position: relative;
+  }
+
+  main > .section > .section__inner {
+    position: relative;
+  }
+
+  main > .section > .section__inner::before,
+  main > .section > .section__inner::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    width: 11px;
+    height: 11px;
+    pointer-events: none;
+    background:
+      linear-gradient(currentColor, currentColor) center / 11px 1px no-repeat,
+      linear-gradient(currentColor, currentColor) center / 1px 11px no-repeat;
+    opacity: 0.35;
+  }
+
+  main > .section > .section__inner::before {
+    left: calc(var(--gutter) - 5px);
+  }
+
+  main > .section > .section__inner::after {
+    right: calc(var(--gutter) - 5px);
+  }
+}
+
+/* Leistungszeilen nummeriert: 01, 02 … in Mono vor dem Namen */
+.rows--acc {
+  counter-reset: zeile;
+}
+
+.rows--acc li {
+  counter-increment: zeile;
+}
+
+.rows--acc .rows__name::before {
+  content: counter(zeile, decimal-leading-zero);
+  display: inline-block;
+  width: 2.6em;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+  vertical-align: 0.25em;
+}
+
+.rows--acc details[open] .rows__name::before {
+  color: var(--green-text);
+}
+
+.rows--acc .rows__text {
+  padding-left: calc(11px * 2.6);
+}
+
+/* Grüner Balken links beim Überfahren / Aufklappen */
+.rows--acc summary {
+  position: relative;
+  transition: padding-left 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.rows--acc summary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  transition: width 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .rows--acc summary:hover {
+    padding-left: 18px;
+  }
+
+  .rows--acc summary:hover::before {
+    width: 10px;
+  }
+}
+
+/* Buttons: Pfeil, der beim Überfahren nach rechts rückt */
+.hero__actions .btn::after,
+.header-cta::after,
+.btn--green::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 10px;
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .btn:hover::after,
+  .header-cta:hover::after {
+    transform: translateX(4px);
+  }
+}
+
+/* Team: Portraits beim Überfahren mit grüner Kante */
+.team__person .team__photo {
+  outline: 1px solid transparent;
+  outline-offset: 6px;
+  transition: outline-color 0.25s ease-out, outline-offset 0.25s ease-out;
+}
+
+@media (hover: hover) {
+  .team__person:hover .team__photo {
+    outline-color: var(--green);
+    outline-offset: 4px;
+  }
+}
+
+/* Feinere Textauszeichnung */
+::selection {
+  background: var(--green);
+  color: var(--ink);
+}
+
+/* --- Bildunterschriften unter dem Bild statt darauf --------------------
+   Galerie und Team-Foto: Die Beschriftung lag vorher als weißes Kästchen
+   im Bild und invertierte beim Überfahren zu Schwarz. Jetzt steht sie als
+   Zeile darunter — gleiche Sprache wie das Namensschild im Hero. Das
+   Seitenverhältnis wandert dafür vom <figure> auf das Bild selbst. */
+
+.gallery .frame,
+.team__band {
+  aspect-ratio: auto;
+  overflow: visible;
+  background: transparent;
+}
+
+.gallery .frame img {
+  aspect-ratio: 3 / 4;
+  height: auto;
+}
+
+.team__band img {
+  aspect-ratio: 4 / 3;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .team__band img {
+    aspect-ratio: 2 / 1;
+  }
+}
+
+.gallery .frame figcaption,
+.team__band figcaption {
+  position: static;
+  max-width: none;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 0 0;
+  background: transparent;
+  border: 0;
+  font: 500 10.5px/1.3 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* Galerie: Kachel bekommt Innenabstand, damit die Zeile nicht an der
+   Rasterlinie klebt; Nummer davor */
+.gallery > li {
+  padding: 10px 10px 14px;
+  counter-increment: raum;
+}
+
+.gallery {
+  counter-reset: raum;
+}
+
+.gallery .frame figcaption::before {
+  content: counter(raum, decimal-leading-zero);
+  color: var(--text-3);
+  transition: color 0.2s ease-out;
+}
+
+.gallery .frame figcaption::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  align-self: center;
+  background: var(--line-light);
+  transform-origin: 0 50%;
+  transition: background-color 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .gallery .frame:hover figcaption {
+    background: transparent;
+    color: var(--ink);
+    border-color: transparent;
+  }
+
+  .gallery .frame:hover figcaption::before {
+    color: var(--green-text);
+  }
+
+  .gallery .frame:hover figcaption::after {
+    background: var(--green);
+  }
+}
+
+/* Team-Foto: grüner Strich vor der Zeile, wie die Eyebrows */
+.team__band figcaption::before {
+  content: "";
+  width: 24px;
+  height: 2px;
+  align-self: center;
+  background: var(--green);
+}
+
 /* --- Platzhalter-Markierung ---------------------------------------------
    Alles, was vor Livegang ersetzt werden muss, ist mit data-placeholder
    ausgezeichnet. Diese Regel nur zum Prüfen aktivieren:

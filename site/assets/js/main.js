@@ -423,6 +423,121 @@
     });
   }
 
+  /* --- Einblenden beim Scrollen -----------------------------------------
+     Reine Zutat: Versteckt wird erst, wenn dieses Skript laeuft und die
+     Besucherin keine reduzierte Bewegung eingestellt hat (Klasse auf <html>).
+     Ohne JS oder ohne IntersectionObserver ist alles sofort sichtbar. */
+
+  var ruhig = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!ruhig && "IntersectionObserver" in window) {
+    var ziele = document.querySelectorAll(
+      ".section__head, .section__intro > .frame, .services__group, .team__person, " +
+        ".stats, .praxis__features, .gallery > li, .rows__card, .contact__grid"
+    );
+    var beobachter = new IntersectionObserver(
+      function (eintraege) {
+        eintraege.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add("is-in");
+          beobachter.unobserve(e.target);
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px" }
+    );
+    document.documentElement.classList.add("reveal-on");
+    Array.prototype.forEach.call(ziele, function (el, i) {
+      // Galeriekacheln leicht versetzt, damit sie nacheinander kommen
+      if (el.parentElement && el.parentElement.classList.contains("gallery")) {
+        el.style.transitionDelay = (Array.prototype.indexOf.call(el.parentElement.children, el) * 70) + "ms";
+      }
+      beobachter.observe(el);
+    });
+  }
+
+  /* --- Öffnungsstatus in der Infoleiste ---------------------------------
+     Liest die Zeiten aus der Tabelle im Kontaktabschnitt (dl.hours), damit
+     es nur EINE Stelle gibt, an der sie gepflegt werden. Gerechnet wird in
+     deutscher Zeit, egal wo der Besucher sitzt. Ohne JS bleibt der
+     neutrale Text „Mo–Fr nach Vereinbarung" stehen. */
+
+  var status = document.getElementById("offen-status");
+  var tabelle = document.querySelector("dl.hours");
+  if (status && tabelle && window.Intl) {
+    var kuerzel = englisch
+      ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+      : ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+    var zeiten = {};
+    var dts = tabelle.querySelectorAll("dt");
+    Array.prototype.forEach.call(dts, function (dt) {
+      var tag = kuerzel.indexOf(dt.textContent.trim());
+      var m = /(\d\d):(\d\d)\D+(\d\d):(\d\d)/.exec(dt.nextElementSibling.textContent);
+      if (tag >= 0 && m) zeiten[tag] = [+m[1] * 60 + +m[2], +m[3] * 60 + +m[4]];
+    });
+
+    var teile = {};
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "Europe/Berlin", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+    }).formatToParts(new Date()).forEach(function (p) { teile[p.type] = p.value; });
+    var heute = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(teile.weekday);
+    var jetzt = +teile.hour * 60 + +teile.minute;
+    var uhr = function (min) {
+      return ("0" + Math.floor(min / 60)).slice(-2) + ":" + ("0" + (min % 60)).slice(-2);
+    };
+
+    if (heute >= 0 && Object.keys(zeiten).length) {
+      var z = zeiten[heute];
+      var text;
+      if (z && jetzt >= z[0] && jetzt < z[1]) {
+        text = t("Jetzt geöffnet · bis ", "Open now · until ") + uhr(z[1]);
+        status.setAttribute("data-offen", "ja");
+      } else if (z && jetzt < z[0]) {
+        text = t("Heute ab ", "Today from ") + uhr(z[0]);
+        status.setAttribute("data-offen", "nein");
+      } else {
+        for (var i = 1; i <= 7; i++) {
+          var tag = (heute + i) % 7;
+          if (zeiten[tag]) {
+            text = t("Geschlossen · ", "Closed · ") +
+              (i === 1 ? t("morgen", "tomorrow") : kuerzel[tag]) + t(" ab ", " from ") + uhr(zeiten[tag][0]);
+            break;
+          }
+        }
+        status.setAttribute("data-offen", "nein");
+      }
+      if (text) status.textContent = text;
+    }
+  }
+
+  /* --- Kennzahlen hochzählen --------------------------------------------
+     Nur Zahlen („7", „25 min"), Wörter wie „Alle" bleiben stehen. Läuft
+     einmal, wenn die Leiste ins Bild kommt; bei reduzierter Bewegung gar
+     nicht. Der Endwert steht von Anfang an im HTML. */
+
+  if (!ruhig && "IntersectionObserver" in window) {
+    var zahlen = document.querySelectorAll(".stats__num");
+    var zaehler = new IntersectionObserver(function (eintraege) {
+      eintraege.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        zaehler.unobserve(e.target);
+        var el = e.target;
+        var m = /^(\d+)(.*)$/.exec(el.textContent.trim());
+        if (!m) return;
+        var ziel = +m[1];
+        var rest = m[2];
+        var start = null;
+        var schritt = function (ts) {
+          if (start === null) start = ts;
+          var p = Math.min(1, (ts - start) / 1100);
+          var weich = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(ziel * weich) + rest;
+          if (p < 1) window.requestAnimationFrame(schritt);
+        };
+        window.requestAnimationFrame(schritt);
+      });
+    }, { threshold: 0.6 });
+    Array.prototype.forEach.call(zahlen, function (el) { zaehler.observe(el); });
+  }
+
   /* --- Jahreszahl im Footer ---------------------------------------------- */
 
   var jahr = document.getElementById("jahr");

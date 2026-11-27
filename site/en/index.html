@@ -17,7 +17,7 @@
 <link rel="preload" href="../assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/style.css?v=14">
+<link rel="stylesheet" href="../assets/css/style.css?v=26">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="PhysioFabrik — Physiotherapy in Vellmar">
@@ -101,6 +101,7 @@
   <!-- ===== Hero ========================================================= -->
   <section class="hero">
     <div class="hero__inner">
+      <div class="hero__copy">
       <p class="eyebrow eyebrow--hero eyebrow--on-dark">Physiotherapy practice</p>
       <h1>We get bodies back up and running.</h1>
       <p class="hero__lead">
@@ -112,6 +113,17 @@
         <a class="btn btn--paper" href="tel:+4956182020145">Call · 0561 82020145</a>
         <a class="btn btn--ghost-dark" href="#contact">Appointment by email</a>
       </div>
+      </div>
+      <!-- Hero portrait from 1024px only, as on the German page. -->
+      <figure class="frame hero__media">
+        <img src="../assets/img/nils-fischer.webp" width="600" height="800" fetchpriority="high"
+             alt="Nils Fischer, owner and physiotherapist at PhysioFabrik">
+        <figcaption class="hero__tag">
+          <span class="hero__tag-name">Nils Fischer</span>
+          <span class="hero__tag-role">Lead physiotherapist</span>
+        </figcaption>
+        <span class="hero__coords" aria-hidden="true">51.3534° N · 9.4693° E</span>
+      </figure>
     </div>
   </section>
 
@@ -119,7 +131,7 @@
     <ul class="factbar__inner">
       <!-- Wie auf der deutschen Seite bewusst ohne Uhrzeiten — die genauen
            Zeiten stehen im Kontaktabschnitt. -->
-      <li>Mon–Fri by appointment</li>
+      <li class="factbar__status" id="offen-status">Mon–Fri by appointment</li>
       <li>Lift available</li>
       <li>Parking at the building</li>
       <li>Step-free access</li>
@@ -653,6 +665,6 @@
   </div>
 </footer>
 
-<script src="../assets/js/main.js?v=14" defer></script>
+<script src="../assets/js/main.js?v=16" defer></script>
 </body>
 </html>
