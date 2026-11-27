@@ -1,0 +1,134 @@
+---
+// Datenschutzerklärung. Bewusst NICHT im CMS (siehe impressum.astro).
+// Achtung: Das CMS unter /admin lädt Sveltia CMS von unpkg.com — das betrifft
+// nur die Bearbeiter:innen der Seite, nicht die Besucher, und gehört deshalb
+// nicht in diese Erklärung.
+import Layout from '../layouts/Layout.astro';
+import { kontakt, telefonLink, etage } from '../data/inhalte';
+---
+
+<Layout
+  sprache="de"
+  art="recht"
+  pfad="/datenschutz.html"
+  titel="Datenschutzerklärung — PhysioFabrik"
+  beschreibung="Datenschutzerklärung der PhysioFabrik nach DSGVO."
+  robots="index, nofollow"
+  aktuell="datenschutz"
+>
+  <article class="legal wrap">
+    <p class="eyebrow">Rechtliches</p>
+    <h1>Datenschutz&shy;erklärung</h1>
+
+    <p>
+      Diese Website ist bewusst datensparsam gebaut: keine Cookies, kein Tracking,
+      keine externen Schriftarten, keine eingebettete Karte. Es werden nur die Daten
+      verarbeitet, die für den Betrieb der Seite und die Beantwortung Ihrer Anfrage
+      technisch nötig sind.
+    </p>
+
+    <h2>Verantwortliche Stelle</h2>
+    <address>
+      {kontakt.praxisname} — Inhaber {kontakt.inhaber}<br />
+      {kontakt.strasse}, {etage('de')}{kontakt.gebaeude && (<>, im <a href={kontakt.gebaeudeUrl} target="_blank" rel="noopener">{kontakt.gebaeude}</a></>)}, {kontakt.plz} {kontakt.ort}<br />
+      Telefon: <a href={`tel:${telefonLink}`}>{kontakt.telefon}</a><br />
+      E-Mail: <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a>
+    </address>
+
+    {/* Kein Abschnitt „Datenschutzbeauftragte:r“: bei einer Praxis dieser Größe nicht
+        erforderlich (§ 38 BDSG; Art. 37 Abs. 1 lit. c DSGVO greift laut ErwGr. 91 bei
+        einzelnen Heilberuflern nicht). */}
+
+    <h2>Hosting und Server-Logfiles</h2>
+    {/* Hoster: GitHub Pages (.github/workflows/pages.yml). Ob ein AVV nach Art. 28
+        DSGVO vorliegt, ist anwaltlich zu klären — der Absatz behauptet bewusst keinen. */}
+    <p data-placeholder="hoster">
+      Die Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc.,
+      88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seite
+      werden automatisch Zugriffsdaten in Server-Logfiles verarbeitet: IP-Adresse, Datum
+      und Uhrzeit, aufgerufene Datei, übertragene Datenmenge, Browsertyp und
+      Betriebssystem. Die Verarbeitung erfolgt zur Sicherstellung eines störungsfreien
+      Betriebs und der Systemsicherheit auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
+      Dabei werden Daten in die USA übermittelt; GitHub ist unter dem
+      EU-U.S. Data Privacy Framework zertifiziert. Auf Umfang und Speicherdauer dieser
+      Protokolle hat die Praxis keinen Einfluss, sie richten sich nach den
+      Datenschutzbestimmungen von GitHub.
+    </p>
+
+    <h2>Kontaktformular, Telefon und E-Mail</h2>
+    {/* Das Formular verschickt nichts an einen Server, es öffnet nur das Mailprogramm
+        (mailto). Wird der Versand umgestellt, muss dieser Absatz angepasst werden. */}
+    <p>
+      Das Kontaktformular auf dieser Website überträgt Ihre Eingaben <strong>nicht</strong>
+      an uns. Ein Klick auf „E-Mail vorbereiten“ öffnet lediglich Ihr eigenes
+      E-Mail-Programm mit einem vorformulierten Text. Ob und wann Sie diese Nachricht
+      absenden, entscheiden Sie; bis dahin verlassen die Angaben Ihr Gerät nicht.
+    </p>
+    <p>
+      Wenn Sie uns per E-Mail oder telefonisch erreichen, verarbeiten wir Ihre Angaben —
+      Name, Telefonnummer, E-Mail-Adresse und die Beschreibung Ihres Anliegens —
+      ausschließlich zur Bearbeitung Ihrer Anfrage und für den Fall von Anschlussfragen.
+    </p>
+    <p>
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).
+      Beschreiben Sie dabei Gesundheitsdaten, verarbeiten wir diese zusätzlich auf
+      Grundlage von Art. 9 Abs. 2 lit. h DSGVO.
+    </p>
+    <p>
+      <strong>Bitte schicken Sie uns per E-Mail keine detaillierten
+      Gesundheitsdaten.</strong> Unverschlüsselte E-Mail ist dafür kein sicherer Weg.
+      Für Befunde und Diagnosen nutzen Sie bitte das Telefon oder den persönlichen Termin.
+    </p>
+    {/* Löschfrist sechs Monate: üblicher Wert, von der Praxis noch zu bestätigen. */}
+    <p>
+      Ihre Angaben löschen wir, sobald die Anfrage abschließend bearbeitet ist und keine
+      gesetzlichen Aufbewahrungspflichten entgegenstehen — spätestens nach sechs Monaten.
+      Eine erteilte Einwilligung können Sie jederzeit für die Zukunft widerrufen.
+    </p>
+
+    <h2>Cookies, Tracking, Einbindungen Dritter</h2>
+    <p>
+      Diese Website setzt keine Cookies, verwendet keine Analyse- oder Trackingdienste und
+      bindet keine Inhalte Dritter ein. Schriftarten werden von unserem eigenen Server
+      ausgeliefert; es besteht keine Verbindung zu Google Fonts. Die Anfahrtskarte ist ein
+      Bild, das ebenfalls von unserem eigenen Server kommt (Kartendaten ©
+      OpenStreetMap-Mitwirkende); es wird kein Kartendienst eingebettet. Erst ein Klick
+      auf die Karte oder den Link „In Google Maps öffnen“ führt zu Google Maps, dann
+      gelten dessen Datenschutzbestimmungen.
+    </p>
+
+    <h2>Patientendaten in der Praxis</h2>
+    <p>
+      Die Verarbeitung Ihrer Behandlungsdaten in der Praxis ist nicht Gegenstand dieser
+      Erklärung. Die Informationen dazu nach Art. 13 DSGVO erhalten Sie beim ersten Termin
+      in der Praxis.
+    </p>
+
+    <h2>Ihre Rechte</h2>
+    <ul>
+      <li>Auskunft über die zu Ihnen gespeicherten Daten (Art. 15 DSGVO)</li>
+      <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
+      <li>Löschung (Art. 17 DSGVO)</li>
+      <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+      <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+      <li>Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21 DSGVO)</li>
+      <li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
+    </ul>
+    <p>
+      Wenden Sie sich dafür an die oben genannte verantwortliche Stelle. Unabhängig davon
+      steht Ihnen ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu, in der
+      Regel bei der Behörde Ihres Wohnsitzes oder unseres Praxissitzes
+      (für den Praxissitz in Vellmar: Der Hessische Beauftragte für Datenschutz und
+      Informationsfreiheit, Postfach 3163, 65021 Wiesbaden).
+    </p>
+
+    <h2>Stand</h2>
+    <p>Diese Erklärung hat den Stand August 2026.</p>
+
+    <h2>Kein Ersatz für rechtliche Prüfung</h2>
+    <p>
+      Dieser Text ist eine Vorlage und muss vor Livegang an die tatsächlichen
+      Verarbeitungen der Praxis angepasst und rechtlich geprüft werden.
+    </p>
+  </article>
+</Layout>

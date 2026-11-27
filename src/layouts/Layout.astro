@@ -1,0 +1,77 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { Sprache } from '../data/inhalte';
+
+interface Props {
+  sprache: Sprache;
+  titel: string;
+  beschreibung: string;
+  /** Startseite: Header dunkel mit Ankerlinks; Rechtsseiten: heller Header */
+  art?: 'start' | 'recht';
+  /** Pfad der Seite für canonical, z. B. "/" oder "/en/" */
+  pfad: string;
+  teilenBeschreibung?: string;
+  robots?: string;
+  aktuell?: 'impressum' | 'datenschutz';
+}
+
+const { sprache, titel, beschreibung, art = 'start', pfad, teilenBeschreibung, robots, aktuell } = Astro.props;
+const site = 'https://physio-fabrik.de';
+// Bei Änderungen an style.css oder main.js hochzählen, damit Browser die neue Fassung laden
+const v = 27;
+---
+
+<!doctype html>
+<html lang={sprache}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titel}</title>
+    <meta name="description" content={beschreibung} />
+    {robots && <meta name="robots" content={robots} />}
+    <meta name="theme-color" content="#0E0F0E" />
+    {
+      art === 'start' && (
+        <>
+          {/* Die eigene Domain ist physio-fabrik.de MIT Bindestrich. www.physiofabrik.de
+              ohne Bindestrich ist eine fremde Domain — canonical darf nie dorthin zeigen. */}
+          <link rel="canonical" href={`${site}${pfad}`} />
+          <link rel="alternate" hreflang="de" href={`${site}/`} />
+          <link rel="alternate" hreflang="en" href={`${site}/en/`} />
+          <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+        </>
+      )
+    }
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+    <link rel="preload" href="/assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href={`/assets/css/style.css?v=${v}`} />
+    {
+      art === 'start' && (
+        <>
+          <meta property="og:type" content="website" />
+          <meta property="og:locale" content={sprache === 'en' ? 'en_GB' : 'de_DE'} />
+          <meta property="og:title" content={titel} />
+          <meta property="og:description" content={teilenBeschreibung ?? beschreibung} />
+          <meta property="og:url" content={`${site}${pfad}`} />
+          {/* Feste Adresse, damit die Vorschau beim Teilen (WhatsApp, Facebook) stabil bleibt */}
+          <meta property="og:image" content={`${site}/assets/img/vorschaubild.webp`} />
+        </>
+      )
+    }
+    <slot name="head" />
+  </head>
+  <body>
+    <Header sprache={sprache} art={art} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer sprache={sprache} art={art} aktuell={aktuell} />
+    <script is:inline src={`/assets/js/main.js?v=${v}`} defer></script>
+  </body>
+</html>

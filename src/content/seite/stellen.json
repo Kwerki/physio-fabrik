@@ -1,0 +1,30 @@
+{
+  "de": {
+    "anzeigen": true,
+    "eyebrow": "Wir suchen",
+    "titel": "Unterstützung für unser Team",
+    "einleitung": "Du bist Physiotherapeut:in, Masseur:in oder interessierst Dich für die Arbeit in unserer Praxis? Wir suchen motivierte Menschen, die mit uns gemeinsam unseren Patienten helfen möchten.",
+    "stellen": [
+      {
+        "titel": "Physiotherapeut:in (m/w/d)",
+        "umfang": "Voll- oder Teilzeit",
+        "text": "Wir suchen engagierte Physiotherapeuten die unsere aktive, individuelle und selbstwirksame Arbeitsweise teilen. (Gerne auch Berufseinsteiger.) Mitarbeit in allen Behandlungsbereichen.\n\n**Anforderungen:** Abgeschlossene Ausbildung, gerne mit Zusatzqualifikationen (KGG, MT, KG-ZNS)."
+      }
+    ],
+    "kontaktSatz": "Interesse? Kontaktieren Sie uns direkt unter"
+  },
+  "en": {
+    "anzeigen": true,
+    "eyebrow": "Careers",
+    "titel": "Join our team",
+    "einleitung": "Are you a physiotherapist, massage therapist or interested in working at our practice? We are looking for motivated people who want to help our patients together with us.",
+    "stellen": [
+      {
+        "titel": "Physiotherapist (m/f/d)",
+        "umfang": "Full or part time",
+        "text": "We are looking for committed physiotherapists who share our active, individual and self-empowering approach. (Recent graduates welcome.) You will work across all treatment areas.\n\n**Requirements:** Completed physiotherapy training, ideally with additional qualifications (KGG, MT, KG-ZNS)."
+      }
+    ],
+    "kontaktSatz": "Interested? Contact us directly on"
+  }
+}

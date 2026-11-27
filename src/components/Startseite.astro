@@ -1,0 +1,383 @@
+---
+// Die komplette Startseite, für Deutsch und Englisch dieselbe Vorlage.
+// Texte und Fotos kommen aus src/content/seite/*.json (CMS unter /admin).
+// Klassennamen und Aufbau entsprechen 1:1 dem bisherigen statischen HTML —
+// das gesamte Design steckt weiterhin in public/assets/css/style.css.
+import { Image } from 'astro:assets';
+import {
+  kontakt, telefonLink, start, leistungen, team, praxis, stellen, kontaktbereich, zeiten, etage,
+  type Sprache,
+} from '../data/inhalte';
+import { foto } from '../lib/fotos';
+import { absaetze } from '../lib/text';
+import { anker, ui } from '../lib/sprache';
+
+interface Props {
+  sprache: Sprache;
+}
+
+const { sprache } = Astro.props;
+const t = ui[sprache];
+const a = anker[sprache];
+const en = sprache === 'en';
+
+const s = start(sprache);
+const l = leistungen(sprache);
+const tm = team(sprache);
+const p = praxis(sprache);
+const st = stellen(sprache);
+const k = kontaktbereich(sprache);
+
+const ausschnitt = (prozent: number) => `object-position: center ${prozent}%`;
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${kontakt.praxisname} ${kontakt.strasse} ${kontakt.plz} ${kontakt.ort}`,
+)}`;
+const breiten = (bild: { width: number }, wunsch: number[]) => {
+  const passend = wunsch.filter((w) => w < bild.width);
+  return [...passend, Math.min(bild.width, wunsch[wunsch.length - 1])];
+};
+---
+
+<!-- ===== Hero ========================================================= -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow eyebrow--hero eyebrow--on-dark">{s.eyebrow}</p>
+      <h1>{s.titel}</h1>
+      <p class="hero__lead">{s.einleitung}</p>
+      <div class="hero__actions">
+        <a class="btn btn--paper" href={`tel:${telefonLink}`}>{s.knopfAnrufen} · {kontakt.telefon}</a>
+        <a class="btn btn--ghost-dark" href={`#${a.kontakt}`}>{s.knopfEmail}</a>
+      </div>
+    </div>
+    {/* Hero-Portrait erst ab 1024px (style.css). Auf dem Handy würde es den Inhalt unter die Falz schieben. */}
+    <figure class="frame hero__media">
+      <Image
+        src={foto(s.foto)}
+        alt={s.fotoBeschreibung}
+        widths={breiten(foto(s.foto), [400, 800])}
+        sizes="400px"
+        loading="eager"
+        fetchpriority="high"
+        style={ausschnitt(s.fotoAusschnitt)}
+      />
+      <figcaption class="hero__tag">
+        <span class="hero__tag-name">{s.fotoName}</span>
+        <span class="hero__tag-role">{s.fotoRolle}</span>
+      </figcaption>
+      <span class="hero__coords" aria-hidden="true">{kontakt.lat.toFixed(4)}° N · {kontakt.lon.toFixed(4)}° E</span>
+    </figure>
+  </div>
+</section>
+
+<div class="factbar">
+  <ul class="factbar__inner">
+    {/* Die erste Zelle ersetzt main.js durch den Live-Öffnungsstatus; der Text hier ist der Rückfall ohne JS. */}
+    {s.infoleiste.map((eintrag, i) => (i === 0 ? <li class="factbar__status" id="offen-status">{eintrag}</li> : <li>{eintrag}</li>))}
+  </ul>
+</div>
+
+<!-- ===== Leistungen =================================================== -->
+<section class="section section--surface" id={a.leistungen} aria-labelledby="leistungen-titel">
+  <div class="section__inner">
+    <div class="section__intro">
+      <div class="section__head">
+        <p class="eyebrow">{l.eyebrow}</p>
+        <h2 id="leistungen-titel">{l.titel}</h2>
+        <Fragment set:html={absaetze(l.einleitung)} />
+      </div>
+
+      <figure class="frame services__band">
+        <Image
+          src={foto(l.foto)}
+          alt={l.fotoBeschreibung}
+          widths={breiten(foto(l.foto), [600, 900, 1300])}
+          sizes="(min-width: 1024px) 55vw, 100vw"
+          style={ausschnitt(l.fotoAusschnitt)}
+        />
+      </figure>
+    </div>
+
+    <div class="services__groups">
+      {
+        l.gruppen.map((gruppe) => (
+          <div class="services__group">
+            <p class="eyebrow eyebrow--thick">{gruppe.titel}</p>
+            {gruppe.hinweis && <p class="services__note">{gruppe.hinweis}</p>}
+            <ul class="rows rows--lg rows--acc">
+              {gruppe.eintraege.map((e) => (
+                <li>
+                  <details>
+                    <summary>
+                      <span class="rows__name">{e.name}</span>
+                      {e.kuerzel && <span class="rows__meta" lang={en ? 'de' : undefined}>{e.kuerzel}</span>}
+                    </summary>
+                    <div class="rows__text" set:html={absaetze(e.text)} />
+                  </details>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== Team ========================================================= -->
+<section class="section" id={a.team} aria-labelledby="team-titel">
+  <div class="section__inner">
+    <div class="section__head">
+      <p class="eyebrow">{tm.eyebrow}</p>
+      <h2 id="team-titel">{tm.titel}</h2>
+      <p>{tm.einleitung}</p>
+    </div>
+
+    <ul class="team__duo">
+      {
+        tm.personen.map((person) => (
+          <li class="team__person">
+            {person.foto ? (
+              <figure class="frame team__photo">
+                <Image
+                  src={foto(person.foto)}
+                  alt={person.fotoBeschreibung ?? person.name}
+                  widths={breiten(foto(person.foto), [300, 600])}
+                  sizes="(min-width: 640px) 200px, 100vw"
+                />
+              </figure>
+            ) : (
+              /* Kein Foto hinterlegt: Praxislogo als Platzhalter */
+              <figure class="frame team__photo team__photo--leer">
+                <img class="team__platzhalter-logo" src="/assets/img/logo-schwarz.png" width="1685" height="266" loading="lazy" alt="" />
+              </figure>
+            )}
+            <div class="team__text">
+              <h3 class="team__name">{person.name}</h3>
+              <p class="team__role">{person.rolle}</p>
+              <ul class="team__quals">
+                {person.qualifikationen.map((q) => <li>{q}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      st.anzeigen && (
+        <p class="team__jobs-link">
+          <a href={`#${a.stellen}`}>{tm.jobsLink}</a>
+        </p>
+      )
+    }
+
+    {
+      tm.bandFoto && (
+        <figure class="frame team__band">
+          <Image
+            src={foto(tm.bandFoto)}
+            alt={tm.bandFotoBeschreibung ?? ''}
+            widths={breiten(foto(tm.bandFoto), [700, 1400])}
+            sizes="100vw"
+            style={ausschnitt(tm.bandFotoAusschnitt)}
+          />
+          {tm.bandFotoTitel && <figcaption>{tm.bandFotoTitel}</figcaption>}
+        </figure>
+      )
+    }
+  </div>
+</section>
+
+<!-- ===== Praxis ======================================================= -->
+<section class="section section--surface" id={a.praxis} aria-labelledby="praxis-titel">
+  <div class="section__inner">
+    <div class="section__intro">
+      <div class="section__head">
+        <p class="eyebrow">{p.eyebrow}</p>
+        <h2 id="praxis-titel">{p.titel}</h2>
+        <p>{p.einleitung}</p>
+      </div>
+
+      <figure class="frame praxis__photo">
+        <Image
+          src={foto(p.foto)}
+          alt={p.fotoBeschreibung}
+          widths={breiten(foto(p.foto), [600, 900, 1360])}
+          sizes="(min-width: 1024px) 55vw, 100vw"
+          style={ausschnitt(p.fotoAusschnitt)}
+        />
+      </figure>
+    </div>
+
+    <ul class="stats">
+      {
+        p.kennzahlen.map((z) => (
+          <li>
+            <span class="stats__num">{z.zahl}</span>
+            <span class="stats__label">{z.text}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ul class="praxis__features">
+      {p.merkmale.map((m) => <li>{m}</li>)}
+    </ul>
+
+    <ul class="gallery">
+      {
+        p.galerie.map((g) => (
+          <li>
+            <figure class="frame">
+              <Image src={foto(g.foto)} alt={g.beschreibung} widths={breiten(foto(g.foto), [300, 600])} sizes="(min-width: 1024px) 20vw, 50vw" />
+              <figcaption>{g.titel}</figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ===== Wir suchen =================================================== -->
+{
+  st.anzeigen && (
+    <section class="section" id={a.stellen} aria-labelledby="stellen-titel">
+      <div class="section__inner">
+        <div class="section__head">
+          <p class="eyebrow">{st.eyebrow}</p>
+          <h2 id="stellen-titel">{st.titel}</h2>
+          <p>{st.einleitung}</p>
+        </div>
+
+        <ul class="rows rows--lg">
+          {st.stellen.map((stelle) => (
+            <li>
+              <div class="rows__card">
+                <h3 class="rows__name">{stelle.titel}</h3>
+                {stelle.umfang && <p class="rows__meta">{stelle.umfang}</p>}
+                <div class="rows__text">
+                  <Fragment set:html={absaetze(stelle.text)} />
+                  <p>
+                    {st.kontaktSatz} <a href={`tel:${telefonLink}`}>{kontakt.telefon}</a> {t.oder}{' '}
+                    <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<!-- ===== Kontakt ====================================================== -->
+<section class="section section--dark" id={a.kontakt} aria-labelledby="kontakt-titel">
+  <div class="section__inner">
+    <div class="section__head">
+      <p class="eyebrow eyebrow--on-dark">{k.eyebrow}</p>
+      <h2 id="kontakt-titel">{k.titel}</h2>
+    </div>
+
+    <div class="contact__grid">
+      <div class="contact__data">
+        <div class="contact__block">
+          <span class="label">{t.praxis}</span>
+          <address>
+            {kontakt.praxisname}<br />
+            {kontakt.strasse}, {etage(sprache)}<br />
+            {
+              kontakt.gebaeude && (
+                <>
+                  {t.imGebaeude}{' '}
+                  {kontakt.gebaeudeUrl ? (
+                    <a href={kontakt.gebaeudeUrl} target="_blank" rel="noopener">{kontakt.gebaeude}</a>
+                  ) : (
+                    kontakt.gebaeude
+                  )}
+                  <br />
+                </>
+              )
+            }
+            {kontakt.plz} {kontakt.ort}
+          </address>
+        </div>
+
+        <div class="contact__block">
+          <span class="label">{t.direkt}</span>
+          <p><a href={`tel:${telefonLink}`}>{kontakt.telefon}</a></p>
+          <p><a href={`mailto:${kontakt.email}`}>{kontakt.email}</a></p>
+        </div>
+
+        <div class="contact__block">
+          <span class="label">{t.zeiten}</span>
+          {/* main.js liest diese Tabelle für den Öffnungsstatus oben in der Infoleiste */}
+          <dl class="hours">
+            {zeiten(sprache).map((z) => (<><dt>{z.tag}</dt><dd>{z.zeit}</dd></>))}
+          </dl>
+        </div>
+
+        {/* Anfahrtskarte: statisches Bild vom eigenen Server (werkzeuge/karte.py). Bewusst
+            KEIN Google-Maps-iframe — das bräuchte eine Einwilligung. Die OSM-Quellenangabe
+            ist Lizenzpflicht (ODbL), bitte stehen lassen. */}
+        <div class="contact__block">
+          <span class="label">{t.anfahrt}</span>
+          <figure class="contact__map">
+            <a href={mapsUrl} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <img src="/assets/img/anfahrt-karte.svg" width="800" height="600" loading="lazy" decoding="async" alt="" />
+            </a>
+            <figcaption>
+              <a href={mapsUrl} target="_blank" rel="noopener">{t.maps}</a>
+              <span>{t.karte}: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">{t.osm}</a></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      {/* Zwischenlösung: Das Formular verschickt nichts selbst, sondern öffnet das
+          Mailprogramm des Besuchers mit vorbereitetem Text (main.js). Die Adresse
+          steht darunter im Klartext als Rückfallweg. Die stillgelegte Fassung mit
+          Serverversand steht in der Git-Historie (site/index.html). */}
+      <form class="form" id="kontaktformular" novalidate>
+        <div class="form__cols">
+          <div class="form__row">
+            <label for="f-name">{t.name}</label>
+            <input type="text" id="f-name" name="name" placeholder={t.namePh} required autocomplete="name" aria-describedby="e-name" />
+            <p class="form__error" id="e-name" role="alert"></p>
+          </div>
+
+          <div class="form__row">
+            <label for="f-tel">{t.tel}</label>
+            <input type="tel" id="f-tel" name="telefon" placeholder={t.telPh} required autocomplete="tel" aria-describedby="e-tel" />
+            <p class="form__error" id="e-tel" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <label for="f-anliegen">{t.anliegen}</label>
+          <textarea id="f-anliegen" name="anliegen" required placeholder={t.anliegenPh} aria-describedby="e-anliegen"></textarea>
+          <p class="form__error" id="e-anliegen" role="alert"></p>
+        </div>
+
+        <p class="form__hint">{k.formularHinweis}</p>
+
+        <button class="btn btn--green" type="submit">{t.senden}</button>
+
+        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+
+        <div class="form__direct">
+          <span class="label">{t.direktSchreiben}</span>
+          <div class="form__direct-row">
+            <a class="form__direct-mail" href={`mailto:${kontakt.email}`}>{kontakt.email}</a>
+            <button class="form__copy" type="button" id="mail-kopieren" data-mail={kontakt.email}>{t.kopieren}</button>
+          </div>
+          <p class="form__copy-status" id="kopier-status" role="status" aria-live="polite"></p>
+        </div>
+
+        {k.gesundheitsHinweis && <p class="form__hint">{k.gesundheitsHinweis}</p>}
+      </form>
+    </div>
+  </div>
+</section>

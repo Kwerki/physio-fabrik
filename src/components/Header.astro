@@ -1,0 +1,95 @@
+---
+import { kontakt, telefonLink, stellen, start, type Sprache } from '../data/inhalte';
+import { anker, ui } from '../lib/sprache';
+
+interface Props {
+  sprache: Sprache;
+  art: 'start' | 'recht';
+}
+
+const { sprache, art } = Astro.props;
+const t = ui[sprache];
+const a = anker[sprache];
+// Auf den Rechtsseiten führen die Menüpunkte zurück auf die Startseite
+const basis = art === 'start' ? '' : sprache === 'en' ? '/en/' : '/';
+const home = sprache === 'en' ? '/en/' : '/';
+const punkte = (['leistungen', 'team', 'praxis', 'stellen', 'kontakt'] as const).filter(
+  (p) => p !== 'stellen' || stellen(sprache).anzeigen,
+);
+const s = start(sprache);
+const hell = art === 'recht';
+---
+
+<a class="skip-link" href="#main">{t.skip}</a>
+
+<header class:list={['site-header', { 'site-header--light': hell }]}>
+  <div class="site-header__inner">
+    <a class="logo" href={home} aria-label={t.home}>
+      <img src={hell ? '/assets/img/logo-schwarz.png' : '/assets/img/logo-weiss.png'} alt="PhysioFabrik" />
+    </a>
+
+    <nav class="nav" aria-label={t.navHaupt}>
+      <ul class="nav__list">
+        {punkte.map((p) => <li><a href={`${basis}#${a[p]}`}>{t.nav[p]}</a></li>)}
+      </ul>
+      <p class="lang">
+        {
+          sprache === 'de' ? (
+            <>
+              <span aria-current="true" lang="de">DE</span>
+              <span aria-hidden="true">/</span>
+              <a href="/en/" hreflang="en" lang="en">EN</a>
+            </>
+          ) : (
+            <>
+              <a href="/" hreflang="de" lang="de">DE</a>
+              <span aria-hidden="true">/</span>
+              <span aria-current="true" lang="en">EN</span>
+            </>
+          )
+        }
+      </p>
+      <a class="header-cta" href={`${basis}#${a.kontakt}`}>{t.termin}</a>
+    </nav>
+
+    <button class="burger" type="button" id="menu-open" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+      <span class="visually-hidden">{t.menueAuf}</span>
+    </button>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu__bar">
+    <a class="logo" href={home} aria-label={t.home}>
+      <img src="/assets/img/logo-weiss.png" alt="PhysioFabrik" />
+    </a>
+    <button class="menu__close" type="button" id="menu-close">
+      <span class="visually-hidden">{t.menueZu}</span>
+    </button>
+  </div>
+  <nav class="menu__nav" aria-label={t.navMobil}>
+    {punkte.map((p) => <a href={`${basis}#${a[p]}`}>{t.nav[p]}</a>)}
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--green" href={`tel:${telefonLink}`}>{s.knopfAnrufen} · {kontakt.telefon}</a>
+    <a class="btn btn--ghost-dark" href={`${basis}#${a.kontakt}`}>{s.knopfEmail}</a>
+    <p class="menu__lang">
+      {
+        sprache === 'de' ? (
+          <>
+            <span aria-current="true" lang="de">DE</span>
+            <span aria-hidden="true">/</span>
+            <a href="/en/" hreflang="en" lang="en">EN</a>
+          </>
+        ) : (
+          <>
+            <a href="/" hreflang="de" lang="de">DE</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="true" lang="en">EN</span>
+          </>
+        )
+      }
+    </p>
+  </div>
+</div>

@@ -19,7 +19,7 @@ from PIL import Image, ImageOps
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(WURZEL, "design_handoff_physiofabrik", "assets")
-DST = os.path.join(WURZEL, "site", "assets", "img")
+DST = os.path.join(WURZEL, "src", "assets", "photos")
 
 # Quelldatei -> (Zielname ohne Endung, maximale Breite in Pixeln)
 # Die Breiten richten sich nach der groessten Flaeche, in der das Bild im
@@ -29,7 +29,7 @@ JOBS = [
     ("trainings_bereich_2.jpeg", "trainingsflaeche-weit", 1600),
     # Stockfoto (Unsplash-Lizenz, Edward Muntinga), bereits auf 3:4 beschnitten.
     # Ersetzt das Handyfoto behandlung_am_mensch.jpeg, das fuer die Flaeche im
-    # Team-Band zu eng geschnitten war. Quelle steht in site/PLATZHALTER.md.
+    # Team-Band zu eng geschnitten war. Quelle steht in PLATZHALTER.md.
     ("manuelle_therapie_stock.jpeg", "manuelle-therapie", 1200),
     # Portraet Nils Fischer, Praxisleitung. 3:4 direkt aus dem Handy, keine
     # weitere Beschneidung noetig. Drei Alternativaufnahmen liegen daneben

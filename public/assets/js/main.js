@@ -216,8 +216,11 @@
         text.push("", t("(Der Text wurde gekürzt — bitte hier ergänzen.)", "(The text was shortened — please complete it here.)"));
       }
 
+      // Adresse aus dem Formular (data-mail), damit sie nur im CMS gepflegt wird
+      var kopierKnopf = document.getElementById("mail-kopieren");
+      var adresse = (kopierKnopf && kopierKnopf.getAttribute("data-mail")) || "physio.fabrik@outlook.de";
       var ziel =
-        "mailto:physio.fabrik@outlook.de" +
+        "mailto:" + adresse +
         "?subject=" + encodeURIComponent(t("Terminanfrage über die Website", "Appointment request via the website")) +
         "&body=" + encodeURIComponent(text.join("\n"));
 
@@ -225,9 +228,9 @@
         status.dataset.state = "todo";
         status.textContent = t(
           "Ihr E-Mail-Programm sollte sich jetzt öffnen. Tut sich nichts, " +
-            "schreiben Sie uns bitte direkt an physio.fabrik@outlook.de.",
+            "schreiben Sie uns bitte direkt an " + adresse + ".",
           "Your email program should open now. If nothing happens, " +
-            "please write to us directly at physio.fabrik@outlook.de."
+            "please write to us directly at " + adresse + "."
         );
       }
 

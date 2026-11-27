@@ -1,0 +1,78 @@
+---
+// Impressum. Bewusst NICHT im CMS: Rechtstexte sollen nicht versehentlich
+// geändert werden. Anschrift, Telefon und E-Mail kommen aber aus den
+// Kontaktdaten (CMS → Kontaktdaten & Öffnungszeiten) und bleiben so aktuell.
+import Layout from '../layouts/Layout.astro';
+import { kontakt, telefonLink, etage } from '../data/inhalte';
+---
+
+<Layout
+  sprache="de"
+  art="recht"
+  pfad="/impressum.html"
+  titel="Impressum — PhysioFabrik"
+  beschreibung="Impressum und Anbieterkennzeichnung der PhysioFabrik."
+  robots="index, nofollow"
+  aktuell="impressum"
+>
+  <article class="legal wrap">
+    <p class="eyebrow">Rechtliches</p>
+    <h1>Impressum</h1>
+
+    <p>Angaben gemäß § 5 DDG (vormals § 5 TMG).</p>
+
+    <h2>Anbieter</h2>
+    <address>
+      {kontakt.praxisname} — Inhaber {kontakt.inhaber}<br />
+      {kontakt.strasse}, {etage('de')}<br />
+      {kontakt.gebaeude && (<>im <a href={kontakt.gebaeudeUrl} target="_blank" rel="noopener">{kontakt.gebaeude}</a><br /></>)}
+      {kontakt.plz} {kontakt.ort}<br />
+      Deutschland
+    </address>
+
+    <h2>Kontakt</h2>
+    <address>
+      Telefon: <a href={`tel:${telefonLink}`}>{kontakt.telefon}</a><br />
+      E-Mail: <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a>
+    </address>
+
+    <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+    {/* Aufsichtsbehörde laut Auskunft der Praxis: Gesundheitsamt Kassel. */}
+    <p>
+      Berufsbezeichnung: Physiotherapeut (verliehen in der Bundesrepublik Deutschland).
+      Zuständige Aufsichtsbehörde: Gesundheitsamt Kassel.
+      Es gelten das Masseur- und Physiotherapeutengesetz (MPhG) sowie die zugehörige
+      Ausbildungs- und Prüfungsverordnung, einsehbar unter
+      <a href="https://www.gesetze-im-internet.de/mphg/" rel="noopener">gesetze-im-internet.de</a>.
+    </p>
+
+    <h2>Umsatzsteuer</h2>
+    {/* Keine USt-IdNr vorhanden. § 5 DDG verlangt sie nur „soweit vorhanden“. */}
+    <p>Heilbehandlungen sind nach § 4 Nr. 14 UStG von der Umsatzsteuer befreit.</p>
+
+    <h2>Verantwortlich für den Inhalt</h2>
+    <p>{kontakt.inhaber}, Anschrift wie oben.</p>
+
+    <h2>Streitbeilegung</h2>
+    <p>
+      Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+      Verbraucherschlichtungsstelle teilzunehmen.
+    </p>
+
+    <h2>Haftung für Inhalte und Links</h2>
+    <p>
+      Die Inhalte dieser Seiten wurden mit Sorgfalt erstellt. Für die Richtigkeit,
+      Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
+      Für Inhalte verlinkter externer Seiten ist stets deren Betreiber verantwortlich.
+    </p>
+
+    <h2>Urheberrecht</h2>
+    <p>
+      Die durch die Betreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
+      deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet.
+    </p>
+
+    <h2>Hinweis</h2>
+    <p>Die Angaben auf dieser Website ersetzen keine ärztliche Beratung oder Diagnose.</p>
+  </article>
+</Layout>

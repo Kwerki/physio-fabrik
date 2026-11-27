@@ -26,7 +26,7 @@ import urllib.parse
 import urllib.request
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ZIEL = os.path.join(WURZEL, "site", "assets", "img", "anfahrt-karte.svg")
+ZIEL = os.path.join(WURZEL, "public", "assets", "img", "anfahrt-karte.svg")
 CACHE = os.path.join(WURZEL, "werkzeuge", ".karte-cache.json")
 SCHRIFT = os.path.join(WURZEL, "site", "assets", "fonts", "ibm-plex-mono-400-latin.woff2")
 

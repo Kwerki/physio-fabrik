@@ -1,0 +1,28 @@
+{
+  "de": {
+    "eyebrow": "Praxis für Physiotherapie",
+    "titel": "Wir bringen Körper zurück in Betrieb.",
+    "einleitung": "Krankengymnastik, manuelle Therapie, Gerätetraining und CMD — strukturiert, nachvollziehbar, ohne Fließband. Alle Kassen und Privat.",
+    "knopfAnrufen": "Anrufen",
+    "knopfEmail": "Termin per E-Mail",
+    "foto": "/photos/nils-fischer.webp",
+    "fotoBeschreibung": "Nils Fischer, Inhaber und Physiotherapeut der PhysioFabrik",
+    "fotoAusschnitt": 88,
+    "fotoName": "Nils Fischer",
+    "fotoRolle": "Leitender Physiotherapeut",
+    "infoleiste": ["Mo–Fr nach Vereinbarung", "Fahrstuhl vorhanden", "Parkplätze am Haus", "Barrierefrei"]
+  },
+  "en": {
+    "eyebrow": "Physiotherapy practice",
+    "titel": "We get bodies back up and running.",
+    "einleitung": "Physiotherapy, manual therapy, equipment-based training and jaw joint treatment — structured, transparent, no conveyor belt. Statutory and private insurance. Treatment can be carried out in English.",
+    "knopfAnrufen": "Call",
+    "knopfEmail": "Appointment by email",
+    "foto": "/photos/nils-fischer.webp",
+    "fotoBeschreibung": "Nils Fischer, owner and physiotherapist at PhysioFabrik",
+    "fotoAusschnitt": 88,
+    "fotoName": "Nils Fischer",
+    "fotoRolle": "Lead physiotherapist",
+    "infoleiste": ["Mon–Fri by appointment", "Lift available", "Parking at the building", "Step-free access"]
+  }
+}

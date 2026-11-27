@@ -1,0 +1,56 @@
+{
+  "de": {
+    "eyebrow": "Praxis",
+    "titel": "Werkstatt statt Wartezimmer.",
+    "einleitung": "Große Trainingsfläche, geschlossene Behandlungsräume, kurze Wege. Termine werden so getaktet, dass die Zeit auch wirklich bei Ihnen ankommt.",
+    "foto": "/photos/trainingsflaeche-weit.webp",
+    "fotoBeschreibung": "Weite Trainingsfläche mit Seilzügen, Hantelbank und Spiegelwand, Fensterfront über den Dächern des Ortes",
+    "fotoAusschnitt": 50,
+    "kennzahlen": [
+      { "zahl": "7", "text": "Jahre Praxis" },
+      { "zahl": "25 min", "text": "Behandlungszeit" },
+      { "zahl": "Alle", "text": "Kassen & Privat" }
+    ],
+    "merkmale": [
+      "Trainingsfläche mit medizinischen Geräten (KGG-zugelassen)",
+      "Geschlossene Behandlungsräume",
+      "Barrierefrei, 2. OG mit Fahrstuhl",
+      "Parkplätze direkt am Haus",
+      "Keine Hausbesuche"
+    ],
+    "galerie": [
+      { "foto": "/photos/behandlungszimmer.webp", "titel": "Erster Behandlungsraum", "beschreibung": "Behandlungsraum mit Liege, Sprossenwand, Anatomiemodell und Hantelablage" },
+      { "foto": "/photos/behandlungsraum-orange.webp", "titel": "Zweiter Behandlungsraum", "beschreibung": "Behandlungsraum mit Liege, Wandposter des Muskelsystems und Stuhl" },
+      { "foto": "/photos/behandlungsraum-balkon.webp", "titel": "Dritter Behandlungsraum", "beschreibung": "Behandlungsraum mit Liege vor der Balkontür" },
+      { "foto": "/photos/praxis-flur.webp", "titel": "Empfang und Flur", "beschreibung": "Flur der Praxis mit Empfangstresen, dahinter Blick in die Trainingsfläche" },
+      { "foto": "/photos/sitzecke.webp", "titel": "Wartebereich", "beschreibung": "Sitzecke mit zwei Stühlen und Tisch unter einem großformatigen Landschaftsbild" }
+    ]
+  },
+  "en": {
+    "eyebrow": "Practice",
+    "titel": "A workshop, not a waiting room.",
+    "einleitung": "A large training area, private treatment rooms, short distances. Appointments are scheduled so that the time is really spent on you.",
+    "foto": "/photos/trainingsflaeche-weit.webp",
+    "fotoBeschreibung": "Wide training area with cable machines, weight bench and mirror wall, windows overlooking the rooftops of the town",
+    "fotoAusschnitt": 50,
+    "kennzahlen": [
+      { "zahl": "7", "text": "Years in practice" },
+      { "zahl": "25 min", "text": "Treatment time" },
+      { "zahl": "All", "text": "Insurers & private" }
+    ],
+    "merkmale": [
+      "Training area with medical equipment (approved for KGG)",
+      "Private treatment rooms",
+      "Step-free, 2nd floor with lift",
+      "Parking directly at the building",
+      "No home visits"
+    ],
+    "galerie": [
+      { "foto": "/photos/behandlungszimmer.webp", "titel": "First treatment room", "beschreibung": "Treatment room with table, wall bars, anatomical model and dumbbell rack" },
+      { "foto": "/photos/behandlungsraum-orange.webp", "titel": "Second treatment room", "beschreibung": "Treatment room with table, muscular system poster on the wall and a chair" },
+      { "foto": "/photos/behandlungsraum-balkon.webp", "titel": "Third treatment room", "beschreibung": "Treatment room with table in front of the balcony door" },
+      { "foto": "/photos/praxis-flur.webp", "titel": "Reception and hallway", "beschreibung": "Practice hallway with reception desk, the training area visible behind it" },
+      { "foto": "/photos/sitzecke.webp", "titel": "Waiting area", "beschreibung": "Seating area with two chairs and a table beneath a large landscape picture" }
+    ]
+  }
+}

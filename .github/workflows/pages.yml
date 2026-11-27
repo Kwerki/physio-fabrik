@@ -1,5 +1,11 @@
 name: Deploy Pages
 
+# Baut die Seite bei jedem Push auf main — auch nach jeder Änderung aus dem
+# CMS (/admin), das direkt in dieses Repository speichert — und veröffentlicht
+# sie auf GitHub Pages (physio-fabrik.de, siehe public/CNAME).
+# Schlägt der Build fehl (z. B. weil im CMS ein Pflichtfeld leer ist), bleibt
+# die bisherige Fassung online.
+
 on:
   push:
     branches: [main]
@@ -15,16 +21,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/configure-pages@v5
+      - run: npm ci
+      - run: npm run build
+        env:
+          SITE_URL: https://physio-fabrik.de
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
       - id: deployment
         uses: actions/deploy-pages@v4

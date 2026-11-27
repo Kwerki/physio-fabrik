@@ -1,0 +1,21 @@
+{
+  "praxisname": "PhysioFabrik",
+  "inhaber": "Nils Fischer",
+  "strasse": "Brüder-Grimm-Straße 32",
+  "etage": 2,
+  "plz": "34246",
+  "ort": "Vellmar",
+  "gebaeude": "Vellmax",
+  "gebaeudeUrl": "https://vellmax.de",
+  "telefon": "0561 82020145",
+  "email": "physio.fabrik@outlook.de",
+  "lat": 51.3534,
+  "lon": 9.4693,
+  "oeffnungszeiten": [
+    { "tag": "Mo", "von": "10:00", "bis": "18:00" },
+    { "tag": "Di", "von": "08:00", "bis": "16:00" },
+    { "tag": "Mi", "von": "12:00", "bis": "20:00" },
+    { "tag": "Do", "von": "10:00", "bis": "18:00" },
+    { "tag": "Fr", "von": "10:00", "bis": "14:00" }
+  ]
+}

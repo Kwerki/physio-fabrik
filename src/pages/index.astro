@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Startseite from '../components/Startseite.astro';
+import { allgemein, kontakt, tageSchema } from '../data/inhalte';
+
+const g = allgemein('de');
+
+// Strukturierte Daten für Suchmaschinen (schema.org). Werden aus denselben
+// Kontaktdaten erzeugt wie der sichtbare Kontaktabschnitt — können also nicht
+// mehr auseinanderlaufen.
+const praxis = {
+  '@context': 'https://schema.org',
+  '@type': 'Physiotherapy',
+  name: kontakt.praxisname,
+  url: 'https://physio-fabrik.de/',
+  logo: 'https://physio-fabrik.de/assets/img/favicon-192.png',
+  image: 'https://physio-fabrik.de/assets/img/vorschaubild.webp',
+  telephone: `+49 ${kontakt.telefon.replace(/^0/, '')}`,
+  email: kontakt.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: kontakt.strasse,
+    postalCode: kontakt.plz,
+    addressLocality: kontakt.ort,
+    addressRegion: 'Hessen',
+    addressCountry: 'DE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: kontakt.lat, longitude: kontakt.lon },
+  openingHoursSpecification: kontakt.oeffnungszeiten.map((z) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: tageSchema[z.tag],
+    opens: z.von,
+    closes: z.bis,
+  })),
+  availableLanguage: ['de', 'en'],
+};
+---
+
+<Layout sprache="de" titel={g.seoTitel} beschreibung={g.seoBeschreibung} teilenBeschreibung={g.teilenBeschreibung} pfad="/">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(praxis)} />
+  <Startseite sprache="de" />
+</Layout>

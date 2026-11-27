@@ -1,0 +1,14 @@
+{
+  "de": {
+    "eyebrow": "Kontakt",
+    "titel": "Termin anfragen — Rückruf innerhalb von 24 Stunden.",
+    "formularHinweis": "Der Knopf öffnet Ihr E-Mail-Programm mit den Angaben — abgeschickt wird die Mail erst von Ihnen.",
+    "gesundheitsHinweis": ""
+  },
+  "en": {
+    "eyebrow": "Contact",
+    "titel": "Request an appointment — we call back within 24 hours.",
+    "formularHinweis": "The button opens your email program with your details — the email is only sent once you send it yourself.",
+    "gesundheitsHinweis": "Please do not send detailed health information by email — it is not a secure channel. Bring findings to your appointment or discuss them by phone."
+  }
+}

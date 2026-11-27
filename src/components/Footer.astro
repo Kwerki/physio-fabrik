@@ -1,0 +1,53 @@
+---
+import { allgemein, kontakt, telefonLink, etage, type Sprache } from '../data/inhalte';
+import { anker, ui } from '../lib/sprache';
+
+interface Props {
+  sprache: Sprache;
+  art: 'start' | 'recht';
+  aktuell?: 'impressum' | 'datenschutz';
+}
+
+const { sprache, art, aktuell } = Astro.props;
+const t = ui[sprache];
+const a = anker[sprache];
+const basis = art === 'start' ? '' : sprache === 'en' ? '/en/' : '/';
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <img src="/assets/img/logo-weiss.png" alt="PhysioFabrik" />
+      <address>
+        {kontakt.strasse}, {etage(sprache)}{' '}
+        {
+          kontakt.gebaeude && (
+            <>
+              · {t.imGebaeude}{' '}
+              {kontakt.gebaeudeUrl ? (
+                <a href={kontakt.gebaeudeUrl} target="_blank" rel="noopener">{kontakt.gebaeude}</a>
+              ) : (
+                kontakt.gebaeude
+              )}
+            </>
+          )
+        }
+        · {kontakt.plz} {kontakt.ort}<br />
+        <a href={`tel:${telefonLink}`}>{kontakt.telefon}</a> ·
+        <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a>
+      </address>
+    </div>
+
+    {/* Impressum und Datenschutz gibt es nur auf Deutsch; für eine deutsche Praxis genügt das. */}
+    <nav class="site-footer__links" aria-label={t.rechtliches}>
+      <a href={`${basis}#${a.leistungen}`}>{t.nav.leistungen}</a>
+      <a href={`${basis}#${a.kontakt}`}>{t.nav.kontakt}</a>
+      <a href="/impressum.html" lang="de" aria-current={aktuell === 'impressum' ? 'page' : undefined}>Impressum</a>
+      <a href="/datenschutz.html" lang="de" aria-current={aktuell === 'datenschutz' ? 'page' : undefined}>Datenschutz</a>
+    </nav>
+
+    <p class="site-footer__legal">
+      © <span id="jahr">{new Date().getFullYear()}</span> PhysioFabrik. {allgemein(sprache).fusszeile}
+    </p>
+  </div>
+</footer>

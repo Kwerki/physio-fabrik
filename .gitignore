@@ -19,3 +19,7 @@ dist/
 
 # Zwischenspeicher von werkzeuge/karte.py (OSM-Rohdaten)
 werkzeuge/.karte-cache.json
+
+# Astro
+.astro/
+.env

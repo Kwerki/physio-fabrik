@@ -1,0 +1,292 @@
+# Sveltia CMS – Admin-Panel unter /admin
+# Doku: https://sveltiacms.app/en/docs
+# Die Felder hier müssen zu src/data/inhalte.ts passen.
+#
+# Zweisprachig: Jede Inhaltsdatei hat einen deutschen und einen englischen Teil
+# ({ "de": {...}, "en": {...} }). Deutsch ist die Quelle der Wahrheit.
+#   i18n: true       → Text wird je Sprache gepflegt
+#   i18n: duplicate  → gilt für beide Sprachen (Fotos, Bildausschnitt, Kürzel, Namen)
+# Listen mit einem „duplicate“-Feld (z. B. Galerie) sind über die Sprachen
+# gepaart: Einträge hinzufügen, löschen und sortieren nur im deutschen Teil.
+#
+# Handy und Desktop zeigen dieselben Inhalte, nur anders angeordnet. Wo sich
+# etwas unterscheidet, steht es im Hinweis am Feld (📱 Handy / 🖥 Desktop).
+
+backend:
+  name: github
+  repo: Kwerki/physio-fabrik
+  branch: main
+  # Login per GitHub-Zugangstoken (siehe ANLEITUNG.md). Lokal
+  # (http://localhost:4321/admin/) geht es ohne Login über „Work with Local Repository“.
+  auth_methods: [token]
+  commit_messages:
+    create: 'Neu: {{collection}} „{{slug}}“'
+    update: 'Aktualisiert: {{collection}} „{{slug}}“'
+    delete: 'Gelöscht: {{collection}} „{{slug}}“'
+    uploadMedia: 'Bild hochgeladen: {{path}}'
+    deleteMedia: 'Bild gelöscht: {{path}}'
+
+app_title: PhysioFabrik – Website bearbeiten
+site_url: https://physio-fabrik.de/
+logo:
+  src: /assets/img/favicon-192.png
+
+# Fotos liegen in src/assets/photos, damit Astro sie beim Build verkleinert.
+# Im Inhalt steht der Pfad als „/photos/<datei>“; src/lib/fotos.ts findet die Datei über den Namen.
+media_folder: src/assets/photos
+public_folder: /photos
+
+media_libraries:
+  default:
+    config:
+      max_file_size: 15000000
+      slugify_filename: true
+      # Hochgeladene Fotos werden automatisch verkleinert und als WebP gespeichert
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 2000
+          height: 2000
+
+i18n:
+  structure: single_file
+  locales: [de, en]
+  default_locale: de
+
+collections:
+  - name: seite
+    label: Inhalte der Website
+    label_singular: Abschnitt
+    icon: web
+    i18n: true
+    files:
+      # ------------------------------------------------------------ Kontaktdaten
+      - name: kontakt
+        label: Kontaktdaten & Öffnungszeiten
+        file: src/content/seite/kontakt.json
+        preview_path: /#kontakt
+        description: >-
+          Gilt für beide Sprachen und erscheint an mehreren Stellen: Kontaktabschnitt,
+          Fußzeile, Handy-Menü, Anrufen-Knopf, Impressum, Datenschutz und für Google.
+        fields:
+          - { name: praxisname, label: Name der Praxis, widget: string }
+          - { name: inhaber, label: Inhaber, widget: string, hint: 'Erscheint im Impressum und in der Datenschutzerklärung' }
+          - { name: strasse, label: Straße und Hausnummer, widget: string }
+          - { name: etage, label: Etage, widget: number, value_type: int, min: 0, max: 20, hint: 'Nur die Zahl, z. B. 2. Daraus wird „2. OG“ bzw. „2nd floor“. 0 = Erdgeschoss.' }
+          - { name: plz, label: PLZ, widget: string }
+          - { name: ort, label: Ort, widget: string }
+          - { name: gebaeude, label: Gebäude / Einkaufszentrum, widget: string, required: false, hint: 'z. B. Vellmax. Leer lassen, wenn nicht nötig.' }
+          - { name: gebaeudeUrl, label: Link zum Gebäude, widget: string, required: false }
+          - { name: telefon, label: Telefonnummer, widget: string, hint: 'So, wie sie angezeigt werden soll, z. B. 0561 82020145. Der Anruf-Link wird automatisch erzeugt.' }
+          - { name: email, label: E-Mail-Adresse, widget: string, hint: 'Auch das Kontaktformular schreibt an diese Adresse.' }
+          - name: oeffnungszeiten
+            label: Öffnungszeiten
+            label_singular: Tag
+            widget: list
+            summary: '{{fields.tag}}  {{fields.von}} – {{fields.bis}}'
+            hint: >-
+              Ein Eintrag pro Tag. Tage ohne Eintrag erscheinen automatisch als „geschlossen“.
+              Oben in der Infoleiste zeigt die Seite daraus live „Jetzt geöffnet · bis 18:00“.
+            fields:
+              - { name: tag, label: Tag, widget: select, options: [Mo, Di, Mi, Do, Fr, Sa, So] }
+              - { name: von, label: Von, widget: string, pattern: ['^\d{1,2}:\d{2}$', 'Bitte als HH:MM, z. B. 08:00'] }
+              - { name: bis, label: Bis, widget: string, pattern: ['^\d{1,2}:\d{2}$', 'Bitte als HH:MM, z. B. 18:00'] }
+          - { name: lat, label: Breitengrad, widget: number, value_type: float, hint: 'Für Google und die Koordinaten am Hero-Foto. Normalerweise nicht ändern.' }
+          - { name: lon, label: Längengrad, widget: number, value_type: float }
+
+      # ------------------------------------------------------------ Allgemein
+      - name: allgemein
+        label: Google & Fußzeile
+        file: src/content/seite/allgemein.json
+        preview_path: /
+        i18n: true
+        fields:
+          - { name: seoTitel, label: Titel bei Google, widget: string, i18n: true, hint: 'Steht als Überschrift im Google-Suchergebnis und im Browser-Tab' }
+          - { name: seoBeschreibung, label: Beschreibung bei Google, widget: text, i18n: true, hint: '1–2 Sätze unter dem Titel im Suchergebnis' }
+          - { name: teilenBeschreibung, label: Text beim Teilen, widget: text, i18n: true, hint: 'Erscheint, wenn jemand den Link per WhatsApp oder Facebook teilt' }
+          - { name: fusszeile, label: Hinweis in der Fußzeile, widget: text, i18n: true }
+
+      # ------------------------------------------------------------ Start
+      - name: start
+        label: 1 · Startbereich (Hero)
+        file: src/content/seite/start.json
+        preview_path: /
+        i18n: true
+        description: >-
+          Der schwarze Bereich ganz oben. 🖥 Desktop: Text links, Foto rechts.
+          📱 Handy: nur der Text, das Foto wird dort nicht gezeigt.
+        fields:
+          - { name: eyebrow, label: Kleine Zeile über der Überschrift, widget: string, i18n: true }
+          - { name: titel, label: Große Überschrift, widget: string, i18n: true }
+          - { name: einleitung, label: Einleitungstext, widget: text, i18n: true }
+          - { name: knopfAnrufen, label: Beschriftung Anruf-Knopf, widget: string, i18n: true, hint: 'Die Telefonnummer wird automatisch dahinter gesetzt' }
+          - { name: knopfEmail, label: Beschriftung E-Mail-Knopf, widget: string, i18n: true }
+          - { name: foto, label: Foto, widget: image, i18n: duplicate, hint: '🖥 Nur am Desktop sichtbar (📱 auf dem Handy ausgeblendet). Am besten ein Hochformat-Foto einer Person.' }
+          - { name: fotoBeschreibung, label: Was ist auf dem Foto zu sehen?, widget: string, i18n: true, hint: 'Für Blinde und Google, wird nicht angezeigt' }
+          - { name: fotoAusschnitt, label: Bildausschnitt (senkrecht), widget: number, value_type: int, min: 0, max: 100, default: 50, i18n: duplicate, hint: 'Welcher Teil des Fotos sichtbar bleibt: 0 = oberer Rand, 50 = Mitte, 100 = unterer Rand. Viel Platz über dem Kopf? Zahl erhöhen.' }
+          - { name: fotoName, label: Name unter dem Foto, widget: string, i18n: duplicate }
+          - { name: fotoRolle, label: Rolle unter dem Foto, widget: string, i18n: true }
+          - name: infoleiste
+            label: Infoleiste unter dem Startbereich
+            label_singular: Eintrag
+            widget: list
+            i18n: true
+            field: { name: eintrag, label: Eintrag, widget: string }
+            hint: >-
+              Kurze Stichworte. Der erste Eintrag wird live durch den Öffnungsstatus ersetzt
+              („Jetzt geöffnet · bis 18:00“) und ist nur der Rückfall. 🖥 Desktop: 4 nebeneinander.
+              📱 Handy: 2 × 2 — eine gerade Anzahl sieht am besten aus.
+
+      # ------------------------------------------------------------ Leistungen
+      - name: leistungen
+        label: 2 · Leistungen
+        file: src/content/seite/leistungen.json
+        preview_path: /#leistungen
+        i18n: true
+        description: >-
+          🖥 Desktop: Überschrift links, Foto rechts, darunter die Gruppen nebeneinander.
+          📱 Handy: alles untereinander.
+        fields:
+          - { name: eyebrow, label: Abschnittsname, widget: string, i18n: true }
+          - { name: titel, label: Überschrift, widget: string, i18n: true }
+          - { name: einleitung, label: Einleitung, widget: markdown, i18n: true, buttons: [bold, italic], editor_components: [], hint: 'Leerzeile = neuer Absatz' }
+          - { name: foto, label: Foto, widget: image, i18n: duplicate, hint: '🖥 Desktop: Format 4:3 neben der Überschrift. 📱 Handy: Format 4:3 über die volle Breite.' }
+          - { name: fotoBeschreibung, label: Was ist auf dem Foto zu sehen?, widget: string, i18n: true }
+          - { name: fotoAusschnitt, label: Bildausschnitt (senkrecht), widget: number, value_type: int, min: 0, max: 100, default: 50, i18n: duplicate, hint: '0 = oberer Rand, 50 = Mitte, 100 = unterer Rand' }
+          - name: gruppen
+            label: Gruppen
+            label_singular: Gruppe
+            widget: list
+            i18n: true
+            summary: '{{fields.titel}}'
+            fields:
+              - { name: titel, label: Gruppenname, widget: string, i18n: true, hint: 'z. B. „Auf Rezept“' }
+              - { name: hinweis, label: Hinweis darunter, widget: string, required: false, i18n: true }
+              - name: eintraege
+                label: Leistungen
+                label_singular: Leistung
+                widget: list
+                i18n: true
+                summary: '{{fields.name}}'
+                hint: 'Jede Leistung ist auf der Seite eine aufklappbare Zeile.'
+                fields:
+                  - { name: name, label: Name, widget: string, i18n: true }
+                  - { name: kuerzel, label: Kürzel, widget: string, required: false, i18n: duplicate, hint: 'z. B. KG, MT. Leer lassen bei Privatleistungen.' }
+                  - { name: text, label: Text beim Aufklappen, widget: markdown, i18n: true, buttons: [bold, italic, link], editor_components: [], hint: 'Leerzeile = neuer Absatz' }
+
+      # ------------------------------------------------------------ Team
+      - name: team
+        label: 3 · Team
+        file: src/content/seite/team.json
+        preview_path: /#team
+        i18n: true
+        description: >-
+          🖥 Desktop: Personen nebeneinander (Foto links, Text rechts).
+          📱 Handy: Personen untereinander.
+        fields:
+          - { name: eyebrow, label: Abschnittsname, widget: string, i18n: true }
+          - { name: titel, label: Überschrift, widget: string, i18n: true }
+          - { name: einleitung, label: Einleitung, widget: text, i18n: true }
+          - name: personen
+            label: Personen
+            label_singular: Person
+            widget: list
+            i18n: true
+            summary: '{{fields.name}}'
+            hint: 'Reihenfolge per Ziehen ändern (nur im deutschen Teil).'
+            fields:
+              - { name: name, label: Name, widget: string, i18n: duplicate }
+              - { name: rolle, label: Rolle, widget: string, i18n: true }
+              - { name: foto, label: Foto, widget: image, required: false, i18n: duplicate, hint: 'Hochformat. Ohne Foto erscheint das Praxislogo als Platzhalter.' }
+              - { name: fotoBeschreibung, label: Was ist auf dem Foto zu sehen?, widget: string, required: false, i18n: true }
+              - name: qualifikationen
+                label: Qualifikationen
+                label_singular: Qualifikation
+                widget: list
+                i18n: true
+                field: { name: q, label: Qualifikation, widget: string }
+          - { name: jobsLink, label: Link-Text zu den Stellen, widget: string, i18n: true, hint: 'Erscheint nur, wenn der Abschnitt „Wir suchen“ angezeigt wird' }
+          - { name: bandFoto, label: Großes Foto unten, widget: image, required: false, i18n: duplicate, hint: '🖥 Desktop: sehr breit (2:1). 📱 Handy: 4:3. Leer lassen = kein Foto.' }
+          - { name: bandFotoBeschreibung, label: Was ist auf dem Foto zu sehen?, widget: string, required: false, i18n: true }
+          - { name: bandFotoTitel, label: Bildunterschrift, widget: string, required: false, i18n: true }
+          - { name: bandFotoAusschnitt, label: Bildausschnitt (senkrecht), widget: number, value_type: int, min: 0, max: 100, default: 50, i18n: duplicate, hint: '0 = oberer Rand, 50 = Mitte, 100 = unterer Rand. Wichtig am Desktop, weil das Bild dort sehr flach ist.' }
+
+      # ------------------------------------------------------------ Praxis
+      - name: praxis
+        label: 4 · Praxis
+        file: src/content/seite/praxis.json
+        preview_path: /#praxis
+        i18n: true
+        fields:
+          - { name: eyebrow, label: Abschnittsname, widget: string, i18n: true }
+          - { name: titel, label: Überschrift, widget: string, i18n: true }
+          - { name: einleitung, label: Einleitung, widget: text, i18n: true }
+          - { name: foto, label: Foto, widget: image, i18n: duplicate, hint: '🖥 Desktop: 4:3 neben der Überschrift. 📱 Handy: 16:10 über die volle Breite.' }
+          - { name: fotoBeschreibung, label: Was ist auf dem Foto zu sehen?, widget: string, i18n: true }
+          - { name: fotoAusschnitt, label: Bildausschnitt (senkrecht), widget: number, value_type: int, min: 0, max: 100, default: 50, i18n: duplicate, hint: '0 = oberer Rand, 50 = Mitte, 100 = unterer Rand' }
+          - name: kennzahlen
+            label: Kennzahlen
+            label_singular: Kennzahl
+            widget: list
+            i18n: true
+            summary: '{{fields.zahl}} {{fields.text}}'
+            hint: 'Am besten genau 3 — sie stehen auf Handy und Desktop nebeneinander. Reine Zahlen zählen beim Scrollen hoch.'
+            fields:
+              - { name: zahl, label: Zahl / Wert, widget: string, i18n: true, hint: 'z. B. 7, 25 min, Alle' }
+              - { name: text, label: Beschriftung, widget: string, i18n: true }
+          - name: merkmale
+            label: Ausstattung (Liste mit grünen Punkten)
+            label_singular: Punkt
+            widget: list
+            i18n: true
+            field: { name: m, label: Punkt, widget: string }
+          - name: galerie
+            label: Fotogalerie
+            label_singular: Foto
+            widget: list
+            i18n: true
+            summary: '{{fields.titel}}'
+            hint: >-
+              🖥 Desktop: alle Fotos in einer Reihe (bei 5 Fotos ideal). 📱 Handy: 2 pro Reihe.
+              Hochformat-Fotos (3:4) passen am besten. Fotos hinzufügen und sortieren nur im deutschen Teil.
+            fields:
+              - { name: foto, label: Foto, widget: image, i18n: duplicate }
+              - { name: titel, label: Bildunterschrift, widget: string, i18n: true }
+              - { name: beschreibung, label: Was ist auf dem Foto zu sehen?, widget: string, i18n: true }
+
+      # ------------------------------------------------------------ Stellen
+      - name: stellen
+        label: 5 · Wir suchen (Stellen)
+        file: src/content/seite/stellen.json
+        preview_path: /#wir-suchen
+        i18n: true
+        fields:
+          - { name: anzeigen, label: Abschnitt anzeigen, widget: boolean, default: true, i18n: duplicate, hint: 'Aus = Abschnitt, Menüpunkt „Wir suchen“ und Link im Team-Bereich verschwinden.' }
+          - { name: eyebrow, label: Abschnittsname, widget: string, i18n: true }
+          - { name: titel, label: Überschrift, widget: string, i18n: true }
+          - { name: einleitung, label: Einleitung, widget: text, i18n: true }
+          - name: stellen
+            label: Stellenanzeigen
+            label_singular: Stelle
+            widget: list
+            i18n: true
+            summary: '{{fields.titel}}'
+            fields:
+              - { name: titel, label: Stellenbezeichnung, widget: string, i18n: true }
+              - { name: umfang, label: Umfang, widget: string, required: false, i18n: true, hint: 'z. B. Voll- oder Teilzeit' }
+              - { name: text, label: Beschreibung, widget: markdown, i18n: true, buttons: [bold, italic, link, bulleted-list], editor_components: [], hint: 'Telefon und E-Mail werden automatisch darunter gesetzt.' }
+          - { name: kontaktSatz, label: Satz vor Telefon und E-Mail, widget: string, i18n: true }
+
+      # ------------------------------------------------------------ Kontakt
+      - name: kontaktbereich
+        label: 6 · Kontaktbereich
+        file: src/content/seite/kontaktbereich.json
+        preview_path: /#kontakt
+        i18n: true
+        description: 'Adresse, Telefon und Öffnungszeiten stehen unter „Kontaktdaten & Öffnungszeiten“.'
+        fields:
+          - { name: eyebrow, label: Abschnittsname, widget: string, i18n: true }
+          - { name: titel, label: Überschrift, widget: string, i18n: true }
+          - { name: formularHinweis, label: Hinweis unter dem Formular, widget: text, i18n: true }
+          - { name: gesundheitsHinweis, label: Hinweis zu Gesundheitsdaten, widget: text, required: false, i18n: true, hint: 'Optional, erscheint ganz unten im Formular' }

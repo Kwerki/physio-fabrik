@@ -1,0 +1,78 @@
+{
+  "de": {
+    "eyebrow": "Team",
+    "titel": "Behandelt wird von Menschen, die den Befund erklären können.",
+    "einleitung": "Feste Bezugstherapeuten statt wechselnder Zuständigkeiten. Jede Behandlung beginnt mit einem Befund und endet mit einem nachvollziehbaren nächsten Schritt.",
+    "personen": [
+      {
+        "name": "Nils Fischer",
+        "rolle": "Praxisleitung (Inhaber) · Physiotherapeut",
+        "foto": "/photos/nils-fischer.webp",
+        "fotoBeschreibung": "Portrait von Nils Fischer",
+        "qualifikationen": [
+          "Krankengymnastik (KG, KGG)",
+          "Manuelle Therapie (MT)",
+          "CMD",
+          "Medizinische Trainingstherapie (MTT)",
+          "Sportphysiotherapie",
+          "Personal Training"
+        ]
+      },
+      {
+        "name": "Angelo Nolte",
+        "rolle": "Physiotherapeut",
+        "foto": "",
+        "fotoBeschreibung": "Portrait von Angelo Nolte",
+        "qualifikationen": [
+          "Krankengymnastik (KG)",
+          "Manuelle Lymphdrainage (MLD)",
+          "Sportphysiotherapie",
+          "Personal Training"
+        ]
+      }
+    ],
+    "jobsLink": "Wir suchen Verstärkung für unser Team →",
+    "bandFoto": "/photos/manuelle-therapie.webp",
+    "bandFotoBeschreibung": "Therapeut behandelt mit beiden Händen den Rücken einer bäuchlings auf der Behandlungsliege liegenden Person",
+    "bandFotoTitel": "Manuelle Therapie",
+    "bandFotoAusschnitt": 46
+  },
+  "en": {
+    "eyebrow": "Team",
+    "titel": "Treated by people who can explain the findings.",
+    "einleitung": "A permanent therapist instead of changing responsibilities. Every treatment starts with an assessment and ends with a clear next step.",
+    "personen": [
+      {
+        "name": "Nils Fischer",
+        "rolle": "Practice owner · Physiotherapist",
+        "foto": "/photos/nils-fischer.webp",
+        "fotoBeschreibung": "Portrait of Nils Fischer",
+        "qualifikationen": [
+          "Physiotherapy (KG, KGG)",
+          "Manual therapy (MT)",
+          "Jaw joint disorders (CMD)",
+          "Medical training therapy (MTT)",
+          "Sports physiotherapy",
+          "Personal training"
+        ]
+      },
+      {
+        "name": "Angelo Nolte",
+        "rolle": "Physiotherapist",
+        "foto": "",
+        "fotoBeschreibung": "Portrait of Angelo Nolte",
+        "qualifikationen": [
+          "Physiotherapy (KG)",
+          "Manual lymphatic drainage (MLD)",
+          "Sports physiotherapy",
+          "Personal training"
+        ]
+      }
+    ],
+    "jobsLink": "We are looking for new team members →",
+    "bandFoto": "/photos/manuelle-therapie.webp",
+    "bandFotoBeschreibung": "Therapist treating the back of a person lying face down on the treatment table with both hands",
+    "bandFotoTitel": "Manual therapy",
+    "bandFotoAusschnitt": 46
+  }
+}

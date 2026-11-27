@@ -1,0 +1,126 @@
+{
+  "de": {
+    "eyebrow": "Leistungen",
+    "titel": "Was auf Rezept geht — und was Sie ohne Verordnung buchen können.",
+    "einleitung": "Jede Zeile lässt sich aufklappen: was die Behandlung umfasst, wann sie sinnvoll ist und was auf dem Rezept stehen muss.",
+    "foto": "/photos/trainingsflaeche-hoch.webp",
+    "fotoBeschreibung": "Trainingsfläche der Praxis mit Sprossenwand, Zugapparat und Hantelbank, Tageslicht durch bodentiefe Fenster",
+    "fotoAusschnitt": 62,
+    "gruppen": [
+      {
+        "titel": "Auf Rezept",
+        "hinweis": "Gesetzlich & privat versichert",
+        "eintraege": [
+          {
+            "name": "Krankengymnastik",
+            "kuerzel": "KG",
+            "text": "Die Grundleistung auf Rezept. Wir beginnen mit einem Befund und behandeln von dort aus gezielt: Beweglichkeit, Kraft, Koordination und Haltung — nach Operationen, bei Rückenbeschwerden, nach Verletzungen oder bei Verschleiß.\n\nSie gehen mit einem Übungsprogramm nach Hause, das zu Ihrem Alltag passt. Ohne Eigenanteil geht es meistens nicht."
+          },
+          {
+            "name": "Krankengymnastik am Gerät",
+            "kuerzel": "KGG",
+            "text": "Aufbautraining an medizinischen Trainingsgeräten, ärztlich verordnet und therapeutisch begleitet. Gedacht für den Punkt, an dem Beweglichkeit wieder da ist, aber Kraft und Belastbarkeit fehlen.\n\nTrainingsplan und Gewichte werden regelmäßig angepasst. Unsere Trainingsfläche ist für KGG zugelassen."
+          },
+          {
+            "name": "Manuelle Therapie",
+            "kuerzel": "MT",
+            "text": "Behandlung mit den Händen an Gelenken, Muskeln und Nerven — bei Bewegungseinschränkungen und Schmerzen, die von einer bestimmten Struktur ausgehen. Dient zumeist als Tor zu mehr Bewegung: über manuelle Mobilisation und Traktion lässt sich Beweglichkeit im betroffenen Segment gezielt zurückgewinnen.\n\nSetzt eine Zusatzqualifikation voraus und braucht eine eigene Verordnung; die Ärztin oder der Arzt muss MT auf dem Rezept ausdrücklich angeben."
+          },
+          {
+            "name": "Craniomandibuläre Dysfunktion",
+            "kuerzel": "CMD",
+            "text": "Für Beschwerden rund um das Kiefergelenk: Knacken beim Öffnen, Kieferschmerz, Zähneknirschen — häufig zusammen mit Kopfschmerzen, Ohrgeräuschen oder verspanntem Nacken.\n\nWir behandeln Kiefer, Halswirbelsäule und Kaumuskulatur zusammen und arbeiten dabei oft mit Ihrer Zahnarztpraxis, etwa begleitend zu einer Aufbissschiene."
+          },
+          {
+            "name": "Klassische Massagetherapie",
+            "kuerzel": "KMT",
+            "text": "Massage von Muskulatur und Bindegewebe gegen Verspannung und Druckschmerz. Sie fördert die Durchblutung und kann zur Entspannung sowie temporärer Schmerzreduktion führen.\n\nAuf Rezept meist in Kombination mit Wärme und als Vorbereitung auf die aktive Behandlung — nicht als Ersatz dafür. Ohne Verordnung buchen Sie die Massage als Privatleistung."
+          }
+        ]
+      },
+      {
+        "titel": "Privatleistungen",
+        "hinweis": "Ohne Verordnung buchbar",
+        "eintraege": [
+          {
+            "name": "Personal Training",
+            "kuerzel": "",
+            "text": "Training zu zweit an den medizinischen Geräten — ohne Rezept und ohne Verordnungszeitraum. Wir nehmen einen Befund auf, legen gemeinsam Ziele fest und bauen daraus einen Plan.\n\nSinnvoll, wenn eine Verordnung ausgelaufen ist und Sie das Erreichte halten wollen — oder als Einstieg, wenn Sie trainieren möchten, aber nicht wissen, womit."
+          },
+          {
+            "name": "Massage",
+            "kuerzel": "",
+            "text": "Klassische Massage gegen Verspannung und Druckschmerz, meist an Nacken, Schultern und Rücken. Eine Einheit dauert 20 Minuten.\n\nOhne Verordnung buchen Sie die Massage frei als Privatleistung. Steht sie auf einem Rezept, rechnen wir über die Kasse ab."
+          },
+          {
+            "name": "Wärmepackung",
+            "kuerzel": "",
+            "text": "Erwärmter Fango auf die betroffene Region. Die Wärme fördert die Durchblutung und fördert die Entspannung.\n\nMeist als Vorbereitung auf eine Behandlung gebucht, nicht als Ersatz dafür. Sagen Sie bei der Terminvergabe Bescheid, dann planen wir die Zeit dafür ein."
+          }
+        ]
+      }
+    ]
+  },
+  "en": {
+    "eyebrow": "Treatments",
+    "titel": "What is covered by prescription — and what you can book without one.",
+    "einleitung": "Each row can be expanded: what the treatment involves, when it makes sense and what needs to be on the prescription.\n\nIn Germany, physiotherapy is normally prescribed by a doctor. Please bring that prescription — a *Rezept* or *Verordnung* — to your first appointment.",
+    "foto": "/photos/trainingsflaeche-hoch.webp",
+    "fotoBeschreibung": "The practice's training area with wall bars, cable machine and weight bench, daylight through floor-to-ceiling windows",
+    "fotoAusschnitt": 62,
+    "gruppen": [
+      {
+        "titel": "On prescription",
+        "hinweis": "Statutory & private insurance",
+        "eintraege": [
+          {
+            "name": "Physiotherapy",
+            "kuerzel": "KG",
+            "text": "The standard treatment on prescription. We start with an assessment and treat specifically from there: mobility, strength, coordination and posture — after surgery, for back pain, after injuries or with wear and tear.\n\nYou go home with an exercise programme that fits your everyday life. With statutory insurance there is usually a co-payment."
+          },
+          {
+            "name": "Exercise therapy on equipment",
+            "kuerzel": "KGG",
+            "text": "Strength training on medical training equipment, prescribed by a doctor and supervised by a therapist. Designed for the point where mobility has returned but strength and resilience are still missing.\n\nTraining plan and weights are adjusted regularly. Our training area is approved for this treatment."
+          },
+          {
+            "name": "Manual therapy",
+            "kuerzel": "MT",
+            "text": "Hands-on treatment of joints, muscles and nerves — for restricted movement and pain that comes from a specific structure. Usually a gateway to more movement: manual mobilisation and traction can restore mobility in the affected segment.\n\nRequires an additional qualification and its own prescription; the doctor has to state MT explicitly on the prescription. If it is not there, we are not allowed to bill it."
+          },
+          {
+            "name": "Jaw joint disorders",
+            "kuerzel": "CMD",
+            "text": "For problems around the jaw joint: clicking when opening, jaw pain, teeth grinding — often together with headaches, ringing in the ears or a stiff neck.\n\nWe treat the jaw, cervical spine and chewing muscles together and often work alongside your dentist, for example in addition to a bite splint."
+          },
+          {
+            "name": "Classic massage therapy",
+            "kuerzel": "KMT",
+            "text": "Massage of muscles and connective tissue against tension and tenderness. It promotes circulation and can help you relax and temporarily reduce pain.\n\nOn prescription usually combined with heat and as preparation for active treatment — not as a replacement for it. Without a prescription you can book massage as a private service."
+          }
+        ]
+      },
+      {
+        "titel": "Private services",
+        "hinweis": "Bookable without a prescription",
+        "eintraege": [
+          {
+            "name": "Personal training",
+            "kuerzel": "",
+            "text": "One-to-one training on the medical equipment — no prescription and no prescription period. We start with an assessment, agree on goals together and build a plan from them.\n\nUseful when a prescription has run out and you want to keep what you have achieved — or as a starting point if you want to train but don't know where to begin."
+          },
+          {
+            "name": "Massage",
+            "kuerzel": "",
+            "text": "Classic massage against tension and tenderness, usually on the neck, shoulders and back. A session lasts 20 minutes.\n\nWithout a prescription you book massage as a private service. If it is on a prescription, we bill your health insurer."
+          },
+          {
+            "name": "Heat pack",
+            "kuerzel": "",
+            "text": "Warmed fango applied to the affected area. The heat promotes circulation and helps you relax.\n\nUsually booked as preparation for treatment, not as a replacement for it. Let us know when booking and we will plan the time for it."
+          }
+        ]
+      }
+    ]
+  }
+}

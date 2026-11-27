@@ -1,0 +1,13 @@
+---
+// Vollständige englische Spiegelung der deutschen Startseite: gleiche Vorlage,
+// gleiche Fotos, Texte aus dem „en“-Teil der Inhaltsdateien.
+import Layout from '../../layouts/Layout.astro';
+import Startseite from '../../components/Startseite.astro';
+import { allgemein } from '../../data/inhalte';
+
+const g = allgemein('en');
+---
+
+<Layout sprache="en" titel={g.seoTitel} beschreibung={g.seoBeschreibung} teilenBeschreibung={g.teilenBeschreibung} pfad="/en/">
+  <Startseite sprache="en" />
+</Layout>
